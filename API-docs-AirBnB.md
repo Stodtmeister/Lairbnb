@@ -1,4 +1,4 @@
-# `<Lair-Locator>`
+# `<Lairbnb>`
 
 ## Database Schema Design
 
