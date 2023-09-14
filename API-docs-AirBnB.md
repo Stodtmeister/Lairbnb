@@ -1,8 +1,8 @@
-# `<Lairbnb>`
+# `Lairbnb`
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+![Getting Started](./image/Lairbnb.png)
 
 ## API Documentation
 
