@@ -1,4 +1,5 @@
 # Lairbnb
+## Database Schema Design
 ![Getting Started](./image/Lairbnb.png)
 
 ## API Documentation
@@ -1448,4 +1449,3 @@ Return spots filtered by query parameters.
       }
     }
     ```
-
