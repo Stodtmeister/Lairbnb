@@ -1,6 +1,6 @@
 # Lairbnb
 ## Database Schema Design
-![Getting Started](./image/Lairbnb.png)
+![Getting Started](./images/Lairbnb.png)
 
 ## API Documentation
 
