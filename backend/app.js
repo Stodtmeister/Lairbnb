@@ -35,6 +35,8 @@ app.use(
 
 app.use(routes);
 
+//! anytime we want to access the logged in users info in our endpoints we will key into req.users
+
 // Catch unhandled requests and forward to error handler.
 app.use((_req, _res, next) => {
   const err = new Error("The requested resource couldn't be found.");
