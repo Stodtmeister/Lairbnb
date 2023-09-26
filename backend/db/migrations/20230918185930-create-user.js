@@ -9,10 +9,10 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Users', {
       id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
+        primaryKey: true
       },
       firstName: {
         type: Sequelize.STRING(30),

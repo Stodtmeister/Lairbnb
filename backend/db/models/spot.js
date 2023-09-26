@@ -16,39 +16,96 @@ module.exports = (sequelize, DataTypes) => {
   Spot.init({
     ownerId: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      }
     },
     address: {
       type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        len: [10, 100]
+      }
     },
     city: {
       type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      }
     },
     state: {
       type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        len: [2, 11]
+      }
     },
     country: {
       type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        len: [2, 56]
+      }
     },
     lat: {
       type: DataTypes.FLOAT,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        isFloat: true
+      }
     },
     lng: {
       type: DataTypes.FLOAT,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        isFloat: true
+      }
     },
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      }
     },
     description: {
       type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        len: [1, 500]
+      }
     },
     price: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        isInt: true
+      }
     },
     avgRating: {
       type: DataTypes.FLOAT,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        isNumeric: true
+      }
     },
     previewImage: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        isUrl: true
+      }
     },
   }, {
     sequelize,

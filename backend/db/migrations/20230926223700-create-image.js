@@ -2,27 +2,23 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Bookings', {
+    await queryInterface.createTable('Images', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true
       },
-      spotId: {
+      imageableType: {
+        type: Sequelize.ENUM,
+        allowNull: false
+      },
+      imageableId: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      userId: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
-      startDate: {
-        type: Sequelize.DATE,
-        allowNull: false
-      },
-      endDate: {
-        type: Sequelize.DATE,
+      url: {
+        type: Sequelize.STRING,
         allowNull: false
       },
       createdAt: {
@@ -38,6 +34,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Bookings');
+    await queryInterface.dropTable('Images');
   }
 };
