@@ -28,22 +28,41 @@ const validateSignup = [
 ];
 
 // Sign up
-router.post('/', validateSignup, async (req, res) => {
-  const { email, password, username } = req.body;
+router.post('/', validateSignup, async (req, res, next) => {
+  const { firstName, lastName, email, password, username } = req.body;
   const hashedPassword = bcrypt.hashSync(password);
-  const user = await User.create({ firstName, lastName, email, username, hashedPassword });
 
-  const safeUser = {
-    id: user.id,
-    firstName: user.firstName,
-    lastName: user.lastName,
-    email: user.email,
-    username: user.username,
-  };
+  try {
+    const user = await User.create({ firstName, lastName, email, username, hashedPassword });
 
-  await setTokenCookie(res, safeUser);
+    const safeUser = {
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      username: user.username,
+    };
 
-  return res.json({ user: safeUser });
+    await setTokenCookie(res, safeUser);
+    return res.json({ user: safeUser });
+
+  } catch(e) {
+    if (e.errors[0].path === 'email') {
+      const err = new Error('User already exists')
+      err.errors = { message: 'User with that email already exists' }
+      err.status = 500
+      console.log(err)
+      return next(err)
+    }
+    if (e.errors[0].path === 'username') {
+      const err = new Error('User already exists')
+      err.errors = { message: 'User with that username already exists' }
+      err.status = 500
+      return next(err)
+    }
+
+    next(e)
+  }
 });
 
 module.exports = router;
