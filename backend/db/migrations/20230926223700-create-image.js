@@ -1,5 +1,10 @@
 'use strict';
 
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define the schema in options object
+}
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Images', {
@@ -10,12 +15,10 @@ module.exports = {
         primaryKey: true
       },
       imageableType: {
-        type: Sequelize.ENUM,
-        allowNull: false
+        type: Sequelize.ENUM('Review', 'Spot')
       },
       imageableId: {
         type: Sequelize.INTEGER,
-        allowNull: false
       },
       url: {
         type: Sequelize.STRING,
@@ -34,6 +37,7 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Images');
+    options.tableName = 'Images'
+    return queryInterface.dropTable(options);
   }
 };
