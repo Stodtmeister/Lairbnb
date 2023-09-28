@@ -36,6 +36,10 @@ module.exports = (sequelize, DataTypes) => {
         isUrl: true
       }
     },
+    preview: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
   }, {
     sequelize,
     modelName: 'Image',

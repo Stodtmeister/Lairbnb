@@ -13,17 +13,20 @@ module.exports = {
       {
         imageableType: 'Review',
         imageableId: 1,
-        url: 'https://google.com'
+        url: 'https://google.com',
+        preview: true
       },
       {
         imageableType: 'Spot',
         imageableId: 2,
-        url: 'https://google.com'
+        url: 'https://google.com',
+        preview: true
       },
       {
         imageableType: 'Review',
         imageableId: 2,
-        url: 'https://google.com'
+        url: 'https://google.com',
+        preview: true
       },
       {
         imageableType: 'Spot',
