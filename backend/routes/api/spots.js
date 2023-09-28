@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { Spot, User } = require('../../db/models')
+const { Spot, User, Image } = require('../../db/models')
 const { Op } = require('sequelize')
 const { requireAuth } = require('../../utils/auth')
 
@@ -16,19 +16,25 @@ router.get('/current', requireAuth, async (req, res) => {
     where: { ownerId: currentUser.id }
   })
 
-  res.status(200).json({ spots })
+  return res.status(200).json({ spots })
 })
 
 router.get('/:spotId', async (req, res) => {
   const spot = await Spot.findByPk(req.params.spotId, {
     include: [
       {
+        model: Image, as: 'SpotImages',
+        attributes: ['id', 'url']
+      },
+      {
         model: User, as: 'Owner',
         attributes: ['id', 'firstName', 'lastName']
       }
     ]
   })
-  res.status(200).json(spot)
+
+  if (!spot) return res.status(404).json({ message: "Spot couldn't be found"})
+  return res.status(200).json(spot)
 })
 
 

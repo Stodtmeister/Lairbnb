@@ -11,18 +11,33 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await Image.bulkCreate([
       {
-        // imageableType: 'Review',
-        // imageableId: 1,
+        imageableType: 'Review',
+        imageableId: 1,
         url: 'https://google.com'
       },
       {
-        // imageableType: 'Spot',
-        // imageableId: 2,
+        imageableType: 'Spot',
+        imageableId: 2,
         url: 'https://google.com'
       },
       {
-        // imageableType: 'Review',
-        // imageableId: 2,
+        imageableType: 'Review',
+        imageableId: 2,
+        url: 'https://google.com'
+      },
+      {
+        imageableType: 'Spot',
+        imageableId: 1,
+        url: 'https://google.com'
+      },
+      {
+        imageableType: 'Review',
+        imageableId: 2,
+        url: 'https://google.com'
+      },
+      {
+        imageableType: 'Spot',
+        imageableId: 2,
         url: 'https://google.com'
       },
     ], { validate: true })
