@@ -19,6 +19,18 @@ router.get('/current', requireAuth, async (req, res) => {
   res.status(200).json({ spots })
 })
 
+router.get('/:spotId', async (req, res) => {
+  const spot = await Spot.findByPk(req.params.spotId, {
+    include: [
+      {
+        model: User, as: 'Owner',
+        attributes: ['id', 'firstName', 'lastName']
+      }
+    ]
+  })
+  res.status(200).json(spot)
+})
+
 
 
 module.exports = router
