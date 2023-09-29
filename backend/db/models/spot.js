@@ -93,23 +93,7 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true,
         isInt: true
       }
-    },
-    avgRating: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-        isNumeric: true
-      }
-    },
-    previewImage: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-        isUrl: true
-      }
-    },
+    }
   }, {
     sequelize,
     modelName: 'Spot',

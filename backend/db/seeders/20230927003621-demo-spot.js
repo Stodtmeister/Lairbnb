@@ -20,9 +20,7 @@ module.exports = {
         lng: 748.3,
         name: 'Tree House',
         description: 'This is a house in a tree',
-        price: 999,
-        avgRating: 5.0,
-        previewImage: 'https://lairbnb.com'
+        price: 999
       },
       {
         ownerId: 2,
@@ -34,9 +32,7 @@ module.exports = {
         lng: 7892.1,
         name: 'Skyscraper',
         description: 'The Flatiron Building',
-        price: 1000000,
-        avgRating: 4.5,
-        previewImage: 'https://lairbnb.com'
+        price: 1000000
       },
       {
         ownerId: 3,
@@ -48,9 +44,7 @@ module.exports = {
         lng: 100.7,
         name: 'Alcatraz prison',
         description: 'Literally Alcatraz prison.',
-        price: '7',
-        avgRating: 1.3,
-        previewImage: 'https://lairbnb.com'
+        price: '7'
       },
     ], { validate: true })
   },
