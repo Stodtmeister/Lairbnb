@@ -6,10 +6,8 @@ const csurf = require('csurf')
 const helmet = require('helmet')
 const cookieParser = require('cookie-parser')
 const { ValidationError } = require('sequelize')
-
 const { environment } = require('./config')
 const isProduction = environment === 'production'
-
 const routes = require('./routes');
 
 const app = express()
@@ -60,10 +58,10 @@ app.use((err, _req, res, _next) => {
   res.status(err.status || 500);
   console.error(err); //! remove eventually
   res.json({
-    title: err.title || 'Server Error',
+    //! title: err.title || 'Server Error',
     message: err.message,
     errors: err.errors,
-    stack: isProduction ? null : err.stack
+    //! stack: isProduction ? null : err.stack
   });
 });
 
