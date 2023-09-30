@@ -5,53 +5,32 @@ const { Spot, User, Image, Review, sequelize } = require('../../db/models')
 const { Op } = require('sequelize')
 const { requireAuth } = require('../../utils/auth')
 
-
+// Get all spots
 router.get('/', async (req, res) => {
-  const spots = await Spot.findAll(
-    {include: [{ model: Review }, { model: Image }] }
-  )
-
+  const spots = await Spot.findAll({
+    include: [{ model: Review }, { model: Image, as: 'SpotImages' }]
+  })
 
   const updatedSpots = getAvgRating(spots)
-  return res.json({ Spots: updatedSpots})
-  return res.status(200).json({ spots })
+  return res.status(200).json({ Spots: updatedSpots})
 })
 
+// Get all spots owned by the current user
 router.get('/current', requireAuth, async (req, res) => {
   const { user: currentUser } = req
   const spots = await Spot.findAll({
-    where: { ownerId: currentUser.id }
+    where: { ownerId: currentUser.id },
+    include: [{ model: Review }, { model: Image, as: 'SpotImages' }]
   })
 
-
-  return res.status(200).json({ spots })
+  const updatedSpots = getAvgRating(spots)
+  return res.status(200).json({ Spots: updatedSpots })
 })
 
+// Get details of a spot from an id
 router.get('/:spotId', async (req, res) => {
-
-  const { id, ownerId, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt } = req.body
-
-  const numberOfReviews = await Review.count({
-    where: { id: Number(req.params.spotId) }
-  })
-
-  const updatedSpot = {}
-
-
-
   const spot = await Spot.findByPk(req.params.spotId, {
-    attributes: {
-      exclude: ['avgRating', 'previewImage'],
-    },
     include: [
-      // {
-      //   model: Review,
-      //   attributes: {
-      //     include: [
-      //       [sequelize.fn('COUNT', sequelize.col('review')), 'numReviews']
-      //     ]
-      //   }
-      // },
       {
         model: Image, as: 'SpotImages',
         attributes: ['id', 'url', 'preview']
@@ -59,24 +38,18 @@ router.get('/:spotId', async (req, res) => {
       {
         model: User, as: 'Owner',
         attributes: ['id', 'firstName', 'lastName']
-      }
+      },
+      { model: Review }
     ]
   })
 
-  // let review = await spot.getReviews()
-  // review = review.length
-
-  // spot.dataValues.numReviews = numberOfReviews
-  // console.log(spot)
-
   if (!spot) return res.status(404).json({ message: "Spot couldn't be found"})
-  return res.status(200).json(review)
+  const updatedSpots = getAvgRating([spot])
+  return res.status(200).json(updatedSpots)
 })
 
 function getAvgRating(arr) {
-  const newArr = []
-
-  for (let spot of arr) {
+  return arr.map((spot) => {
     let count = 0
     let totalStars = 0
     let previewImage
@@ -87,24 +60,25 @@ function getAvgRating(arr) {
       totalStars += review.stars
     }
 
-    for (let images of spot.Images) {
-      if (images.preview === true) {
-        preview = images.url
-        // spot.dataValues.previewImage = images.url
-        break
-      }
-
+    if (!spot.SpotImages.length) {
       previewImage = 'Upload preview image'
-      // spot.dataValues.previewImage = 'Upload preview image'
+    } else {
+      for (let images of spot.SpotImages) {
+        if (images.preview === true) {
+          previewImage = images.url
+          break
+        }
+      }
+      previewImage = 'Upload preview image'
     }
 
     avgRating = totalStars / count
-    // spot.dataValues.avgRating = totalStars / count
-    const { id, ownerId, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt } = spot
-    newArr.push({ id, ownerId, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt, avgRating, previewImage })
-  }
-
-  return newArr
+    let numReviews = count
+    let avgStarRating = avgRating
+    const { id, ownerId, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt, SpotImages, Owner } = spot
+    if (Owner) return { id, ownerId, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt, numReviews, avgStarRating, SpotImages, Owner }
+    return { id, ownerId, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt, avgRating, previewImage }
+  })
 }
 
 
