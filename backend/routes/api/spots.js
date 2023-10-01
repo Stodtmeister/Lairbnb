@@ -111,7 +111,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
   const newImage = await Image.create({ imageableId, imageableType, ...req.body })
   const { id, url, preview } = newImage
 
-  return res.json({ id, url, preview })
+  return res.status(200).json({ id, url, preview })
 })
 
 // Edit a spot
@@ -123,6 +123,17 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res, next) => {
 
   const updatedSpot = await spot.update(req.body)
   return res.status(200).json(updatedSpot)
+})
+
+// Delete a spot
+router.delete('/:spotId', requireAuth, async (req, res, next) => {
+  const spot = await Spot.findByPk(req.params.spotId)
+
+  if (!spot) return res.status(404).json({ message: "Spot couldn't be found"})
+  authorization(spot, req.user, next)
+
+  await spot.destroy()
+  return res.status(200).json({ message: 'Successfully deleted' })
 })
 
 function authorization(spot, user, next) {
