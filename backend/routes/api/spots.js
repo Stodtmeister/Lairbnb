@@ -129,11 +129,27 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res, next) => {
 router.delete('/:spotId', requireAuth, async (req, res, next) => {
   const spot = await Spot.findByPk(req.params.spotId)
 
-  if (!spot) return res.status(404).json({ message: "Spot couldn't be found"})
+  if (!spot) return res.status(404).json({ message: "Spot couldn't be found" })
   authorization(spot, req.user, next)
 
   await spot.destroy()
   return res.status(200).json({ message: 'Successfully deleted' })
+})
+
+// Get all reviews by a spot's id
+router.get('/:spotId/reviews', async (req, res) => {
+  const spot = await Spot.findByPk(req.params.spotId)
+  if (!spot) return res.status(404).json({ message: "Spot couldn't be found" })
+
+  const reviews = await Review.findAll({
+    where : { spotId: req.params.spotId },
+    include: [
+      { model: User, attributes: ['id', 'firstName', 'lastName'] },
+      { model: Image, as: 'ReviewImages', attributes: ['id', 'url'] }
+    ]
+  })
+
+  return res.status(200).json({ Reviews: reviews })
 })
 
 function authorization(spot, user, next) {
