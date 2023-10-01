@@ -103,6 +103,8 @@ router.post('/', requireAuth, validateSpot, async (req, res, next) => {
 router.post('/:spotId/images', requireAuth, async (req, res, next) => {
   const spot = await Spot.findByPk(req.params.spotId)
 
+  if (!spot) return res.status(404).json({ message: "Spot couldn't be found"})
+
   if (spot.ownerId !== req.user.id) {
     let err = new Error('Forbidden')
     err.status = 403
@@ -113,12 +115,10 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
   const imageableId = Number(req.params.spotId)
   const imageableType = 'Spot'
   const newImage = await Image.create({ imageableId, imageableType, ...req.body })
+  const { id, url, preview } = newImage
 
-  // await spot.addImage(newImage)
-  return res.json(spot)
+  return res.json({ id, url, preview })
 })
-
-
 
 function getAvgRating(arr) {
   return arr.map((spot) => {
