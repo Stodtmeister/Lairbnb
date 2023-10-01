@@ -1,22 +1,23 @@
-const router = require('express').Router()
+const router = require('express').Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { Spot, User, Image, Review } = require('../../db/models')
-const { Op } = require('sequelize')
-const { requireAuth } = require('../../utils/auth')
+const { Spot, User, Image, Review } = require('../../db/models');
+const { Op } = require('sequelize');
+const { requireAuth } = require('../../utils/auth');
 
-// router.get('/current', requireAuth, async (req, res, next) => {
-//   const { user: currentUser } = req
+// Get all reviews of the current user
+router.get('/current', requireAuth, async (req, res, next) => {
+  const reviews = await Review.findAll({
+    where: { userId: req.user.id },
+    include: [
+      { model: User, attributes: ['id', 'firstName', 'lastName'] },
+      { model: Spot, attributes: { exclude: ['createdAt', 'updatedAt'] } },
+      { model: Image, as: 'ReviewImages', attributes: ['id', 'url'] },
+    ],
+  });
 
-//   const reviews = await Review.findAll({
-//     where: { userId: currentUser.id }
-//   })
-
-//   return res.json({ reviews })
+  return res.status(200).json({ Reviews: reviews });
+});
 
 
-// })
-
-// if (!review) return res.status(404).json({ message: "Spot couldn't be found"})
-// authorization(review, req.user, next)
-module.exports = router
+module.exports = router;
