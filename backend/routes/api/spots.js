@@ -99,6 +99,27 @@ router.post('/', requireAuth, validateSpot, async (req, res, next) => {
   }
 })
 
+// Add an image to a spot based on the spot's id
+router.post('/:spotId/images', requireAuth, async (req, res, next) => {
+  const spot = await Spot.findByPk(req.params.spotId)
+
+  if (spot.ownerId !== req.user.id) {
+    let err = new Error('Forbidden')
+    err.status = 403
+    err.title = 'Require proper authorization'
+    next(err)
+  }
+
+  const imageableId = Number(req.params.spotId)
+  const imageableType = 'Spot'
+  const newImage = await Image.create({ imageableId, imageableType, ...req.body })
+
+  // await spot.addImage(newImage)
+  return res.json(spot)
+})
+
+
+
 function getAvgRating(arr) {
   return arr.map((spot) => {
     let count = 0
