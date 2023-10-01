@@ -32,7 +32,7 @@ validateSpot = [
     .withMessage('Longitude is not valid'),
   check('name')
     .exists({ checkFalsy: true })
-    .isLength({ max: 49 })
+    .isLength({ min: 1, max: 49 })
     .withMessage('Name must be less than 50 characters'),
   check('description')
     .exists({ checkFalsy: true })
@@ -104,13 +104,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
   const spot = await Spot.findByPk(req.params.spotId)
 
   if (!spot) return res.status(404).json({ message: "Spot couldn't be found"})
-
-  if (spot.ownerId !== req.user.id) {
-    let err = new Error('Forbidden')
-    err.status = 403
-    err.title = 'Require proper authorization'
-    next(err)
-  }
+  authorization(spot, req.user, next)
 
   const imageableId = Number(req.params.spotId)
   const imageableType = 'Spot'
@@ -119,6 +113,26 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
 
   return res.json({ id, url, preview })
 })
+
+// Edit a spot
+router.put('/:spotId', requireAuth, validateSpot, async (req, res, next) => {
+  const spot = await Spot.findByPk(req.params.spotId)
+
+  if (!spot) return res.status(404).json({ message: "Spot couldn't be found"})
+  authorization(spot, req.user, next)
+
+  const updatedSpot = await spot.update(req.body)
+  return res.status(200).json(updatedSpot)
+})
+
+function authorization(spot, user, next) {
+  if (spot.ownerId !== user.id) {
+    let err = new Error('Forbidden')
+    err.status = 403
+    err.title = 'Require proper authorization'
+    next(err)
+  }
+}
 
 function getAvgRating(arr) {
   return arr.map((spot) => {
