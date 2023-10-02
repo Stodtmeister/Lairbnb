@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { Spot, User, Image, Review } = require('../../db/models')
+const { Spot, User, Image, Review, Booking } = require('../../db/models')
 const { Op } = require('sequelize')
 const { requireAuth } = require('../../utils/auth')
 
@@ -176,13 +176,33 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res, ne
       userId: req.user.id,
     }
   })
-  
+
   if (reviewedPreviously) return res.status(500).json({ message: "User already has a review for this spot"})
 
   const userId = req.user.id
   const spotId = req.params.spotId
   const review = await Review.create({ userId, spotId, ...req.body })
   return res.status(201).json(review)
+})
+
+// Get all bookings for a spot based on the spot's id
+router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
+  const spot = await Spot.findByPk(req.params.spotId)
+
+  if (!spot) return res.status(404).json({ message: "Spot couldn't be found"})
+
+  if (spot.dataValues.ownerId === req.user.id) {
+    const notOwner = await spot.getBookings({
+      include: {
+        model: User,
+        attributes: ['id', 'firstName', 'lastName']
+      }
+    })
+    res.status(200).json({ Bookings: notOwner })
+  } else {
+    const isOwner = await spot.getBookings({ attributes: ['spotId', 'startDate', 'endDate'] })
+    res.status(200).json({ Bookings: isOwner })
+  }
 })
 
 function authorization(spot, user, next) {
