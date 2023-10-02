@@ -19,19 +19,26 @@ router.get('/current', requireAuth, async (req, res, next) => {
   return res.status(200).json({ Reviews: reviews });
 });
 
-// Get all reviews by a spot's id
-router.get('/:spotId/reviews', async (req, res) => {
-  const reviews = await Review.findAll({
-    where : { spotId: req.params.spotId },
-    include: [
-      { model: User, attributes: ['id', 'firstName', 'lastName'] },
-      { model: Image, as: 'ReviewImages', attributes: ['id', 'url'] }
-    ]
-  })
+router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
+  const review = await Review.findByPk(req.params.reviewId)
+  if (!review) return res.status(404).json({ message: "Review couldn't be found" })
+  authorization(review, req.user, next)
 
-  if (!reviews) return res.status(404).json({ message: "Spot couldn't be found" })
-  return res.status(200).json({ Reviews: reviews })
+  const imageableType = 'Review'
+  const imageableId = req.user.id
+  const image = await Image.create({ imageableType, imageableId, ...req.body})
+
+  const { id, url } = image
+  return res.status(200).json({ id, url })
 })
 
+function authorization(review, user, next) {
+  if (review.userId !== user.id) {
+    let err = new Error('Forbidden')
+    err.status = 403
+    err.title = 'Require proper authorization'
+    next(err)
+  }
+}
 
 module.exports = router;
