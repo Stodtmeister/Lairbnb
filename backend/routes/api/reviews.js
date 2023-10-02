@@ -5,6 +5,19 @@ const { Spot, User, Image, Review, sequelize } = require('../../db/models');
 const { Op } = require('sequelize');
 const { requireAuth } = require('../../utils/auth');
 
+validateReview = [
+  check('review')
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage('Review text is required'),
+  check('stars')
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .isIn([1, 2, 3, 4, 5])
+    .withMessage('Stars must be an integer from 1 to 5'),
+  handleValidationErrors
+]
+
 // Get all reviews of the current user
 router.get('/current', requireAuth, async (req, res, next) => {
   const reviews = await Review.findAll({
@@ -32,16 +45,27 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
   if (!review) return res.status(404).json({ message: "Review couldn't be found" })
   const imageCount = review.dataValues.imageCount
 
-  console.log(imageCount)
-  if (imageCount >= 10) return res.status(403).json({ message: 'Maximum number of images for this resource was reached'})
+console.log(imageCount)
+if (imageCount >= 10) return res.status(403).json({ message: 'Maximum number of images for this resource was reached'})
+authorization(review, req.user, next)
+
+const imageableType = 'Review'
+const imageableId = req.params.reviewId
+const image = await Image.create({ imageableType, imageableId, ...req.body})
+
+const { id, url } = image
+return res.status(200).json({ id, url })
+})
+
+// Edit a review
+router.put('/:reviewId', requireAuth, validateReview, async (req, res, next) => {
+  const review = await Review.findByPk(req.params.reviewId)
+  const updatedReview = await review.update(req.body)
+
+  if (!review) return res.status(404).json({ message: "Review couldn't be found" })
   authorization(review, req.user, next)
 
-  const imageableType = 'Review'
-  const imageableId = req.params.reviewId
-  const image = await Image.create({ imageableType, imageableId, ...req.body})
-
-  const { id, url } = image
-  return res.status(200).json({ id, url })
+  return res.json(updatedReview)
 })
 
 function authorization(review, user, next) {
