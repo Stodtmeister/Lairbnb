@@ -33,7 +33,6 @@ app.use(
 
 app.use(routes);
 
-//! anytime we want to access the logged in users info in our endpoints we will key into req.users
 
 // Catch unhandled requests and forward to error handler.
 app.use((_req, _res, next) => {
@@ -56,7 +55,7 @@ app.use((err, _req, _res, next) => {
 // Error formatter
 app.use((err, _req, res, _next) => {
   res.status(err.status || 500);
-  console.error(err); //! remove eventually
+  // console.error(err); //! remove eventually
   res.json({
     //! title: err.title || 'Server Error',
     message: err.message,
