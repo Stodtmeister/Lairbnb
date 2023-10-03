@@ -70,9 +70,59 @@ validateBooking = [
   handleValidationErrors
 ]
 
+validateQuery = [
+  check("page")
+    .default(1)
+    .isInt({ min: 1, max: 10 })
+    .withMessage("Page must be greater than or equal to 1"),
+  check("size")
+    .default(20)
+    .isInt({ min: 1, max: 20 })
+    .withMessage("Size must be greater than or equal to 1"),
+  check("minLat")
+    .optional()
+    .isFloat({ min: -90 })
+    .withMessage("Minimum latitude is invalid"),
+  check("maxLat")
+    .isFloat({ max: 90 })
+    .withMessage("Maximum latitude is invalid"),
+  check("minLng")
+    .isInt({ min: -180})
+    .withMessage("Minimum longitude is invalid"),
+  check("maxLng")
+    .isInt({ max: 180 })
+    .withMessage("Maximum longitude is invalid"),
+  check("minPrice")
+    .isInt({ min: 0})
+    .withMessage("Minimum price must be greater than or equal to 0"),
+  check("maxPrice")
+    .isInt({ min: 0})
+    .withMessage("Maximum price must be greater than or equal to 0"),
+  handleValidationErrors
+]
+
 // Get all spots
-router.get('/', async (req, res) => {
+router.get('/', validateQuery, async (req, res) => {
+  let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query
+  let query = { where: {} }
+
+  // page = page ? 1 : Number(page)
+  // size = size ? 20 : Number(size)
+  query.where.lat = minLat ? { [Op.gte]: Number(minLat) } : null
+  query.where.lat = maxLat ? { [Op.lte]: Number(maxLat) } : null
+  query.where.lng = minLng ? { [Op.gte]: Number(minLng) } : null
+  query.where.lng = maxLng ? { [Op.lte]: Number(maxLng) } : null
+  query.where.price = minPrice ? { [Op.gte]: Number(minPrice) } : null
+  query.where.price = maxPrice ? { [Op.lte]: Number(maxPrice) } : null
+
+  query.limit = size
+  query.offset = size * (page - 1)
+
+  // if ((page >= 1 && page <= 10) && (size >= 1 && size <= 20)) {
+  // }
+
   const spots = await Spot.findAll({
+    ...query,
     include: [{ model: Review }, { model: Image, as: 'SpotImages' }]
   })
 
