@@ -31,7 +31,7 @@ router.get('/current', requireAuth, async (req, res) => {
 })
 
 // Edit a booking
-router.put('/:bookingId',
+router.put('/:bookingId', requireAuth, validateBooking, 
   [
     body('endDate').custom((value, { req }) => {
       const endDate = new Date(value);
@@ -41,7 +41,7 @@ router.put('/:bookingId',
     }),
     handleValidationErrors
   ],
-  requireAuth, validateBooking, async (req, res, next) => {
+  async (req, res, next) => {
   const startDate = Date.parse(req.body.startDate)
   const endDate = Date.parse(req.body.endDate)
 
