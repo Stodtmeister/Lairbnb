@@ -6,7 +6,7 @@ const { Op } = require('sequelize');
 const { requireAuth } = require('../../utils/auth');
 
 // Delete a review image
-router.delete('/:spotId/images/:imageId', requireAuth, async (req, res, next) => {
+router.delete('/review-images/:imageId', requireAuth, async (req, res, next) => {
   const image = await Image.findByPk(req.params.imageId, { include: Spot });
 
   if (!image) return res.status(404).json({ message: "Spot Image couldn't be found" })
