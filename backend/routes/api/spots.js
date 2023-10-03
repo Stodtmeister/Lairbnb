@@ -269,20 +269,22 @@ router.post('/:spotId/bookings',
 
 // Delete a spot image
 router.delete('/:spotId/images/:imageId', requireAuth, async (req, res, next) => {
-  const spot = await Spot.findByPk(req.params.spotId, {
-    // attributes: [],
-    // include: {
-    //   model: Image, as: 'SpotImages'
-    // }
+  const image = await Image.findByPk(req.params.imageId, {
+    include: {
+      model: Spot,
+      attributes: ['ownerId']
+    }
   })
 
-  const image = await Image.findByPk(req.params.imageId)
+  // const spot = await image.getSpot()
+  if (!image) return res.status(404).json({ message: "Spot Image couldn't be found" })
+  if (image.Spot) authorization(image.Spot, req.user, next)
 
-  if (!spot) return res.status(404).json({ message: "Spot couldn't be found" })
+  // if (!spot) return res.status(404).json({ message: "Spot couldn't be found" })
+  // authorization(spot, req.user, next)
 
-  const images = await image.getImageable()
-  res.json(images)
 
+  return res.json(image.Spot)
 
 })
 
