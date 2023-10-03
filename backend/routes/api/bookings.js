@@ -83,8 +83,29 @@ router.put('/:bookingId',
   return res.status(200).json(booking)
 })
 
-function authorization(booking, user, next) {
-  if (booking.userId !== user.id) {
+// Delete a booking
+router.delete('/:bookingId', requireAuth, async (req, res, next) => {
+  const booking = await Booking.findByPk(req.params.bookingId)
+
+  if (!booking) return res.status(404).json({ message: "Booking couldn't be found"})
+  authorization(booking, req.user, next)
+
+  const spot = await booking.getSpot()
+  authorization(booking, req.user, next, spot)
+
+  const startDate = Date.parse(booking.startDate)
+  const endDate = Date.parse(booking.endDate)
+  const todaysDate = Date.parse(new Date())
+  if (startDate <= todaysDate && todaysDate <= endDate) {
+    return res.status.json({ message: "Bookings that have been started can't be deleted"})
+  }
+
+  await booking.destroy()
+  res.status(200).json({ message: 'Successfully deleted' })
+})
+
+function authorization(booking, user, next, spot) {
+  if (booking.userId !== user.id || (spot && spot.ownerId !== user.id)) {
     let err = new Error('Forbidden')
     err.status = 403
     err.title = 'Require proper authorization'
