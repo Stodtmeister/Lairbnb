@@ -228,7 +228,7 @@ router.post('/:spotId/bookings',
     }),
     handleValidationErrors
   ],
-  validateBooking, async (req, res) => {
+  requireAuth, validateBooking, async (req, res) => {
     const startDate = Date.parse(req.body.startDate)
     const endDate = Date.parse(req.body.endDate)
 
