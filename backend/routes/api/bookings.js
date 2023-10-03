@@ -97,7 +97,7 @@ router.delete('/:bookingId', requireAuth, async (req, res, next) => {
   const endDate = Date.parse(booking.endDate)
   const todaysDate = Date.parse(new Date())
   if (startDate <= todaysDate && todaysDate <= endDate) {
-    return res.status.json({ message: "Bookings that have been started can't be deleted"})
+    return res.status(403).json({ message: "Bookings that have been started can't be deleted"})
   }
 
   await booking.destroy()
@@ -112,7 +112,5 @@ function authorization(booking, user, next, spot) {
     next(err)
   }
 }
-
-
 
 module.exports = router
