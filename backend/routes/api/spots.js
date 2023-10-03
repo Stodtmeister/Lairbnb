@@ -267,6 +267,25 @@ router.post('/:spotId/bookings',
   }
 );
 
+// Delete a spot image
+router.delete('/:spotId/images/:imageId', requireAuth, async (req, res, next) => {
+  const spot = await Spot.findByPk(req.params.spotId, {
+    // attributes: [],
+    // include: {
+    //   model: Image, as: 'SpotImages'
+    // }
+  })
+
+  const image = await Image.findByPk(req.params.imageId)
+
+  if (!spot) return res.status(404).json({ message: "Spot couldn't be found" })
+
+  const images = await image.getImageable()
+  res.json(images)
+
+
+})
+
 function authorization(spot, user, next) {
   if (spot.ownerId !== user.id) {
     let err = new Error('Forbidden')
