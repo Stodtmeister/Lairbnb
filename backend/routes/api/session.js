@@ -36,20 +36,14 @@ router.post('/', validateLogin, async (req, res, next) => {
     const err = new Error('Invalid credentials');
     err.status = 401;
     err.title = 'Login failed';
-    //! err.errors = { credential: 'The provided credentials were invalid.' };
+    err.errors = { credential: 'The provided credentials were invalid.' };
     return next(err);
   }
 
-  const safeUser = {
-    id: user.id,
-    firstName: user.firstName,
-    lastName: user.lastName,
-    email: user.email,
-    username: user.username,
-  };
+  const { firstName, lastName, email, username } = user
+  const safeUser = { id: user.id, firstName, lastName, email, username };
 
   await setTokenCookie(res, safeUser);
-
   return res.json({ user: safeUser });
 });
 
