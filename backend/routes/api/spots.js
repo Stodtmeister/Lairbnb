@@ -113,8 +113,10 @@ router.get('/', validateQuery, async (req, res) => {
 
   page = page === undefined ? 1 : Number(page)
   size = size === undefined ? 20 : Number(size)
-  query.size = size
-  query.page = size * (page - 1)
+
+  query.limit = size;
+  query.offset = size * (page - 1);
+
   if (minLat) query.where.lat = minLat ? { [Op.gte]: Number(minLat) } : null
   if (maxLat) query.where.lat = maxLat ? { [Op.lte]: Number(maxLat) } : null
   if (minLng) query.where.lng = minLng ? { [Op.gte]: Number(minLng) } : null
@@ -127,7 +129,7 @@ router.get('/', validateQuery, async (req, res) => {
   })
 
   const updatedSpots = getAvgRating(spots)
-  return res.status(200).json({ Spots: updatedSpots, page: query.page, size: query.size })
+  return res.status(200).json({ Spots: updatedSpots, page, size })
 })
 
 // Get all spots owned by the current user
@@ -269,7 +271,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
 })
 
 // Create a booking from a spot based on the spot's id
-router.post('/:spotId/bookings', requireAuth, validateBooking, 
+router.post('/:spotId/bookings', requireAuth, validateBooking,
   [
     body('endDate').custom((value, { req }) => {
       const endDate = new Date(value);
