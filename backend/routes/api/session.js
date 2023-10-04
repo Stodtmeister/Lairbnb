@@ -56,7 +56,9 @@ router.delete('/', (_req, res) => {
 // Get the current user
 router.get('/', (req, res) => {
   const { user } = req;
-  const { firstName, lastName, email, username } = user
+  if (user) {
+    const { firstName, lastName, email, username } = user
+  }
 
   if (user) {
     const safeUser = { id: user.id, firstName, lastName, email, username };
