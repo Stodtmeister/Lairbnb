@@ -42,7 +42,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
     attributes: [ 'userId', [sequelize.fn('COUNT', sequelize.col('ReviewImages.id')), 'imageCount'] ]
   })
 
-  if (!review) return res.status(404).json({ message: "Review couldn't be found" })
+  if (!review.id) return res.status(404).json({ message: "Review couldn't be found" })
   const imageCount = review.dataValues.imageCount
   if (imageCount >= 10) return res.status(403).json({ message: 'Maximum number of images for this resource was reached'})
 
