@@ -180,27 +180,27 @@ router.post('/', requireAuth, validateSpot, async (req, res, next) => {
 // Add an image to a spot based on the spot's id
 router.post('/:spotId/images', requireAuth, async (req, res, next) => {
   const spot = await Spot.findByPk(req.params.spotId)
-
   if (!spot) return res.status(404).json({ message: "Spot couldn't be found"})
-  authorization(spot, req.user, next)
 
-  const imageableId = Number(req.params.spotId)
-  const imageableType = 'Spot'
-  const newImage = await Image.create({ imageableId, imageableType, ...req.body })
-  const { id, url, preview } = newImage
+  if (authorization(spot, req.user, next)) {
+    const imageableId = Number(req.params.spotId)
+    const imageableType = 'Spot'
+    const newImage = await Image.create({ imageableId, imageableType, ...req.body })
+    const { id, url, preview } = newImage
 
-  return res.status(200).json({ id, url, preview })
+    return res.status(200).json({ id, url, preview })
+  }
 })
 
 // Edit a spot
 router.put('/:spotId', requireAuth, validateSpot, async (req, res, next) => {
   const spot = await Spot.findByPk(req.params.spotId)
-
   if (!spot) return res.status(404).json({ message: "Spot couldn't be found"})
-  authorization(spot, req.user, next)
 
-  const updatedSpot = await spot.update(req.body)
-  return res.status(200).json(updatedSpot)
+  if (authorization(spot, req.user, next)) {
+    const updatedSpot = await spot.update(req.body)
+    return res.status(200).json(updatedSpot)
+  }
 })
 
 // Delete a spot
@@ -208,10 +208,11 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
   const spot = await Spot.findByPk(req.params.spotId)
 
   if (!spot) return res.status(404).json({ message: "Spot couldn't be found" })
-  authorization(spot, req.user, next)
 
-  await spot.destroy()
-  return res.status(200).json({ message: 'Successfully deleted' })
+  if (authorization(spot, req.user, next)) {
+    await spot.destroy()
+    return res.status(200).json({ message: 'Successfully deleted' })
+  }
 })
 
 // Get all reviews by a spot's id
@@ -327,6 +328,7 @@ function authorization(spot, user, next) {
     err.status = 403
     next(err)
   }
+  return true
 }
 
 function getAvgRating(arr) {
