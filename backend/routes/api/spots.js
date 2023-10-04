@@ -84,18 +84,23 @@ validateQuery = [
     .isFloat({ min: -90 })
     .withMessage("Minimum latitude is invalid"),
   check("maxLat")
+    .optional()
     .isFloat({ max: 90 })
     .withMessage("Maximum latitude is invalid"),
   check("minLng")
+    .optional()
     .isInt({ min: -180})
     .withMessage("Minimum longitude is invalid"),
   check("maxLng")
+    .optional()
     .isInt({ max: 180 })
     .withMessage("Maximum longitude is invalid"),
   check("minPrice")
+    .optional()
     .isInt({ min: 0})
     .withMessage("Minimum price must be greater than or equal to 0"),
   check("maxPrice")
+    .optional()
     .isInt({ min: 0})
     .withMessage("Maximum price must be greater than or equal to 0"),
   handleValidationErrors
