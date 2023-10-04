@@ -43,17 +43,16 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
   })
 
   if (!review.dataValues.userId) return res.status(404).json({ message: "Review couldn't be found" })
+  if (!authorization(review, req.user, next)) return
 
   const imageCount = review.dataValues.imageCount
   if (imageCount >= 10) return res.status(403).json({ message: 'Maximum number of images for this resource was reached'})
-  if (authorization(review, req.user, next)) {
-    const imageableType = 'Review'
-    const imageableId = req.params.reviewId
-    const image = await Image.create({ imageableType, imageableId, ...req.body})
 
-    const { id, url } = image
-    return res.status(200).json({ id, url })
-  }
+  const imageableType = 'Review'
+  const imageableId = req.params.reviewId
+  const image = await Image.create({ imageableType, imageableId, ...req.body})
+  const { id, url } = image
+  return res.status(200).json({ id, url })
 })
 
 // Edit a review
