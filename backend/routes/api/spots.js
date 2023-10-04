@@ -314,7 +314,7 @@ router.post('/:spotId/bookings', requireAuth, validateBooking,
     if (Object.keys(response.errors).length > 0) return res.status(403).json(response)
 
     const userId = req.user.id
-    const spotId = req.params.spotId
+    const spotId = Number(req.params.spotId)
     const booking = await Booking.create({ spotId, userId, ...req.body })
     return res.status(200).json(booking)
   }
