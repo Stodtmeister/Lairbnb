@@ -44,6 +44,7 @@ router.post('/', validateSignup, async (req, res, next) => {
     await setTokenCookie(res, safeUser);
     return res.json({ user: safeUser });
   } catch (e) {
+    console.log(e)
     if (e.errors[0].path === 'email') {
       const err = new Error('User already exists');
       err.errors = { email: 'User with that email already exists' };

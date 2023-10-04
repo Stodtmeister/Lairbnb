@@ -323,8 +323,8 @@ router.post('/:spotId/bookings', requireAuth, validateBooking,
 function authorization(spot, user, next) {
   if (spot.ownerId !== user.id) {
     let err = new Error('Forbidden')
+    err.title = 'Require proper authorization'
     err.status = 403
-    // err.title = 'Require proper authorization'
     next(err)
   }
 }
@@ -341,9 +341,7 @@ function getAvgRating(arr) {
       totalStars += review.stars
     }
 
-    if (!spot.SpotImages.length) {
-      previewImage = 'Upload preview image'
-    } else {
+    if (spot.SpotImages.length) {
       for (let images of spot.SpotImages) {
         if (images.preview === true) {
           previewImage = images.url
@@ -361,7 +359,5 @@ function getAvgRating(arr) {
     return { id, ownerId, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt, avgRating, previewImage }
   })
 }
-
-
 
 module.exports = router
