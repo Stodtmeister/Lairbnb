@@ -285,14 +285,11 @@ router.post('/:spotId/bookings', requireAuth, validateBooking,
   async (req, res) => {
     const startDate = Date.parse(req.body.startDate)
     const endDate = Date.parse(req.body.endDate)
-
-    const spot = await Spot.findByPk(req.params.spotId)
+    const spot = await Spot.findByPk(req.params.spotId, { include: Booking })
     if (!spot) return res.status(404).json({ message: "Spot couldn't be found" })
 
-    const bookings = await spot.getBookings();
-
     const bookingData = { reserved: [] }
-    bookings.forEach(booking => {
+    spot.Bookings.forEach(booking => {
       bookingData.reserved.push([Date.parse(booking.startDate), Date.parse(booking.endDate)])
     })
 
@@ -303,11 +300,16 @@ router.post('/:spotId/bookings', requireAuth, validateBooking,
 
     for (let reserved of bookingData.reserved) {
       const [ start, end ]  = reserved
-
       if (startDate >= start && startDate <= end) {
         response.errors.startDate = 'Start date conflicts with an existing booking'
       }
       if (endDate >= start && endDate <= end) {
+        response.errors.endDate = 'End date conflicts with an existing booking'
+      }
+      if (start >= startDate && start <= endDate) {
+        response.errors.startDate = 'Start date conflicts with an existing booking'
+      }
+      if (end >= startDate && end <= endDate) {
         response.errors.endDate = 'End date conflicts with an existing booking'
       }
     }
