@@ -327,6 +327,7 @@ function authorization(spot, user, next) {
     err.title = 'Require proper authorization'
     err.status = 403
     next(err)
+    return false
   }
   return true
 }
