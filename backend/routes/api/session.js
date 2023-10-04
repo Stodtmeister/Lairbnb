@@ -53,17 +53,13 @@ router.delete('/', (_req, res) => {
   return res.json({ message: 'success' });
 });
 
-// Restore session user
+// Get the current user
 router.get('/', (req, res) => {
   const { user } = req;
+  const { firstName, lastName, email, username } = user
+
   if (user) {
-    const safeUser = {
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      username: user.username,
-    };
+    const safeUser = { id: user.id, firstName, lastName, email, username };
     return res.json({ user: safeUser });
   } else return res.json({ user: null });
 });
