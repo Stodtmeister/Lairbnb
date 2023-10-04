@@ -45,14 +45,15 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
   if (!review) return res.status(404).json({ message: "Review couldn't be found" })
   const imageCount = review.dataValues.imageCount
   if (imageCount >= 10) return res.status(403).json({ message: 'Maximum number of images for this resource was reached'})
-  authorization(review, req.user, next)
 
-  const imageableType = 'Review'
-  const imageableId = req.params.reviewId
-  const image = await Image.create({ imageableType, imageableId, ...req.body})
+  if (authorization(review, req.user, next)) {
+    const imageableType = 'Review'
+    const imageableId = req.params.reviewId
+    const image = await Image.create({ imageableType, imageableId, ...req.body})
 
-  const { id, url } = image
-  return res.status(200).json({ id, url })
+    const { id, url } = image
+    return res.status(200).json({ id, url })
+  }
 })
 
 // Edit a review
@@ -61,9 +62,7 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res, next) => 
   const updatedReview = await review.update(req.body)
 
   if (!review) return res.status(404).json({ message: "Review couldn't be found" })
-  authorization(review, req.user, next)
-
-return res.json(updatedReview)
+  if (authorization(review, req.user, next)) return res.json(updatedReview)
 })
 
 // Delete a review
@@ -81,7 +80,10 @@ function authorization(review, user, next) {
     err.status = 403
     err.title = 'Require proper authorization'
     next(err)
+    return false
   }
+
+  return true
 }
 
 module.exports = router;
