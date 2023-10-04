@@ -72,11 +72,11 @@ validateBooking = [
 
 validateQuery = [
   check("page")
-    .default(1)
+    .optional()
     .isInt({ min: 1, max: 10 })
     .withMessage("Page must be greater than or equal to 1"),
   check("size")
-    .default(20)
+    .optional()
     .isInt({ min: 1, max: 20 })
     .withMessage("Size must be greater than or equal to 1"),
   check("minLat")
@@ -111,28 +111,23 @@ router.get('/', validateQuery, async (req, res) => {
   let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query
   let query = { where: {} }
 
-  // page = page ? 1 : Number(page)
-  // size = size ? 20 : Number(size)
-  query.where.lat = minLat ? { [Op.gte]: Number(minLat) } : null
-  query.where.lat = maxLat ? { [Op.lte]: Number(maxLat) } : null
-  query.where.lng = minLng ? { [Op.gte]: Number(minLng) } : null
-  query.where.lng = maxLng ? { [Op.lte]: Number(maxLng) } : null
-  query.where.price = minPrice ? { [Op.gte]: Number(minPrice) } : null
-  query.where.price = maxPrice ? { [Op.lte]: Number(maxPrice) } : null
-
-  query.limit = size
-  query.offset = size * (page - 1)
-
-  // if ((page >= 1 && page <= 10) && (size >= 1 && size <= 20)) {
-  // }
-
+  page = page === undefined ? 1 : Number(page)
+  size = size === undefined ? 20 : Number(size)
+  query.size = size
+  query.page = size * (page - 1)
+  if (minLat) query.where.lat = minLat ? { [Op.gte]: Number(minLat) } : null
+  if (maxLat) query.where.lat = maxLat ? { [Op.lte]: Number(maxLat) } : null
+  if (minLng) query.where.lng = minLng ? { [Op.gte]: Number(minLng) } : null
+  if (maxLng) query.where.lng = maxLng ? { [Op.lte]: Number(maxLng) } : null
+  if (minPrice) query.where.price = minPrice ? { [Op.gte]: Number(minPrice) } : null
+  if (maxPrice) query.where.price = maxPrice ? { [Op.lte]: Number(maxPrice) } : null
+  
   const spots = await Spot.findAll({
-    ...query,
     include: [{ model: Review }, { model: Image, as: 'SpotImages' }]
   })
 
   const updatedSpots = getAvgRating(spots)
-  return res.status(200).json({ Spots: updatedSpots})
+  return res.status(200).json({ Spots: updatedSpots, page: query.page, size: query.size })
 })
 
 // Get all spots owned by the current user
