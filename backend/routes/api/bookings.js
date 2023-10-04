@@ -37,7 +37,7 @@ router.put('/:bookingId', requireAuth, validateBooking,
       const endDate = new Date(value);
       const startDate = new Date(req.body.startDate);
       if (startDate < endDate) return true;
-      throw new Error('endDate cannot come before startDate')
+      throw new Error('endDate cannot be on or before startDate')
     }),
     handleValidationErrors
   ],
