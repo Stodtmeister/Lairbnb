@@ -59,9 +59,9 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
 // Edit a review
 router.put('/:reviewId', requireAuth, validateReview, async (req, res, next) => {
   const review = await Review.findByPk(req.params.reviewId)
-  const updatedReview = await review.update(req.body)
-
   if (!review) return res.status(404).json({ message: "Review couldn't be found" })
+
+  const updatedReview = await review.update(req.body)
   if (authorization(review, req.user, next)) return res.json(updatedReview)
 })
 
