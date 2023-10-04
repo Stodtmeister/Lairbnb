@@ -269,7 +269,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
 })
 
 // Create a booking from a spot based on the spot's id
-router.post('/:spotId/bookings', requireAuth,
+router.post('/:spotId/bookings', requireAuth, validateBooking, 
   [
     body('endDate').custom((value, { req }) => {
       const endDate = new Date(value);
@@ -279,7 +279,7 @@ router.post('/:spotId/bookings', requireAuth,
     }),
     handleValidationErrors
   ],
-  validateBooking, async (req, res) => {
+  async (req, res) => {
     const startDate = Date.parse(req.body.startDate)
     const endDate = Date.parse(req.body.endDate)
 
