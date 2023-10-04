@@ -89,9 +89,6 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true,
         isInt: true
       }
-    },
-    previewImage: {
-      type: DataTypes.STRING
     }
   }, {
     sequelize,
