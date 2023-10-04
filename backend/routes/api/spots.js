@@ -253,17 +253,12 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res, ne
 
 // Get all bookings for a spot based on the spot's id
 router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
-  const spot = await Spot.findByPk(req.params.spotId)
+  const spot = await Spot.findByPk(req.params.spotId )
 
   if (!spot) return res.status(404).json({ message: "Spot couldn't be found"})
 
   if (spot.dataValues.ownerId === req.user.id) {
-    const notOwner = await spot.getBookings({
-      include: {
-        model: User,
-        attributes: ['id', 'firstName', 'lastName']
-      }
-    })
+    const notOwner = await spot.getBookings({ include: { model: User, attributes: ['id', 'firstName', 'lastName'] } })
     res.status(200).json({ Bookings: notOwner })
   } else {
     const isOwner = await spot.getBookings({ attributes: ['spotId', 'startDate', 'endDate'] })
