@@ -49,7 +49,7 @@ module.exports = {
   async down (queryInterface, Sequelize) {
     options.tableName = 'Images';
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete(options, {
+    await queryInterface.bulkDelete(options, {
       url: { [Op.in]: ['https://google.com'] }
     }, {});
   }
