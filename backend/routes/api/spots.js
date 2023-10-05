@@ -168,9 +168,9 @@ router.get('/:spotId', async (req, res) => {
 // Create a spot
 router.post('/', requireAuth, validateSpot, async (req, res, next) => {
   try {
-    console.log(req.body)
+    const previewImage = req.body.previewImage ? req.body.previewImage : 'Upload preview image'
     const ownerId = req.user.id
-    const newSpot = await Spot.create({ ownerId, ...req.body})
+    const newSpot = await Spot.create({ ownerId, ...req.body, previewImage })
     res.status(201).json(newSpot)
   } catch(error) {
     next(error)
