@@ -334,7 +334,6 @@ function getAvgRating(arr) {
   return arr.map((spot) => {
     let count = 0
     let totalStars = 0
-    // let previewImage
     let avgRating
 
     for (let review of spot.Reviews) {
@@ -342,28 +341,12 @@ function getAvgRating(arr) {
       totalStars += review.stars
     }
 
-    // if (!spot.previewImage) {
-    //   if (spot.SpotImages.length) {
-    //     for (let images of spot.SpotImages) {
-    //       if (images.preview === true) {
-    //         previewImage = images.url
-    //         spot.previewImage = images.url
-    //         break
-    //       }
-    //     }
-    //   } else {
-    //     spot.previewImage = 'Upload preview image'
-    //     previewImage = 'Upload preview image'
-    //   }
-    // }
-
-
     avgRating = totalStars / count
     let numReviews = count
     let avgStarRating = avgRating
     const { id, ownerId, address, city, state, country, lat, lng, name, description, price, previewImage, createdAt, updatedAt, SpotImages, Owner } = spot
     if (Owner) return { id, ownerId, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt, numReviews, avgStarRating, SpotImages, Owner }
-    return { id, ownerId, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt, avgRating, previewImage } // previewImage was here
+    return { id, ownerId, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt, avgRating, previewImage }
   })
 }
 
