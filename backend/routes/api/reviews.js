@@ -58,10 +58,12 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
 // Edit a review
 router.put('/:reviewId', requireAuth, validateReview, async (req, res, next) => {
   const review = await Review.findByPk(req.params.reviewId)
+
   if (!review) return res.status(404).json({ message: "Review couldn't be found" })
+  if (!authorization(review, req.user, next)) return
 
   const updatedReview = await review.update(req.body)
-  if (authorization(review, req.user, next)) return res.json(updatedReview)
+  return res.json(updatedReview)
 })
 
 // Delete a review
