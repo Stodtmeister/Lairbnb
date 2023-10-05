@@ -340,6 +340,7 @@ function getAvgRating(arr) {
       totalStars += review.stars
     }
 
+    previewImage = 'Upload preview image'
     if (spot.SpotImages.length) {
       for (let images of spot.SpotImages) {
         if (images.preview === true) {
@@ -347,7 +348,6 @@ function getAvgRating(arr) {
           break
         }
       }
-      previewImage = 'Upload preview image'
     }
 
     avgRating = totalStars / count
