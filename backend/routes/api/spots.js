@@ -168,9 +168,8 @@ router.get('/:spotId', async (req, res) => {
 // Create a spot
 router.post('/', requireAuth, validateSpot, async (req, res, next) => {
   try {
-    const previewImage = req.body.previewImage ? req.body.previewImage : 'Upload preview image'
     const ownerId = req.user.id
-    const newSpot = await Spot.create({ ownerId, ...req.body, previewImage })
+    const newSpot = await Spot.create({ ownerId, ...req.body})
     res.status(201).json(newSpot)
   } catch(error) {
     next(error)
@@ -246,7 +245,7 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res, ne
   if (reviewedPreviously) return res.status(500).json({ message: "User already has a review for this spot"})
 
   const userId = req.user.id
-  const spotId = req.params.spotId
+  const spotId = Number(req.params.spotId)
   const review = await Review.create({ userId, spotId, ...req.body })
   return res.status(201).json(review)
 })
@@ -340,13 +339,18 @@ function getAvgRating(arr) {
       totalStars += review.stars
     }
 
-    previewImage = 'Upload preview image'
-    if (spot.SpotImages.length) {
-      for (let images of spot.SpotImages) {
-        if (images.preview === true) {
-          previewImage = images.url
-          break
+    if (!spot.previewImage) {
+      if (spot.SpotImages.length) {
+        for (let images of spot.SpotImages) {
+          if (images.preview === true) {
+            previewImage = images.url
+            spot.previewImage = images.url
+            break
+          }
         }
+      } else {
+        spot.previewImage = 'Upload preview image'
+        previewImage = 'Upload preview image'
       }
     }
 
