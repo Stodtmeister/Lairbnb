@@ -112,13 +112,11 @@ router.get('/:spotId', async (req, res) => {
   const spot = await Spot.findByPk(req.params.spotId, {
     include: [
       {
-        model: Image,
-        as: 'SpotImages',
+        model: Image, as: 'SpotImages',
         attributes: ['id', 'url', 'preview'],
       },
       {
-        model: User,
-        as: 'Owner',
+        model: User, as: 'Owner',
         attributes: ['id', 'firstName', 'lastName'],
       },
       { model: Review },
@@ -308,7 +306,7 @@ function authorization(spot, user, next) {
     next(err);
     return false;
   }
-  
+
   return true;
 }
 
