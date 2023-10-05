@@ -17,7 +17,8 @@ app.use(cookieParser())
 app.use(express.json())
 
 // Global Security Middleware
-if (!isProduction) app.use(cors())
+if (!isProduction)
+  app.use(cors())
 // helmet helps set a variety of headers to better secure the app
 app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }))
 // Set the _csrf token and create req.csrfToken method
@@ -54,7 +55,6 @@ app.use((err, _req, _res, next) => {
 // Error formatter
 app.use((err, _req, res, _next) => {
   res.status(err.status || 500);
-  console.error(err); //! remove eventually
   res.json({
     title: err.title || 'Server Error',
     message: err.message,
