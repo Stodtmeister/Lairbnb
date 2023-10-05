@@ -179,16 +179,21 @@ router.post('/', requireAuth, validateSpot, async (req, res, next) => {
 // Add an image to a spot based on the spot's id
 router.post('/:spotId/images', requireAuth, async (req, res, next) => {
   const spot = await Spot.findByPk(req.params.spotId)
+
   if (!spot) return res.status(404).json({ message: "Spot couldn't be found"})
+  if (!authorization(spot, req.user, next)) return
 
-  if (authorization(spot, req.user, next)) {
-    const imageableId = Number(req.params.spotId)
-    const imageableType = 'Spot'
-    const newImage = await Image.create({ imageableId, imageableType, ...req.body })
-    const { id, url, preview } = newImage
+  let previewImg
+  if (req.body.preview) previewImg = req.body.url
+  else previewImg = 'Upload a preview image'
 
-    return res.status(200).json({ id, url, preview })
-  }
+  await spot.update({ previewImage: previewImg })
+
+  const imageableId = Number(req.params.spotId)
+  const imageableType = 'Spot'
+  const newImage = await Image.create({ imageableId, imageableType, ...req.body })
+  const { id, url, preview } = newImage
+  return res.status(200).json({ id, url, preview })
 })
 
 // Edit a spot
@@ -331,7 +336,7 @@ function getAvgRating(arr) {
   return arr.map((spot) => {
     let count = 0
     let totalStars = 0
-    let previewImage
+    // let previewImage
     let avgRating
 
     for (let review of spot.Reviews) {
@@ -339,27 +344,28 @@ function getAvgRating(arr) {
       totalStars += review.stars
     }
 
-    if (!spot.previewImage) {
-      if (spot.SpotImages.length) {
-        for (let images of spot.SpotImages) {
-          if (images.preview === true) {
-            previewImage = images.url
-            spot.previewImage = images.url
-            break
-          }
-        }
-      } else {
-        spot.previewImage = 'Upload preview image'
-        previewImage = 'Upload preview image'
-      }
-    }
+    // if (!spot.previewImage) {
+    //   if (spot.SpotImages.length) {
+    //     for (let images of spot.SpotImages) {
+    //       if (images.preview === true) {
+    //         previewImage = images.url
+    //         spot.previewImage = images.url
+    //         break
+    //       }
+    //     }
+    //   } else {
+    //     spot.previewImage = 'Upload preview image'
+    //     previewImage = 'Upload preview image'
+    //   }
+    // }
+
 
     avgRating = totalStars / count
     let numReviews = count
     let avgStarRating = avgRating
-    const { id, ownerId, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt, SpotImages, Owner } = spot
+    const { id, ownerId, address, city, state, country, lat, lng, name, description, price, previewImage, createdAt, updatedAt, SpotImages, Owner } = spot
     if (Owner) return { id, ownerId, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt, numReviews, avgStarRating, SpotImages, Owner }
-    return { id, ownerId, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt, avgRating, previewImage }
+    return { id, ownerId, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt, avgRating, previewImage } // previewImage was here
   })
 }
 

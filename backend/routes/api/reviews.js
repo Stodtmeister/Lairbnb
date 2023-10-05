@@ -29,6 +29,23 @@ router.get('/current', requireAuth, async (req, res, next) => {
     ],
   });
 
+  // reviews.forEach(review => {
+  //   console.log(review.ReviewImages)
+  //   // const previewImg = review.Spot.previewImage
+  //   // const spotImages = review.Spot.SpotImages
+  //   // if (!previewImg) {
+  //   //   if (spotImages.length) {
+  //   //     for (let images of spotImages) {
+  //   //       if (images.preview === true) {
+  //   //         previewImg = images.url
+  //   //         break
+  //   //       }
+  //   //     }
+  //   //   } else {
+  //   //     previewImg = 'Upload preview image'
+  //   //   }
+  //   // }
+  // })
   if (!reviews) return res.status(404).json({ message: 'No reviews yet' })
   return res.status(200).json({ Reviews: reviews });
 });
