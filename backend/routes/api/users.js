@@ -2,32 +2,23 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
+const { setTokenCookie} = require('../../utils/auth');
 const { User } = require('../../db/models');
 
 const router = express.Router();
 
 const validateSignup = [
-  check('email')
-    .exists({ checkFalsy: true })
-    .isEmail()
+  check('email').exists({ checkFalsy: true }).isEmail()
     .withMessage('Invalid email'),
-  check('username')
-    .exists({ checkFalsy: true })
-    .isLength({ min: 4 })
+  check('username').exists({ checkFalsy: true }).isLength({ min: 4 })
     .withMessage('Username is required'),
-  check('username').not().isEmail().withMessage('Username cannot be an email.'),
-  check('password')
-    .exists({ checkFalsy: true })
-    .isLength({ min: 6 })
+  check('username').not().isEmail()
+    .withMessage('Username cannot be an email.'),
+  check('password').exists({ checkFalsy: true }).isLength({ min: 6 })
     .withMessage('Password must be 6 characters or more.'),
-  check('firstName')
-    .exists({ checkFalsy: true })
-    .isLength({ min: 2 })
+  check('firstName').exists({ checkFalsy: true }).isLength({ min: 2 })
     .withMessage('First Name is required'),
-  check('lastName')
-    .exists({ checkFalsy: true })
-    .isLength({ min: 2 })
+  check('lastName').exists({ checkFalsy: true }).isLength({ min: 2 })
     .withMessage('Last Name is required'),
   handleValidationErrors,
 ];
@@ -44,7 +35,6 @@ router.post('/', validateSignup, async (req, res, next) => {
     await setTokenCookie(res, safeUser);
     return res.json({ user: safeUser });
   } catch (e) {
-    console.log(e)
     if (e.errors[0].path === 'email') {
       const err = new Error('User already exists');
       err.errors = { email: 'User with that email already exists' };
