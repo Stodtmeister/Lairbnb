@@ -185,8 +185,6 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
 
   let previewImg
   if (req.body.preview) previewImg = req.body.url
-  else previewImg = 'Upload a preview image'
-
   await spot.update({ previewImage: previewImg })
 
   const imageableId = Number(req.params.spotId)
