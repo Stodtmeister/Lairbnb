@@ -18,8 +18,8 @@ module.exports = {
         city: 'Chicago',
         state: 'Illinois',
         country: 'United States',
-        lat: 123.4,
-        lng: 748.3,
+        lat: 12.4,
+        lng: 7.3,
         name: 'Tree House',
         description: 'This is a house in a tree',
         price: 999
@@ -31,7 +31,7 @@ module.exports = {
         state: 'New York',
         country: 'United States',
         lat: 29.56,
-        lng: 7892.1,
+        lng: 32.1,
         name: 'Skyscraper',
         description: 'The Flatiron Building',
         price: 1000000
@@ -43,7 +43,7 @@ module.exports = {
         state: 'California',
         country: 'United States',
         lat: 63.1,
-        lng: 100.7,
+        lng: 1.7,
         name: 'Alcatraz prison',
         description: 'Literally Alcatraz prison.',
         price: '7'
