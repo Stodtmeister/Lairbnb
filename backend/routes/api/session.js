@@ -3,20 +3,16 @@ const { Op } = require('sequelize');
 const bcrypt = require('bcryptjs');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
+const { setTokenCookie } = require('../../utils/auth');
 const { User } = require('../../db/models');
 const router = express.Router();
 
 const validateLogin = [
-  check('credential')
-    .exists({ checkFalsy: true })
-    .notEmpty()
+  check('credential').exists({ checkFalsy: true }).notEmpty()
     .withMessage('Email or username is required'),
-  check('password')
-    .exists({ checkFalsy: true })
-    .notEmpty()
+  check('password').exists({ checkFalsy: true }).notEmpty()
     .withMessage('Password is required'),
-  handleValidationErrors
+  handleValidationErrors,
 ];
 
 // Log in
@@ -27,9 +23,9 @@ router.post('/', validateLogin, async (req, res, next) => {
     where: {
       [Op.or]: {
         username: credential,
-        email: credential
-      }
-    }
+        email: credential,
+      },
+    },
   });
 
   if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
@@ -40,7 +36,7 @@ router.post('/', validateLogin, async (req, res, next) => {
     return next(err);
   }
 
-  const { firstName, lastName, email, username } = user
+  const { firstName, lastName, email, username } = user;
   const safeUser = { id: user.id, firstName, lastName, email, username };
 
   await setTokenCookie(res, safeUser);
@@ -56,9 +52,9 @@ router.delete('/', (_req, res) => {
 // Get the current user
 router.get('/', (req, res) => {
   const { user } = req;
-  
+
   if (user) {
-    const { firstName, lastName, email, username } = user
+    const { firstName, lastName, email, username } = user;
     const safeUser = { id: user.id, firstName, lastName, email, username };
     return res.json({ user: safeUser });
   } else return res.json({ user: null });
