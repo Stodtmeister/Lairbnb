@@ -48,12 +48,10 @@ router.put('/:bookingId', requireAuth, validateBooking,
 
     if (!booking) return res.status(404).json({ message: "Booking couldn't be found"})
     const { spotId, userId, startDate, endDate, createdAt, updatedAt } = booking
-
     if (!authorization(booking, req.user, next)) return
 
     const previousStart = Date.parse(booking.startDate)
     const previousEnd = Date.parse(booking.endDate)
-
     if ((startingDate >= previousStart && endingDate <= previousEnd)) {
       await booking.update(req.body)
       return res.status(200).json({ id: booking.id, spotId, userId, startDate, endDate, createdAt, updatedAt })
