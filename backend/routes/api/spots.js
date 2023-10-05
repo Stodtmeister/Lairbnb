@@ -281,7 +281,9 @@ router.post('/:spotId/bookings', requireAuth, validateBooking,
     const startDate = Date.parse(req.body.startDate)
     const endDate = Date.parse(req.body.endDate)
     const spot = await Spot.findByPk(req.params.spotId, { include: Booking })
+
     if (!spot) return res.status(404).json({ message: "Spot couldn't be found" })
+    if (spot.ownerId === req.user.id) return res.status(404).json({ message: 'Forbidden' })
 
     const bookingData = { reserved: [] }
     spot.Bookings.forEach(booking => {
