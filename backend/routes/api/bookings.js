@@ -48,7 +48,14 @@ router.put('/:bookingId', requireAuth, validateBooking,
 
     if (!booking) return res.status(404).json({ message: "Booking couldn't be found"})
     const { spotId, userId, startDate, endDate, createdAt, updatedAt } = booking
-    if (!authorization(booking, req.user, next)) return
+
+    // if (!authorization(booking, req.user, next)) return
+    if (booking.userId !== req.user.id) {
+      let err = new Error('Forbidden')
+      err.status = 403
+      err.title = 'Require proper authorization'
+      return next(err)
+    }
 
     const previousStart = Date.parse(booking.startDate)
     const previousEnd = Date.parse(booking.endDate)
