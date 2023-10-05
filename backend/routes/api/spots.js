@@ -289,7 +289,7 @@ router.post('/:spotId/bookings', requireAuth, validateBooking,
       if (endDate >= start && endDate <= end)
         response.errors.endDate = 'End date conflicts with an existing booking';
       if (start > startDate && end < endDate)
-        response.errors.overLap = 'Booking envelops an existing booking';
+        response.errors.overlap = 'Booking envelops an existing booking';
     }
 
     if (Object.keys(response.errors).length > 0)
