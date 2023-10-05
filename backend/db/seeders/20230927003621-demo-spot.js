@@ -9,6 +9,8 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   async up (queryInterface, Sequelize) {
+    try {
+
     await Spot.bulkCreate([
       {
         ownerId: 1,
@@ -47,6 +49,9 @@ module.exports = {
         price: '7'
       },
     ], { validate: true })
+    } catch(e) {
+      console.log('###', e)
+    }
   },
 
   async down (queryInterface, Sequelize) {
