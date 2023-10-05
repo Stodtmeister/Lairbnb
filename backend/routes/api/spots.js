@@ -30,7 +30,9 @@ validateSpot = [
 validateReview = [
   check('review').exists({ checkFalsy: true }).notEmpty()
     .withMessage('Review text is required'),
-  check('stars').exists({ checkFalsy: true }).notEmpty().isIn([1, 2, 3, 4, 5])
+  check('stars').exists({ checkFalsy: true })
+    .notEmpty()
+    .isIn([1, 2, 3, 4, 5])
     .withMessage('Stars must be an integer from 1 to 5'),
   handleValidationErrors,
 ];
@@ -285,7 +287,7 @@ router.post('/:spotId/bookings', requireAuth, validateBooking,
       if (endDate >= start && endDate <= end)
         response.errors.endDate = 'End date conflicts with an existing booking';
       if (start > startDate && end < endDate)
-        response.errors.overLap = 'Booking envelops an existing booking';
+        response.errors.overlap = 'Booking envelops an existing booking';
     }
 
     if (Object.keys(response.errors).length > 0)

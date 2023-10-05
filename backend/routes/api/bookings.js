@@ -84,7 +84,7 @@ router.put('/:bookingId', requireAuth, validateBooking,
       if (endingDate >= start && endingDate <= end)
         response.errors.endDate = 'End date conflicts with an existing booking';
       if (start > startingDate && end < endingDate)
-        response.errors.overLap = 'Booking envelops an existing booking';
+        response.errors.overlap = 'Booking envelops an existing booking';
     }
 
     if (Object.keys(response.errors).length > 0)

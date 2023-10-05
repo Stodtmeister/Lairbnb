@@ -6,6 +6,9 @@ const { requireAuth } = require('../../utils/auth');
 router.delete('/:imageId', requireAuth, async (req, res, next) => {
   const image = await Image.findByPk(req.params.imageId, { include: Spot });
 
+  if (image.preview === true)
+    await image.Spot.update({ previewImage: 'Upload a preview image' })
+
   if (!image)
     return res.status(404).json({ message: "Spot Image couldn't be found" });
 
