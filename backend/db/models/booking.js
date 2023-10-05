@@ -1,7 +1,6 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Booking extends Model {
     static associate(models) {
@@ -13,32 +12,22 @@ module.exports = (sequelize, DataTypes) => {
     spotId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validate: {
-        notEmpty: true,
-      }
+      validate: { notEmpty: true }
     },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validate: {
-        notEmpty: true,
-      }
+      validate: { notEmpty: true }
     },
     startDate: {
       type: DataTypes.DATE,
       allowNull: false,
-      validate: {
-        notEmpty: true,
-        isDate: true
-      }
+      validate: { notEmpty: true, isDate: true }
     },
     endDate: {
       type: DataTypes.DATE,
       allowNull: false,
-      validate: {
-        notEmpty: true,
-        isDate: true
-      }
+      validate: { notEmpty: true, isDate: true }
     },
   }, {
     sequelize,

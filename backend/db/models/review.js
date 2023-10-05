@@ -1,7 +1,6 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Review extends Model {
     static associate(models) {
@@ -27,14 +26,12 @@ module.exports = (sequelize, DataTypes) => {
     review: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notEmpty: true,
-        len: [5, 500]
-      }
+      validate: { notEmpty: true, len: [5, 500] }
     },
     stars: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate: { isIn: [1, 2, 3, 4, 5]}
     },
   }, {
     sequelize,
