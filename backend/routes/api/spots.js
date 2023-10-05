@@ -308,6 +308,7 @@ function authorization(spot, user, next) {
     next(err);
     return false;
   }
+  
   return true;
 }
 
