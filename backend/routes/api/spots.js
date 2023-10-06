@@ -76,20 +76,21 @@ router.get('/', validateQuery, async (req, res) => {
   query.limit = size;
   query.offset = size * (page - 1);
 
-  if (minLat)
-    query.where.lat = minLat ? { [Op.gte]: Number(minLat) } : null;
-  if (maxLat)
-    query.where.lat = maxLat ? { [Op.lte]: Number(maxLat) } : null;
-  if (minLng)
-    query.where.lng = minLng ? { [Op.gte]: Number(minLng) } : null;
-  if (maxLng)
-    query.where.lng = maxLng ? { [Op.lte]: Number(maxLng) } : null;
-  if (minPrice)
-    query.where.price = minPrice ? { [Op.gte]: Number(minPrice) } : null;
-  if (maxPrice)
-    query.where.price = maxPrice ? { [Op.lte]: Number(maxPrice) } : null;
+  // if (minLat)
+  query.where.lat = minLat ? { [Op.gte]: Number(minLat) } : null;
+  // if (maxLat)
+  query.where.lat = maxLat ? { [Op.lte]: Number(maxLat) } : null;
+  // if (minLng)
+  query.where.lng = minLng ? { [Op.gte]: Number(minLng) } : null;
+  // if (maxLng)
+  query.where.lng = maxLng ? { [Op.lte]: Number(maxLng) } : null;
+  // if (minPrice)
+  query.where.price = minPrice ? { [Op.gte]: Number(minPrice) } : null;
+  // if (maxPrice)
+  query.where.price = maxPrice ? { [Op.lte]: Number(maxPrice) } : null;
 
   const spots = await Spot.findAll({
+    ...query,
     include: [{ model: Review }, { model: Image, as: 'SpotImages' }],
   });
 

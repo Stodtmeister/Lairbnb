@@ -36,7 +36,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
     attributes: [ 'userId', [sequelize.fn('COUNT', sequelize.col('ReviewImages.id')), 'imageCount'] ],
   });
 
-  if (!review.dataValues.userId)
+  if (!review)
     return res.status(404).json({ message: "Review couldn't be found" });
   if (!authorization(review, req.user, next))
     return;
