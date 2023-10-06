@@ -30,9 +30,7 @@ validateSpot = [
 validateReview = [
   check('review').exists({ checkFalsy: true }).notEmpty()
     .withMessage('Review text is required'),
-  check('stars').exists({ checkFalsy: true })
-    .notEmpty()
-    .isIn([1, 2, 3, 4, 5])
+  check('stars').exists({ checkFalsy: true }).notEmpty().isIn([1, 2, 3, 4, 5])
     .withMessage('Stars must be an integer from 1 to 5'),
   handleValidationErrors,
 ];
@@ -54,9 +52,9 @@ validateQuery = [
     .withMessage('Minimum latitude is invalid'),
   check('maxLat').optional().isFloat({ max: 90 })
     .withMessage('Maximum latitude is invalid'),
-  check('minLng').optional().isInt({ min: -180 })
+  check('minLng').optional().isFloat({ min: -180 })
     .withMessage('Minimum longitude is invalid'),
-  check('maxLng').optional().isInt({ max: 180 })
+  check('maxLng').optional().isFloat({ max: 180 })
     .withMessage('Maximum longitude is invalid'),
   check('minPrice').optional().isInt({ min: 0 })
     .withMessage('Minimum price must be greater than or equal to 0'),
@@ -68,26 +66,22 @@ validateQuery = [
 // Get all spots
 router.get('/', validateQuery, async (req, res) => {
   let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
-  let query = { where: {} };
+  const query = { where: {} };
 
   page = page === undefined ? 1 : Number(page);
   size = size === undefined ? 20 : Number(size);
 
-  query.limit = size;
-  query.offset = size * (page - 1);
+  if (page >= 1 && size >= 1) {
+    query.limit = size;
+    query.offset = size * (page - 1);
+  };
 
-  // if (minLat)
-  query.where.lat = minLat ? { [Op.gte]: Number(minLat) } : null;
-  // if (maxLat)
-  query.where.lat = maxLat ? { [Op.lte]: Number(maxLat) } : null;
-  // if (minLng)
-  query.where.lng = minLng ? { [Op.gte]: Number(minLng) } : null;
-  // if (maxLng)
-  query.where.lng = maxLng ? { [Op.lte]: Number(maxLng) } : null;
-  // if (minPrice)
-  query.where.price = minPrice ? { [Op.gte]: Number(minPrice) } : null;
-  // if (maxPrice)
-  query.where.price = maxPrice ? { [Op.lte]: Number(maxPrice) } : null;
+  minLat ? query.where.lat = { [Op.gte]: Number(minLat) } : null
+  maxLat ? query.where.lat = { [Op.lte]: Number(maxLat) } : null
+  minLng ? query.where.lng = { [Op.gte]: Number(minLng) } : null
+  maxLng ? query.where.lng = { [Op.lte]: Number(maxLng) } : null
+  minPrice ? query.where.price = { [Op.gte]: Number(minPrice) } : null
+  maxPrice ? query.where.price = { [Op.lte]: Number(maxPrice) } : null
 
   const spots = await Spot.findAll({
     ...query,
@@ -328,9 +322,8 @@ function getAvgRating(arr) {
     avgRating = totalStars / count;
     let numReviews = count;
     let avgStarRating = avgRating;
-    const { id, ownerId, address, city, state, country, lat, lng, name, description, price, previewImage, createdAt, updatedAt, SpotImages, Owner, } = spot;
-    if (Owner)
-      return { id, ownerId, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt, numReviews, avgStarRating, SpotImages, Owner, };
+    const { id, ownerId, address, city, state, country, lat, lng, name, description, price, previewImage, createdAt, updatedAt, SpotImages, Owner } = spot;
+    if (Owner) return { id, ownerId, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt, numReviews, avgStarRating, SpotImages, Owner };
     return { id, ownerId, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt, avgRating, previewImage };
   });
 }
