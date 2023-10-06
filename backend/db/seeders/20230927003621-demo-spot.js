@@ -9,8 +9,6 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    try {
-
     await Spot.bulkCreate([
       {
         ownerId: 1,
@@ -43,15 +41,12 @@ module.exports = {
         state: 'California',
         country: 'United States',
         lat: 63.1,
-        lng: 1.7,
+        lng: 10.7,
         name: 'Alcatraz prison',
         description: 'Literally Alcatraz prison.',
         price: '7'
       },
     ], { validate: true })
-    } catch(e) {
-      console.log('###', e)
-    }
   },
 
   async down (queryInterface, Sequelize) {
