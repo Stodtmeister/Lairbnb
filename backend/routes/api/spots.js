@@ -147,9 +147,9 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
   if (!authorization(spot, req.user, next))
     return;
 
-  let previewImg;
-  if (req.body.preview)
-    previewImg = req.body.url;
+  if (req.body.preview) {
+    const previewImg = req.body.url;
+  }
 
   await spot.update({ previewImage: previewImg });
 
