@@ -8,8 +8,8 @@ router.delete('/:imageId', requireAuth, async (req, res, next) => {
 
   if (!image)
     return res.status(404).json({ message: "Review Image couldn't be found" });
-
-  if (req.user.id !== image.Review.id) {
+    
+  if (req.user.id !== image.Review.dataValues.userId) {
     let err = new Error('Forbidden');
     err.title = 'Require proper authorization';
     err.status = 403;
