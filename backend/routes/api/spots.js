@@ -82,8 +82,7 @@ router.get('/', validateQuery, async (req, res) => {
   maxLng ? query.where.lng = { [Op.lte]: Number(maxLng) } : null
   minPrice ? query.where.price = { [Op.gte]: Number(minPrice) } : null
   maxPrice ? query.where.price = { [Op.lte]: Number(maxPrice) } : null
-
-  console.log(query)
+  
   const spots = await Spot.findAll({
     ...query,
     include: [{ model: Review }, { model: Image, as: 'SpotImages' }],
