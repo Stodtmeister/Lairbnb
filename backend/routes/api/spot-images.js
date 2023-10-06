@@ -11,7 +11,7 @@ router.delete('/:imageId', requireAuth, async (req, res, next) => {
   if (image.preview === true)
     await image.Spot.update({ previewImage: 'Upload a preview image' })
 
-  if (req.user.id !== image.dataValues.id) {
+  if (req.user.id !== image.Spot.dataValues.ownerId) {
     let err = new Error('Forbidden');
     err.title = 'Require proper authorization';
     err.status = 403;
