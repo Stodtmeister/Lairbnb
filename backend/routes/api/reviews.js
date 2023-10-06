@@ -34,6 +34,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
   const review = await Review.findByPk(req.params.reviewId, {
     include: { model: Image, as: 'ReviewImages', attributes: [] },
     attributes: [ 'userId', [sequelize.fn('COUNT', sequelize.col('ReviewImages.id')), 'imageCount'] ],
+    group: 'Review.id'
   });
 
   if (!review)
