@@ -56,7 +56,8 @@ module.exports = {
         allowNull: false
       },
       previewImage: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: 'Upload a previewImage'
       },
       createdAt: {
         type: Sequelize.DATE,
