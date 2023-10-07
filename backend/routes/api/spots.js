@@ -260,8 +260,8 @@ router.post('/:spotId/bookings', requireAuth, validateBooking,
     handleValidationErrors,
   ],
   async (req, res) => {
-    const startDate = Date(req.body.startDate);
-    const endDate = Date(req.body.endDate);
+    const startDate = Date.parse(req.body.startDate);
+    const endDate = Date.parse(req.body.endDate);
     const spot = await Spot.findByPk(req.params.spotId, { include: Booking });
 
     if (!spot)
@@ -272,8 +272,8 @@ router.post('/:spotId/bookings', requireAuth, validateBooking,
     const bookingData = { reserved: [] };
     spot.Bookings.forEach((booking) => {
       bookingData.reserved.push([
-        Date(booking.startDate),
-        Date(booking.endDate),
+        Date.parse(booking.startDate),
+        Date.parse(booking.endDate),
       ]);
     });
 
