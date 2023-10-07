@@ -163,7 +163,9 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
 
 // Edit a spot
 router.put('/:spotId', requireAuth, validateSpot, async (req, res, next) => {
-  const spot = await Spot.findByPk(req.params.spotId);
+  const spot = await Spot.findByPk(req.params.spotId, {
+    attributes: { exclude: 'previewImage' }
+  });
   if (!spot)
     return res.status(404).json({ message: "Spot couldn't be found" });
 
