@@ -82,7 +82,7 @@ router.get('/', validateQuery, async (req, res) => {
   maxLng ? query.where.lng = { [Op.lte]: Number(maxLng) } : null
   minPrice ? query.where.price = { [Op.gte]: Number(minPrice) } : null
   maxPrice ? query.where.price = { [Op.lte]: Number(maxPrice) } : null
-  
+
   const spots = await Spot.findAll({
     ...query,
     include: [{ model: Review }, { model: Image, as: 'SpotImages' }],
@@ -131,8 +131,8 @@ router.post('/', requireAuth, validateSpot, async (req, res, next) => {
   try {
     const ownerId = req.user.id;
     const newSpot = await Spot.create({ ownerId, ...req.body });
-    const { address, city, state, country, lat, lng, name, description, price } = newSpot
-    res.status(201).json({ ownerId, address, city, state, country, lat, lng, name, description, price });
+    const { id, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt } = newSpot
+    res.status(201).json({ id, ownerId, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt });
   } catch (error) {
     next(error);
   }
