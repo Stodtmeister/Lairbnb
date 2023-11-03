@@ -1,10 +1,11 @@
 import { combineReducers } from "redux";
 import { configureStore } from '@reduxjs/toolkit'
 import logger from "redux-logger";
+import sessionReducer from "./session";
 
 
 const rootReducer = combineReducers({
-  // add reducer functions here
+  session: sessionReducer,
 });
 
 // let enhancer;
