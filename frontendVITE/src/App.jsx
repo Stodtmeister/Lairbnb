@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import * as sessionActions from './store/session'
+import { LoginFormPage } from './components'
+
 
 function App() {
   const dispatch = useDispatch()
@@ -10,7 +12,10 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true))
   }, [dispatch])
 
-  return <h1>App</h1>
+
+  return (
+      isLoaded && <LoginFormPage />
+  );
 }
 
 export default App
