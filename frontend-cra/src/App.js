@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
-import { SignupForm, Navigation } from './components'
+import { Switch } from "react-router-dom";
+import { Navigation } from './components'
 import { useDispatch } from 'react-redux'
 import * as sessionActions from "./store/session";
 
