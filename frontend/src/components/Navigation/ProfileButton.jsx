@@ -4,6 +4,8 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import SignupFormModal from '../SignupFormModal/SignupFormModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import "./Navigation.css"
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -41,8 +43,11 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button className="profileBtn" onClick={openMenu}>
+        <div className="innerBtn">
+          <FontAwesomeIcon icon="fa-sharp fa-solid fa-bars" />
+          <i id="profile" className="fas fa-user-circle fa-2xl" />
+        </div>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
