@@ -1,7 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
 .hidden {
   display: none;
 }
@@ -13,12 +9,25 @@
   padding: 10px 30px;
 }
 
+.nav a {
+  color: #ff385c;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+#icon {
+  margin-right: 8px;
+  font-size: 36px;
+}
+
 .profileBtn {
   height: 48px;
   width: 86px;
   background-color: white;
   border: 1px solid rgb(97, 97, 97);
   border-radius: 30px;
+  position: relative;
 }
 
 .innerBtn {
@@ -34,4 +43,28 @@
 #bars {
   font-size: 20px;
   margin-right: 20px;
+}
+
+.modal:hover {
+  background-color: #f2f2f2;
+}
+
+.modal {
+  display: flex;
+  justify-content: flex-start;
+  width: 200px;
+  height: 50px;
+  padding-left: 10px;
+  margin: 11px 0px;
+  align-items: center;
+}
+
+.profile-dropdown {
+  border: 1px solid grey;
+  border-radius: 15px;
+  position: absolute;
+  right: 37px;
+  top: 60px;
+  padding: 0px;
+  text-align: center;
 }

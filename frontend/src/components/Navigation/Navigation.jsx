@@ -9,7 +9,7 @@ function Navigation({ isLoaded }){
 
   return (
     <div className='nav'>
-      <NavLink exact to="/"><i class="fa-brands fa-airbnb fa-2xl" style={{color: "#ff5a5f"}}></i></NavLink>
+      <NavLink exact to="/"><i id='icon' class="fa-brands fa-airbnb fa-2xl"></i>airbnb</NavLink>
       {isLoaded && (<ProfileButton user={sessionUser} />)}
     </div>
   );
