@@ -10,8 +10,11 @@ function LoginFormModal() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
-  let disabled = true
-  disabled = Object.values(errors).length > 0 ? true : false
+  let disabled = false
+
+  if (password === '' || credential === '' || Object.keys(errors).length > 0) {
+    disabled = true
+  }
 
   useEffect(() => {
     const validationErrors = {}
@@ -43,7 +46,7 @@ function LoginFormModal() {
     <>
       <h1>Log In</h1>
       <form id="form" onSubmit={handleSubmit}>
-        <div className={`form-group ${ errors.credential ? "error" : ""}`}>
+        <div className={`form-group ${ errors.credential || errors.password ? "error" : ""}`}>
           {errors.credential && (
             <div className="msg">{errors.credential}</div>
           )}

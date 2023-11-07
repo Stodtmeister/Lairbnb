@@ -1,6 +1,8 @@
 h1 {
   text-align: center;
   margin: 20px;
+  font-weight: 600;
+  color: dimgray;
 }
 
 #form {
@@ -19,30 +21,31 @@ h1 {
 }
 
 .form-group.error .input {
-  color: hsl(0, 100%, 70%);
-  background: hsl(0, 100%, 95%);
-}
-
-button {
-  height: 60px;
-  width: 85%;
+  color: #ff6666;
+  background: #ffe5e5;
 }
 
 input {
   width: 85%;
   font-size: 1em;
-  border: 1px solid black;
+  border: 1px solid darkslategray;
   border-radius: 0.25em;
   padding: 0.25em 0.5em;
 }
-
 
 input:focus {
   outline-color: #ff5a5f;
 }
 
+button {
+  height: 60px;
+  width: 85%;
+  border: 1px solid darkslategray;
+  border-radius: 0.25em;
+}
+
 .form-group.error .msg {
   height: 0px;
   font-size: 0.8em;
-  color: hsl(0, 100%, 70%);
+  color: #ff6666;
 }
