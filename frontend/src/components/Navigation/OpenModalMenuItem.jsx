@@ -15,9 +15,8 @@ function OpenModalMenuItem({
     if (onItemClick) onItemClick();
   };
 
-  return (
-    <li onClick={onClick}>{itemText}</li>
-  );
+  return <div id='menuItems' className='modal' onClick={onClick}>{itemText}</div>
+    {/* <li id='menuItems' onClick={onClick}>{itemText}</li> */}
 }
 
 export default OpenModalMenuItem;

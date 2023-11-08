@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
+<<<<<<< HEAD
 import { Switch } from "react-router-dom";
 import { Navigation } from './components'
+=======
+import { Route, Switch } from "react-router-dom";
+import { Choices, Navigation } from './components'
+>>>>>>> dev
 import { useDispatch } from 'react-redux'
 import * as sessionActions from "./store/session";
+import { Reviews, Home } from "./pages";
+import Spot from "./pages/Spot/Spot";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,7 +21,14 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && <Switch></Switch>}
+      <Choices />
+      {isLoaded &&
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route path='/reviews' component={Reviews} />
+          <Route path='/spot/:spotId' component={Spot} />
+        </Switch>
+      }
     </>
   );
 }
