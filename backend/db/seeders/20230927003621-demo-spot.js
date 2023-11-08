@@ -20,8 +20,7 @@ module.exports = {
         lng: 7.3,
         name: 'Tree House',
         description: 'This is a house in a tree',
-        price: 999,
-        previewImage: '../../../frontend/src/images/sajad-nori-s1puI2BWQzQ-unsplash.jpg'
+        price: 999
       },
       {
         ownerId: 2,

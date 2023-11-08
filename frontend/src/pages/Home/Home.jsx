@@ -8,8 +8,6 @@ export default function Home() {
   const dispatch = useDispatch()
   const spots = useSpots()
 
-  console.log('hi', spots)
-
   useEffect(() => {
     dispatch(getAllSpots())
   }, [dispatch])
