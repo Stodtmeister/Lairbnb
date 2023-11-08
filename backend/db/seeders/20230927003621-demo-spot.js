@@ -21,7 +21,7 @@ module.exports = {
         name: 'Tree House',
         description: 'This is a house in a tree',
         price: 999,
-        previewImage: 'https://www.google.com/imgres?imgurl=http%3A%2F%2Fwww.alleycat.org%2Fwp-content%2Fuploads%2F2019%2F03%2FFELV-cat.jpg&tbnid=3I8uGDvVBXvNOM&vet=1&imgrefurl=https%3A%2F%2Fwww.alleycat.org%2Fresources%2Fthe-natural-history-of-the-cat%2F&docid=9rMsr632qCnewM&w=703&h=463&source=sh%2Fx%2Fim%2Fm5%2F1&shem=uvafe2'
+        previewImage: '../../../frontend/src/images/sajad-nori-s1puI2BWQzQ-unsplash.jpg'
       },
       {
         ownerId: 2,
