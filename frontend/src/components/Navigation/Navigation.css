@@ -73,3 +73,9 @@
   padding: 0px;
   text-align: center;
 }
+
+h2 {
+  border: 1px solid black;
+  text-align: center;
+  padding: 10px;
+}

@@ -1,21 +1,21 @@
 import { useDispatch } from 'react-redux'
-import './Spots.css'
 import { useEffect } from 'react'
 import { getAllSpots, useSpots } from '../../store/spots'
 import { PreviewImage } from '../../components'
+import './Home.css'
 
-export default function Spots() {
+export default function Home() {
   const dispatch = useDispatch()
   const spots = useSpots()
+
+  console.log('hi', spots)
 
   useEffect(() => {
     dispatch(getAllSpots())
   }, [dispatch])
 
-
   return (
     <>
-      <h1>spots</h1>
       <div className="spot-grid">
         {spots.map(spot => (
           <PreviewImage key={spot.id} {...spot} />

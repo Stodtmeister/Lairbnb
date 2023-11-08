@@ -1,0 +1,15 @@
+.spot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1rem;
+}
+
+.spot:hover {
+  cursor: pointer;
+}
+
+.spot-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}

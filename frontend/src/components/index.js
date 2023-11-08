@@ -3,3 +3,4 @@ export { default as SignupFormModal } from './SignupFormModal/SignupFormModal.js
 export { default as Navigation } from './Navigation/Navigation.jsx'
 export { default as OpenModalButton } from './OpenModalButton/OpenModalButton.jsx'
 export { default as PreviewImage } from './PreviewImage/PreviewImage.jsx'
+export { default as Choices } from './Navigation/Choices.jsx'
