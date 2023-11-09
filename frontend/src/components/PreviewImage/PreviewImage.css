@@ -1,3 +1,28 @@
 .spot {
   border: 1px solid black;
+  height: 270px;
+}
+
+.spot:hover {
+  cursor: pointer;
+}
+
+.spot-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 65px;
+  object-fit: cover;
+}
+
+.spot-footer span {
+  margin: 5px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  /* object-position: 50%, 50%; */
+  /* object-fit: cover; */
 }
