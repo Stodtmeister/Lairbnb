@@ -72,6 +72,8 @@
   top: 60px;
   padding: 0px;
   text-align: center;
+  z-index: 1;
+  background-color: white;
 }
 
 h2 {
