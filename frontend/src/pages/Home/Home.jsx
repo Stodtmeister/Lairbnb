@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { getAllSpots, useSpots } from '../../store/spots'
-import { PreviewImage } from '../../components'
+import { Choices, PreviewImage } from '../../components'
 import './Home.css'
 
 export default function Home() {
@@ -14,6 +14,7 @@ export default function Home() {
 
   return (
     <>
+      <Choices />
       <div className="spot-grid">
         {spots.map(spot => (
           <PreviewImage key={spot.id} {...spot} />
