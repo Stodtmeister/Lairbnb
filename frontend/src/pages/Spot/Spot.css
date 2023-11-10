@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+}
+
+.address {
+  margin: 0 20px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 5px;
+  align-items: stretch;
+  grid-template-rows: 200px, 200px;
+  grid-auto-flow: dense;
+  background-color: #333;
+  margin: 20px;
+  padding: 10px;
+  height: 430px;
+  overflow-x: auto;
+}
+
+.grid-container img {
+  border: 1px solid white;
+  max-width: 100%;
+}
+
+/* .tall {
+  grid-row: span 2;
+} */
+
+.wide {
+  grid-column: span 2;
+  grid-row: span 2;
+}
