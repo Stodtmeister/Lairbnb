@@ -39,14 +39,17 @@
   flex-direction: row;
   margin: 0 20px;
   border-bottom: 1px solid grey;
+  justify-content: space-between;
 }
 
 .reserve-spot {
   display: flex;
   flex-direction: column;
   border: 1px solid black;
-  width: 100%;
+  width: 50%;
   height: 6em;
+  margin-bottom: 15px;
+  justify-content: center;
 }
 
 .rating {
@@ -54,7 +57,11 @@
 }
 
 .reserve {
-  margin: 3px auto;
+  margin: 5px auto;
   width: 90%;
   height: 4em
+}
+
+.host {
+  margin: 0px 5px 5px 0px;
 }

@@ -1,10 +1,11 @@
 
 import { useParams } from 'react-router'
-import './Spot.css'
 import { getSpotById, useSpots } from '../../store/spots'
 import { useDispatch  } from 'react-redux'
-import { useEffect, useState } from 'react'
-import { SpotInfo, SpotReviews } from '../../components'
+import { useEffect } from 'react'
+import { SpotReviews } from '../../components'
+import { getReviewsBySpotIdThunk, useReviews } from '../../store/reviews'
+import './Spot.css'
 
 export default function Spot() {
   const dispatch = useDispatch()
@@ -20,8 +21,9 @@ export default function Spot() {
 
   const spot = useSpots()
   if (!spot[0]) return <div></div>
-  console.log('spot', spot)
-  const { Owner, name, city, state, country, price, avgStarRating, numReviews } = spot[0]
+
+  const { Owner, name, city, state, country, price, avgStarRating, numReviews, description } = spot[0]
+  const rev = numReviews > 1 ? 'reviews' : 'review'
 
   return (
     <>
@@ -38,20 +40,20 @@ export default function Spot() {
       </div>
       <section className='spot-info'>
         <div className='spot-description' >
-          <h3>Hosted by {Owner?.firstName} {Owner?.lastName}</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi unde, consectetur eos ratione minus numquam iure repellendus itaque mollitia, a aperiam deserunt voluptas magnam assumenda quos, aspernatur nesciunt quam consequatur.</p>
+          <h3 className='host'>Hosted by {Owner?.firstName} {Owner?.lastName}</h3>
+          <p>{description}</p>
         </div>
         <div className='reserve-spot'>
           <div className='rating'>
             <span>${price} night</span>
             <i className="fa-sharp fa-solid fa-star"></i>
             <span>{avgStarRating}</span>
-            <span>{numReviews} Reviews</span>
+            <span>{numReviews} {rev}</span>
           </div>
-          <button className='reserve' onClick={handleClick}>Reserve</button>
+            <button className='reserve' onClick={handleClick}>Reserve</button>
         </div>
       </section>
-      <SpotReviews />
+      <SpotReviews spotId={spotId} rating={avgStarRating}/>
     </>
   )
 }
