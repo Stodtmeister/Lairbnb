@@ -26,7 +26,7 @@ h1 {
 }
 
 input {
-  width: 85%;
+  /* width: 85%; */
   font-size: 1em;
   border: 1px solid darkslategray;
   border-radius: 0.25em;

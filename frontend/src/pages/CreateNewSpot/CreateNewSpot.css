@@ -1,0 +1,58 @@
+#spot-form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.address-container {
+  display: grid;
+  width: 100%;
+  /* grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-rows: 1fr; */
+  grid-template-areas:
+    'country country'
+    'address address'
+    'city      state'
+    'lat         lng'
+  ;
+
+  gap: 15px;
+  /* display: flex;
+  flex-direction: column;
+  width: 80%; */
+  /* height: 200px; */
+  /* align-content: space-around; */
+}
+
+.label, .input {
+  display: block;
+}
+
+/* .input {
+  width: 400px;
+} */
+
+.country {
+  grid-area: country;
+}
+
+.address {
+  grid-area: address;
+}
+
+.city {
+  grid-area: city;
+}
+
+.state {
+  grid-area: state;
+}
+
+.lat {
+  grid-area: lat;
+}
+
+.lng {
+  grid-area: lng;
+}
