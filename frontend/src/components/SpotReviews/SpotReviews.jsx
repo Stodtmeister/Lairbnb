@@ -14,16 +14,17 @@ export default function SpotReviews({ spotId, rating }) {
   // if (!reviews[0]) return
   // const { User, review, stars, createdAt } = reviews[0]["0"]
 
+
   const rev = reviews.length > 1 ? 'reviews' : 'review'
 
   return (
-    <div>
+    <div className='spot-review'>
       <div>
         <i className="fa-sharp fa-solid fa-star"></i>
         <span>{rating}</span>
         <span>{reviews.length} {rev}</span>
       </div>
-      {reviews[0].map(rev => (
+      {reviews[0]?.map(rev => (
         <>
           <div key={rev.id}>
             <div>

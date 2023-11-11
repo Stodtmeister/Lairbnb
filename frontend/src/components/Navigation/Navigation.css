@@ -79,10 +79,34 @@
   text-align: center;
   z-index: 1;
   background-color: white;
+  width: 250px;
+  height: 150px;
+  list-style-type: none;
 }
 
 h2 {
   border: 1px solid black;
   text-align: center;
   padding: 10px;
+}
+
+.manage-spots {
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  margin: 10px 0;
+  padding: 3px;
+}
+
+.logout-btn {
+  width: 50%;
+  height: 3em;
+  margin: 4px;
+  background-color: #ff385c;
+  color: white;
+  font-weight: 600;
+  border-radius: 15px;
+}
+
+.logged-out {
+  display: none;
 }
