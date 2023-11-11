@@ -33,3 +33,28 @@
   grid-column: span 2;
   grid-row: span 2;
 }
+
+.spot-info {
+  display: flex;
+  flex-direction: row;
+  margin: 0 20px;
+  border-bottom: 1px solid grey;
+}
+
+.reserve-spot {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  width: 100%;
+  height: 6em;
+}
+
+.rating {
+  margin: 3px auto;
+}
+
+.reserve {
+  margin: 3px auto;
+  width: 90%;
+  height: 4em
+}

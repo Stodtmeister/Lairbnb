@@ -38,6 +38,7 @@ export const getSpotById = (spotId) => async (dispatch) => {
   if (res.ok) {
     let spot = await res.json()
     dispatch(getSpotInfo(spot))
+    return spot
   }
 }
 
