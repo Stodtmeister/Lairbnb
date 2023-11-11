@@ -5,7 +5,7 @@ export default function PreviewImage({ id, name, avgRating, city, state, preview
   const history = useHistory()
 
   function handleClick() {
-    history.push(`/spot/${id}`)
+    history.push(`/spots/${id}`)
   }
   // previewImage = require('../../images/sajad-nori-s1puI2BWQzQ-unsplash.jpg')
   return (

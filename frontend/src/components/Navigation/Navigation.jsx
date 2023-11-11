@@ -9,15 +9,18 @@ function Navigation({ isLoaded }){
   const loggedIn = sessionUser?.id ? 'logged-in' : 'logged-out'
 
   return (
-    <div className='nav'>
-      <NavLink exact to="/"><i id='icon' class="fa-brands fa-airbnb fa-2xl"></i>airbnb</NavLink>
-      <div>
-        <span className={loggedIn}>
-          <NavLink to='/reviews'>Create a new spot</NavLink>
-        </span>
-        {isLoaded && (<ProfileButton user={sessionUser} />)}
+    <>
+      <div className='nav'>
+        <NavLink exact to="/"><i id='icon' class="fa-brands fa-airbnb fa-2xl"></i>airbnb</NavLink>
+        <div>
+          <span className={loggedIn}>
+            <NavLink to='/spots/new'>Create a new spot</NavLink>
+          </span>
+          {isLoaded && (<ProfileButton user={sessionUser} />)}
+        </div>
       </div>
-    </div>
+      <hr />
+    </>
   );
 }
 
