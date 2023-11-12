@@ -4,7 +4,6 @@ import { getSpotById, useSpots } from '../../store/spots'
 import { useDispatch  } from 'react-redux'
 import { useEffect } from 'react'
 import { SpotReviews } from '../../components'
-import { getReviewsBySpotIdThunk, useReviews } from '../../store/reviews'
 import './Spot.css'
 
 export default function Spot() {
@@ -26,7 +25,7 @@ export default function Spot() {
   const rev = numReviews > 1 ? 'reviews' : 'review'
 
   return (
-    <>
+    <div className='spot-page'>
       <div className='address'>
         <h3>{name}</h3>
         <p>{city}, {state}, {country}</p>
@@ -60,6 +59,6 @@ export default function Spot() {
         </div>
       </section>
       <SpotReviews spotId={spotId} rating={avgStarRating}/>
-    </>
+    </div>
   )
 }

@@ -13,16 +13,15 @@ export default function SpotReviews({ spotId, rating }) {
   const reviews = useReviews()
 
   const rev = reviews.length === 1 ? 'review' : 'reviews'
-  console.log('rev', reviews[0].length)
 
   return (
     <div className='spot-review'>
       <div>
         <i className="fa-sharp fa-solid fa-star"></i>
-        <span className={reviews[0].length > 0 ? 'hide' : 'show'}>
+        <span className={reviews[0]?.length > 0 ? 'hide' : 'show'}>
           New
         </span>
-        <span className={reviews[0].length > 0 ? 'show' : 'hide'}>
+        <span className={reviews[0]?.length > 0 ? 'show' : 'hide'}>
           <span>{rating?.toPrecision(2)} <i class="fa-regular fa-asterisk fa-2xs"></i></span>
           <span>{reviews.length} {rev}</span>
         </span>

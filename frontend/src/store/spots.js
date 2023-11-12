@@ -67,7 +67,6 @@ export const createSpotThunk = (data) => async (dispatch) => {
   }
 }
 
-
 //* ========================== reducer ====================================
 
 const spotReducer = (state = {}, payload) => {

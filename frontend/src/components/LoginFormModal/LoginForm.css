@@ -8,8 +8,11 @@ h1 {
 #form {
   display: flex;
   flex-direction: column;
-  height: 200px;
-  width: 600px;
+  height: 100%;
+  width: 70vw;
+  /* overflow: hidden; */
+  /* height: 200px;
+  width: 600px; */
 }
 
 .form-group {
@@ -20,7 +23,7 @@ h1 {
   align-content: space-around;
 }
 
-.form-group.error .input {
+.form-group.error .input:focus {
   color: #ff6666;
   background: #ffe5e5;
 }

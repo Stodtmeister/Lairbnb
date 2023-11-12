@@ -59,7 +59,6 @@ function LoginFormModal() {
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
-            required
             placeholder="Username or Email"
           />
           {errors.password && (
@@ -70,7 +69,6 @@ function LoginFormModal() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
             placeholder="Password"
           />
           <button disabled={disabled} type="submit">Log In</button>

@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+.spot-page {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 .address {
   margin: 0 20px;
 }

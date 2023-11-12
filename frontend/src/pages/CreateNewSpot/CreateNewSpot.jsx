@@ -2,8 +2,10 @@ import { useDispatch } from 'react-redux'
 import { useRef, useState } from 'react'
 import { createSpotThunk } from '../../store/spots'
 import './CreateNewSpot.css'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 export default function CreateNewSpot() {
+  const history = useHistory()
   const dispatch = useDispatch()
   const countryRef = useRef()
   const stateRef = useRef()
@@ -50,7 +52,7 @@ export default function CreateNewSpot() {
       const data = await dispatch(createSpotThunk(newSpot))
 
       if (data.id) {
-        console.log(data)
+        history.push(`/spots/${data.id}`)
       } else {
         setErrors(data)
       }
