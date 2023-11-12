@@ -11,25 +11,26 @@ export default function SpotReviews({ spotId, rating }) {
   }, [dispatch])
 
   const reviews = useReviews()
-  // if (!reviews[0]) return
-  // const { User, review, stars, createdAt } = reviews[0]["0"]
 
-
-  const rev = reviews.length > 1 ? 'reviews' : 'review'
+  const rev = reviews.length === 1 ? 'review' : 'reviews'
+  console.log('rev', reviews[0].length)
 
   return (
     <div className='spot-review'>
       <div>
         <i className="fa-sharp fa-solid fa-star"></i>
-        <span>{rating}</span>
-        <span>{reviews.length} {rev}</span>
+        <span className={reviews[0].length > 0 ? 'hide' : 'show'}>
+          New
+        </span>
+        <span className={reviews[0].length > 0 ? 'show' : 'hide'}>
+          <span>{rating?.toPrecision(2)} <i class="fa-regular fa-asterisk fa-2xs"></i></span>
+          <span>{reviews.length} {rev}</span>
+        </span>
       </div>
       {reviews[0]?.map(rev => (
         <>
           <div key={rev.id}>
             <div>
-              <i className="fa-sharp fa-solid fa-star"></i>
-              <span>{rev.stars}</span>
               <p>{rev.User.firstName}</p>
             </div>
             <p>{new Date(Date.parse(rev.createdAt)).toDateString().slice(3)}</p>

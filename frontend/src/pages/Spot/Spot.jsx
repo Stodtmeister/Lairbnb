@@ -47,8 +47,14 @@ export default function Spot() {
           <div className='rating'>
             <span>${price} night</span>
             <i className="fa-sharp fa-solid fa-star"></i>
-            <span>{avgStarRating}</span>
-            <span>{numReviews} {rev}</span>
+            <span className={numReviews > 0 ? 'hide' : 'show'}>
+              New
+            </span>
+            <span className={numReviews > 0 ? 'show' : 'hide'}>
+              <span>{avgStarRating?.toPrecision(2)}</span>
+              <i class="fa-regular fa-asterisk fa-2xs"></i>
+              <span>{numReviews} {rev}</span>
+            </span>
           </div>
             <button className='reserve' onClick={handleClick}>Reserve</button>
         </div>

@@ -50,8 +50,6 @@ export default function CreateNewSpot() {
         price: priceRef.current.value
       }
 
-      console.log(newSpot)
-
       const data = await dispatch(createSpotThunk(newSpot))
 
       if (data.id) {
@@ -170,7 +168,8 @@ export default function CreateNewSpot() {
             name='description'
             cols="60"
             rows="10"
-            placeholder='Description' ref={descriptionRef}
+            placeholder='Please write at least 30 characters'
+            ref={descriptionRef}
           />
           {errors?.description && (
             <div className="msg">{errors?.description}</div>

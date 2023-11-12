@@ -49,3 +49,15 @@ button {
   font-size: 0.8em;
   color: #ff6666;
 }
+
+.demo-user {
+  border: 0;
+  width: 8em;
+  height: 2em;
+  text-decoration: underline;
+  padding: 0;
+  color: darkslategray;
+  background-color: white;
+  margin: 0px auto 20px auto;
+  text-align: center;
+}
