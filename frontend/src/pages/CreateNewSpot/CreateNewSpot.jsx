@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux'
-import './CreateNewSpot.css'
-import { useEffect, useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useRef, useState } from 'react'
 import { createSpotThunk } from '../../store/spots'
+import './CreateNewSpot.css'
 
 export default function CreateNewSpot() {
   const dispatch = useDispatch()
@@ -17,9 +17,6 @@ export default function CreateNewSpot() {
   const previewImgRef = useRef()
   const imgRef = useRef()
   const [errors, setErrors] = useState({})
-
-  // const session = useSelector(state => state.session)
-  // console.log(session)
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -108,7 +105,7 @@ export default function CreateNewSpot() {
               id='city'
               placeholder='City'
               ref={cityRef}
-              />
+            />
             {errors?.city && (
               <div className="msg">{errors?.city}</div>
             )}

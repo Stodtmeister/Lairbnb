@@ -76,7 +76,6 @@ function LoginFormModal() {
           <button disabled={disabled} type="submit">Log In</button>
         </div>
       </form>
-      {/* <div class='demo-user' onClick={() => dispatch(sessionActions.login({ credential: 'demo@user.io', password: 'password' }))}>Demo User</div> */}
       <div class='demo-user' onClick={handleClick}>Demo User</div>
     </>
   );
