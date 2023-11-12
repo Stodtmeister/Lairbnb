@@ -5,6 +5,12 @@
   margin: 0 auto;
 }
 
+.spot-images {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .address-container {
   display: grid;
   width: 100%;
@@ -55,4 +61,10 @@
 
 .lng {
   grid-area: lng;
+}
+
+hr {
+  display:block;
+  width: 100%;
+  margin: 20px 0 ;
 }
