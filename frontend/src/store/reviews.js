@@ -33,6 +33,12 @@ export const addReviewThunk = (spotId, rev) => async (dispatch) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(rev)
   })
+
+  if (res.ok) {
+    const newReview = await res.json()
+    dispatch(addReview(newReview))
+    return newReview
+  }
 }
 
 const reviewReducer = (state = {}, payload) => {

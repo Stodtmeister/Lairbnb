@@ -36,7 +36,6 @@ export default function SpotReviews({ spotId, rating, owner }) {
         <i className="fa-sharp fa-solid fa-star"></i>
         <span className={reviews?.length > 0 ? 'hide' : 'show'}>New</span>
         <div className={`${firstToReview} ${browsing}`}>
-          <button>Post your review</button>
           <p>Be the first to post a review!</p>
         </div>
         <span className={reviews?.length > 0 ? 'show' : 'hide'}>
@@ -47,7 +46,7 @@ export default function SpotReviews({ spotId, rating, owner }) {
       <div className={`${reviewedPreviously} ${browsing}`}>
         <OpenModalButton
           buttonText='Post Your Review'
-          modalComponent={<ReviewModal />}
+          modalComponent={<ReviewModal spotId={spotId} />}
         />
       </div>
       {reviews?.map(rev => (

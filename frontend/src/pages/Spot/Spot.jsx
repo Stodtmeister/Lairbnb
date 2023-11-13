@@ -1,4 +1,3 @@
-
 import { useParams } from 'react-router'
 import { getSpotById, useSpots } from '../../store/spots'
 import { useDispatch  } from 'react-redux'

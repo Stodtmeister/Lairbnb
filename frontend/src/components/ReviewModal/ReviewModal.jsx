@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react'
 import { useModal } from '../../context/Modal'
 import { useDispatch } from 'react-redux'
 import './ReviewModal.css'
+import { addReviewThunk } from '../../store/reviews'
 
-export default function ReviewModal() {
+export default function ReviewModal({ spotId }) {
   const { closeModal } = useModal()
   const dispatch = useDispatch()
   const [rating, setRating] = useState(0);
@@ -20,8 +21,11 @@ export default function ReviewModal() {
     if (review && review.length < 10) {
       validation.review = 'Review must be at least 10 characters'
     }
+    if (rating === 0) {
+      validation.rating = 'Must select at least one star'
+    }
     setErrors(validation)
-  }, [review])
+  }, [review, rating])
 
   function handleStarClick(clickedRating) {
     setRating(clickedRating);
@@ -36,7 +40,14 @@ export default function ReviewModal() {
   }
 
   function handleSubmit() {
-
+    const newReview = dispatch(addReviewThunk(spotId, { review, stars: rating }))
+    .then(closeModal)
+    .catch(async (res) => {
+      const data = await res.json();
+      if (data && data.errors) {
+        setErrors(data.errors);
+      }
+    });
   }
 
   const renderStars = () => {
