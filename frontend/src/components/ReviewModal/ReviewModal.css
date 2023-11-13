@@ -1,0 +1,17 @@
+
+.container span {
+  color: black;
+}
+
+.container span:hover,
+.container span:hover ~ span {
+  color: black;
+}
+
+.container:hover span {
+  color: red;
+}
+
+.container p {
+  display: inline-block;
+}
