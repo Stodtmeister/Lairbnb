@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux"
+import { csrfFetch } from "./csrf"
 
 const GET_REVIEWS = 'GET_REVIEWS'
 
@@ -12,19 +13,22 @@ export const useReviews = () => {
 }
 
 export const getReviewsBySpotIdThunk = (spotId) => async (dispatch) => {
-  const res = await fetch(`/api/spots/${spotId}/reviews`)
+  const res = await csrfFetch(`/api/spots/${spotId}/reviews`)
 
   if (res.ok) {
     let reviews = await res.json()
-    reviews = Object.values(reviews)
-    dispatch(getReviews(reviews))
+    dispatch(getReviews(reviews.Reviews))
   }
 }
 
 const reviewReducer = (state = {}, payload) => {
+  let newReviewState = {}
   switch (payload.type) {
     case GET_REVIEWS:
-      return { ...payload.reviews }
+      payload.reviews.forEach(review => {
+        newReviewState[review.id] = review
+      })
+      return newReviewState
     default:
       return state
   }

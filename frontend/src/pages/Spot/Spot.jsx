@@ -23,7 +23,7 @@ export default function Spot() {
 
   const { Owner, name, city, state, country, price, avgStarRating, numReviews, description } = spot[0]
   const rev = numReviews > 1 ? 'reviews' : 'review'
-  
+
   return (
     <div className='spot-page'>
       <div className='address'>
@@ -44,7 +44,7 @@ export default function Spot() {
         </div>
         <div className='reserve-spot'>
           <div className='rating'>
-            <span>${price} night</span>
+            <span><strong>${price}</strong> night</span>
             <i className="fa-sharp fa-solid fa-star"></i>
             <span className={numReviews > 0 ? 'hide' : 'show'}>
               New

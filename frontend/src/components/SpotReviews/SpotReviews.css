@@ -9,3 +9,19 @@
 .notFirst {
   display: none;
 }
+
+.already-reviewed {
+  display: none;
+}
+
+.post-review {
+  width: 150px;
+}
+
+.first-name {
+  font-weight: bold;
+}
+
+.show {
+  font-weight: bold;
+}

@@ -82,11 +82,9 @@ export default function NewSpotForm() {
         price: priceRef.current.value
       }
 
-      console.log('newSpot', newSpot)
       console.log(typeof priceRef.current.value)
       const data = await dispatch(createSpotThunk(newSpot))
-
-      console.log('DATA', data)
+      
       if (data?.id) {
         history.push(`/spots/${data.id}`)
       } else {
