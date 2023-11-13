@@ -1,4 +1,4 @@
-
+/*
 .container span {
   color: black;
 }
@@ -9,9 +9,33 @@
 }
 
 .container:hover span {
-  color: red;
+  color: #ff385c
 }
 
 .container p {
   display: inline-block;
+} */
+
+#review-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.star-rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.star {
+  color: #ddd;
+  transition: color 0.2s;
+}
+
+.star:hover,
+.star.filled {
+  color: #ff385c;
 }
