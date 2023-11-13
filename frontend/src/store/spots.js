@@ -30,7 +30,7 @@ export const useSpots = () => {
 //* ========================== thunks ====================================
 
 export const getAllSpots = () => async (dispatch) => {
-  const res = await fetch('/api/spots')
+  const res = await csrfFetch('/api/spots')
 
   if (res.ok) {
     let spots = await res.json()
@@ -40,7 +40,7 @@ export const getAllSpots = () => async (dispatch) => {
 }
 
 export const getSpotById = (spotId) => async (dispatch) => {
-  const res = await fetch(`/api/spots/${spotId}`)
+  const res = await csrfFetch(`/api/spots/${spotId}`)
 
   if (res.ok) {
     let spot = await res.json()
@@ -56,7 +56,6 @@ export const createSpotThunk = (data) => async (dispatch) => {
     body: JSON.stringify(data)
   })
 
-  console.log('res', res)
   if (res.ok) {
     const newSpot = await res.json()
     dispatch(createSpot(newSpot))

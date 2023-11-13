@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux'
 import { useRef, useState } from 'react'
 import { createSpotThunk } from '../../store/spots'
-import './CreateNewSpot.css'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import './NewSpotForm.css'
 
-export default function CreateNewSpot() {
+export default function NewSpotForm() {
   const history = useHistory()
   const dispatch = useDispatch()
   const countryRef = useRef()
@@ -17,7 +17,10 @@ export default function CreateNewSpot() {
   const nameRef = useRef()
   const priceRef = useRef()
   const previewImgRef = useRef()
-  const imgRef = useRef()
+  const img2Ref = useRef()
+  const img3Ref = useRef()
+  const img4Ref = useRef()
+  const img5Ref = useRef()
   const [errors, setErrors] = useState({})
 
   async function handleSubmit(e) {
@@ -34,7 +37,37 @@ export default function CreateNewSpot() {
     if (!nameRef.current.value.length) validationErrors.name = 'Name is required'
     if (priceRef.current.value < 1 || !priceRef.current.value.length) validationErrors.price = 'Price is required'
     if (!previewImgRef.current.value.length) validationErrors.preview = 'Preview image is required'
-    // if (!imgRef.current.value.length) validationErrors.ending = 'Image URL must end in .png, .jpg, or .jpeg'
+
+    if (previewImgRef.current.value.length) {
+      const ending = previewImgRef.current.value.split('.')
+      if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
+        validationErrors.previewEnd = 'Image URL must end in .png, .jpg, or .jpeg'
+      }
+    }
+    if (img2Ref.current.value.length) {
+      const ending = img2Ref.current.value.split('.')
+      if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
+        validationErrors.ending2 = 'Image URL must end in .png, .jpg, or .jpeg'
+      }
+    }
+    if (img3Ref.current.value.length) {
+      const ending = img3Ref.current.value.split('.')
+      if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
+        validationErrors.ending3 = 'Image URL must end in .png, .jpg, or .jpeg'
+      }
+    }
+    if (img4Ref.current.value.length) {
+      const ending = img4Ref.current.value.split('.')
+      if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
+        validationErrors.ending4 = 'Image URL must end in .png, .jpg, or .jpeg'
+      }
+    }
+    if (img5Ref.current.value.length) {
+      const ending = img5Ref.current.value.split('.')
+      if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
+        validationErrors.ending5 = 'Image URL must end in .png, .jpg, or .jpeg'
+      }
+    }
 
     if (!Object.keys(validationErrors).length) {
       const newSpot = {
@@ -49,9 +82,12 @@ export default function CreateNewSpot() {
         price: priceRef.current.value
       }
 
+      console.log('newSpot', newSpot)
+      console.log(typeof priceRef.current.value)
       const data = await dispatch(createSpotThunk(newSpot))
 
-      if (data.id) {
+      console.log('DATA', data)
+      if (data?.id) {
         history.push(`/spots/${data.id}`)
       } else {
         setErrors(data)
@@ -160,7 +196,7 @@ export default function CreateNewSpot() {
         </div>
       </div>
       <hr />
-        <h4>Describe your place to guests</h4>
+        <h4>Describe your place to guests *</h4>
         <p>Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</p>
         <div className={`form-group ${errors?.description ? "error" : ""}`}>
           <textarea
@@ -208,31 +244,67 @@ export default function CreateNewSpot() {
           )}
         </div>
       <hr />
-        <h4>Liven up your spot with photos</h4>
+        <h4>Liven up your spot with photos *</h4>
         <p>Submit a link to at least one photo to publish your spot.</p>
         <div className="spot-images">
-          <div className={`form-group ${errors?.preview ? "error" : ""}`}>
+          <div className={`form-group ${errors?.preview ? "error" : ""} ${errors?.previewEnd ? 'error' : ""}`}>
             <input
               className='input'
               type="text"
-              id='photo'
-              placeholder='Preview Image URL *'
+              placeholder='Preview Image URL'
               ref={previewImgRef}
             />
             {errors?.preview && (
               <div className="msg">{errors?.preview}</div>
             )}
+            {errors?.previewEnd && (
+              <div className="msg">{errors?.previewEnd}</div>
+            )}
           </div>
-          {/* <div className={`form-group ${errors.ending ? "error" : ""}`}>
-            {arr.map(ele => (
-              <>
-                <input className='input' type="text" placeholder='Image URL' ref={imgRef} key={ele}/>
-                {errors.ending && (
-                  <div className="msg">{errors.ending}</div>
-                )}
-              </>
-            ))}
-          </div> */}
+          <div className={`form-group ${errors?.ending2 ? "error" : ""}`}>
+            <input
+              className='input'
+              type="text"
+              placeholder='Image URL'
+              ref={img2Ref}
+            />
+            {errors?.ending2 && (
+              <div className="msg">{errors?.ending2}</div>
+            )}
+          </div>
+          <div className={`form-group ${errors?.ending3 ? "error" : ""}`}>
+            <input
+              className='input'
+              type="text"
+              placeholder='Image URL'
+              ref={img3Ref}
+            />
+            {errors?.ending3 && (
+              <div className="msg">{errors?.ending3}</div>
+            )}
+          </div>
+          <div className={`form-group ${errors?.ending4 ? "error" : ""}`}>
+            <input
+              className='input'
+              type="text"
+              placeholder='Image URL'
+              ref={img4Ref}
+            />
+            {errors?.ending4 && (
+              <div className="msg">{errors?.ending4}</div>
+            )}
+          </div>
+          <div className={`form-group ${errors?.ending5 ? "error" : ""}`}>
+            <input
+              className='input'
+              type="text"
+              placeholder='Image URL'
+              ref={img5Ref}
+            />
+            {errors?.ending5 && (
+              <div className="msg">{errors?.ending5}</div>
+            )}
+          </div>
         </div>
       <hr />
         <button className='btn' type="submit">Create Spot</button>

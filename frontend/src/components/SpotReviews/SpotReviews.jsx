@@ -1,4 +1,4 @@
-import { useEffect, useInsertionEffect } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getReviewsBySpotIdThunk, useReviews } from '../../store/reviews'
 import './SpotReviews.css'
@@ -18,12 +18,11 @@ export default function SpotReviews({ spotId, rating, owner }) {
 
   if (user?.id === owner?.id) {
     browsing = ''
-    if (!reviews[0].length) {
+    if (!reviews[0]?.length) {
       firstToReview = 'first'
     }
   }
-
-  console.log(reviews)
+  
   return (
     <div className='spot-review'>
       <div>

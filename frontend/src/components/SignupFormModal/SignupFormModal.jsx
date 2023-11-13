@@ -57,7 +57,7 @@ function SignupFormModal() {
             setErrors(data.errors);
           }
         });
-      console.log('response', response)
+      console.log('RESPONSE', response)
     } else {
       return setErrors({
         confirmPassword: "Passwords don't match"
