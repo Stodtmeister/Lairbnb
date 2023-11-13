@@ -23,7 +23,7 @@ export default function Spot() {
 
   const { Owner, name, city, state, country, price, avgStarRating, numReviews, description } = spot[0]
   const rev = numReviews > 1 ? 'reviews' : 'review'
-
+  
   return (
     <div className='spot-page'>
       <div className='address'>
@@ -58,7 +58,7 @@ export default function Spot() {
             <button className='reserve' onClick={handleClick}>Reserve</button>
         </div>
       </section>
-      <SpotReviews spotId={spotId} rating={avgStarRating}/>
+      <SpotReviews spotId={spotId} rating={avgStarRating} owner={Owner}/>
     </div>
   )
 }

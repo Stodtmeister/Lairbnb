@@ -7,17 +7,11 @@ import './SignupForm.css'
 function SignupFormModal() {
   const dispatch = useDispatch()
   const emailRef = useRef('')
-  // const usernameRef = useRef('')
   const firstNameRef = useRef('')
   const lastNameRef = useRef('')
-  // const passwordRef = useRef('')
   const confirmPasswordRef = useRef('')
-  // const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({})
   const { closeModal } = useModal()
   let disabled = false
@@ -46,7 +40,6 @@ function SignupFormModal() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    console.log(emailRef, username, password, confirmPasswordRef, emailRef, firstNameRef)
 
     if (password === confirmPasswordRef.current.value) {
       setErrors({});

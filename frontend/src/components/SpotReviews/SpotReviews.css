@@ -1,3 +1,11 @@
 .spot-review {
   margin: 20px;
 }
+
+.owner {
+  display: none;
+}
+
+.notFirst {
+  display: none;
+}
