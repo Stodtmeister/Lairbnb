@@ -19,6 +19,7 @@ export default function ManageSpots() {
   }
 
   function handleUpdate(spotId) {
+    console.log(spotId)
     history.push(`/spots/${spotId}/edit`)
   }
 
@@ -29,7 +30,7 @@ export default function ManageSpots() {
         <button>Create a New Spot</button>
       </div>
       <div className='spot-grid'>
-        {userSpots.map(spot => (
+        {userSpots.map((spot, idx) => (
           <div className='user-container'>
             <PreviewImage key={spot.id} {...spot} />
             <div className='button-container'>

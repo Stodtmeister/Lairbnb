@@ -4,6 +4,7 @@ import { csrfFetch } from "./csrf"
 const LOAD_SPOTS = 'LOAD_SPOTS'
 const GET_SPOT_BY_ID = 'GET_SPOT_BY_ID'
 const CREATE_SPOT = 'CREATE_SPOT'
+const EDIT_SPOT = 'EDIT_SPOT'
 
 const loadSpots = (spots) => ({
   type: LOAD_SPOTS,
@@ -19,6 +20,12 @@ const createSpot = (spot) => ({
   type: CREATE_SPOT,
   spot
 })
+
+const editSpot = (spot) => ({
+  type: EDIT_SPOT,
+  spot
+})
+
 
 //* ========================== getter ====================================
 
@@ -73,6 +80,19 @@ export const createSpotThunk = (data) => async (dispatch) => {
   } else {
     const errors = await res.json()
     return errors
+  }
+}
+
+export const editSpotThunk = (spotId, spot) => async (dispatch) => {
+  const res = await csrfFetch(`/api/spots/${spotId}`, {
+    method: 'PUT',
+    body: JSON.stringify(spot)
+  })
+
+  if (res.ok) {
+    const editedSpot = await res.json()
+    dispatch(createSpot(editedSpot))
+    return editedSpot
   }
 }
 
