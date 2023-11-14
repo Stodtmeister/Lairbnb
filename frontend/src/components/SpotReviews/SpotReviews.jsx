@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getReviewsBySpotIdThunk, useReviews } from '../../store/reviews'
 import ReviewModal from '../ReviewModal/ReviewModal'
@@ -20,7 +20,7 @@ export default function SpotReviews({ spotId, rating, owner }) {
   }, [dispatch, spotId])
 
   if (user?.id === owner?.id) {
-    browsing = ''
+    browsing = 'owner'
   } else {
     if (!reviews?.length) {
       firstToReview = 'first'

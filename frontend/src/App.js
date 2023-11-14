@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import { Navigation } from './components'
 import { useDispatch } from 'react-redux'
 import * as sessionActions from "./store/session";
-import { Reviews, Home, NewSpotForm } from "./pages";
+import { Reviews, Home, NewSpotForm, ManageSpots, UpdateSpot } from "./pages";
 import Spot from "./pages/Spot/Spot";
 
 function App() {
@@ -21,6 +21,8 @@ function App() {
           <Route exact path='/' component={Home} />
           <Route path='/reviews' component={Reviews} />
           <Route path='/spots/new' component={NewSpotForm} />
+          <Route path='/spots/current' component={ManageSpots} />
+          <Route path='/spots/:spotId/edit' component={UpdateSpot} />
           <Route path='/spots/:spotId' component={Spot} />
         </Switch>
       }

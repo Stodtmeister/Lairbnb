@@ -49,6 +49,16 @@ export const getSpotById = (spotId) => async (dispatch) => {
   }
 }
 
+export const getUserSpotsThunk = () => async (dispatch) => {
+  const res = await csrfFetch(`/api/spots/current`)
+
+  if (res.ok) {
+    const userSpots = await res.json()
+    dispatch(loadSpots(userSpots.Spots))
+    return userSpots
+  }
+}
+
 export const createSpotThunk = (data) => async (dispatch) => {
   const res = await csrfFetch('/api/spots', {
     method: 'POST',
