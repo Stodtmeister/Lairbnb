@@ -31,7 +31,7 @@ export default function Spot() {
         <p>{city}, {state}, {country}</p>
       </div>
       <div className="grid-container">
-        <img className='wide tall' src="https://source.unsplash.com/cssvEZacHvQ" alt='hi' />
+        <img className='tall' src="https://source.unsplash.com/cssvEZacHvQ" alt='hi' />
         <img className='square' src="https://source.unsplash.com/oR0uERTVyD0" alt='hi' />
         <img className='square' src="https://source.unsplash.com/01_igFr7hd4" alt='hi' />
         <img className='square' src="https://source.unsplash.com/O-8Fmpx7HqQ" alt='hi' />
@@ -54,8 +54,8 @@ export default function Spot() {
               </span>
               <span className={numReviews > 0 ? 'show' : 'hide'}>
                 <span className='bold'>{avgStarRating?.toPrecision(2)}</span>
-                <span className='dot'>&#183;</span>
-                <span className='bold'>{numReviews} {rev}</span>
+                <span className='dot bold'>&#183;</span>
+                <span className='bold normal'>{numReviews} {rev}</span>
               </span>
             </div>
           </div>

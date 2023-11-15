@@ -25,7 +25,11 @@ export default function SpotReviews({ spotId, rating, owner }) {
   //   dispatch(getUserReviewsThunk())
   // }, [dispatch, owner])
 
-  console.log('reviews', reviews)
+  function formatDate(date) {
+    const originalDate = new Date(date);
+    const options = { year: 'numeric', month: 'short' };
+    return originalDate.toLocaleDateString('en-US', options);
+  }
 
   if (user?.id === owner?.id) {
     browsing = 'owner'
@@ -42,14 +46,14 @@ export default function SpotReviews({ spotId, rating, owner }) {
   return (
     <div className='spot-review'>
       <div>
-        <i className="fa-sharp fa-solid fa-star"></i>
+        <span>&#9733;</span>
         <span className={reviews?.length > 0 ? 'hide' : 'show'}>New</span>
         <div className={`${firstToReview} ${browsing}`}>
           <p>Be the first to post a review!</p>
         </div>
         <span className={reviews?.length > 0 ? 'show' : 'hide'}>
-          <span>{rating?.toPrecision(2)} <i class="fa-regular fa-asterisk fa-2xs"></i></span>
-          <span>{reviews.length} {rev}</span>
+          <span className='bold'>{rating?.toPrecision(2)} <span className='dot'>&#183;</span></span>
+          <span className='bold'>{reviews.length} {rev}</span>
         </span>
       </div>
       <div className={`${reviewedPreviously} ${browsing} ${loggedIn}`}>
@@ -57,7 +61,6 @@ export default function SpotReviews({ spotId, rating, owner }) {
           buttonText='Post Your Review'
           modalComponent={<ReviewModal spotId={spotId} />}
         />
-        <button>'hi</button>
       </div>
       {reviews?.map(rev => (
         <div key={rev.id}>
@@ -65,11 +68,9 @@ export default function SpotReviews({ spotId, rating, owner }) {
             <div>
               <p className='first-name'>{rev.User.firstName}</p>
             </div>
-            <p>{new Date(Date.parse(rev.createdAt)).toDateString().slice(3)}</p>
+            <p>{formatDate(rev.createdAt)}</p>
           </div>
-          {console.log(rev)}
           <p>{rev.review}</p>
-          {console.log('test', rev.id)}
           {user.id === rev.userId &&
             <OpenModalButton
               buttonText='Delete'
