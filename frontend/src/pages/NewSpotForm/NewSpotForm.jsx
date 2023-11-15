@@ -38,36 +38,36 @@ export default function NewSpotForm() {
     if (priceRef.current.value < 1 || !priceRef.current.value.length) validationErrors.price = 'Price is required'
     if (!previewImgRef.current.value.length) validationErrors.preview = 'Preview image is required'
 
-    if (previewImgRef.current.value.length) {
-      const ending = previewImgRef.current.value.split('.')
-      if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
-        validationErrors.previewEnd = 'Image URL must end in .png, .jpg, or .jpeg'
-      }
-    }
-    if (img2Ref.current.value.length) {
-      const ending = img2Ref.current.value.split('.')
-      if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
-        validationErrors.ending2 = 'Image URL must end in .png, .jpg, or .jpeg'
-      }
-    }
-    if (img3Ref.current.value.length) {
-      const ending = img3Ref.current.value.split('.')
-      if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
-        validationErrors.ending3 = 'Image URL must end in .png, .jpg, or .jpeg'
-      }
-    }
-    if (img4Ref.current.value.length) {
-      const ending = img4Ref.current.value.split('.')
-      if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
-        validationErrors.ending4 = 'Image URL must end in .png, .jpg, or .jpeg'
-      }
-    }
-    if (img5Ref.current.value.length) {
-      const ending = img5Ref.current.value.split('.')
-      if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
-        validationErrors.ending5 = 'Image URL must end in .png, .jpg, or .jpeg'
-      }
-    }
+    // if (previewImgRef.current.value.length) {
+    //   const ending = previewImgRef.current.value.split('.')
+    //   if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
+    //     validationErrors.previewEnd = 'Image URL must end in .png, .jpg, or .jpeg'
+    //   }
+    // }
+    // if (img2Ref.current.value.length) {
+    //   const ending = img2Ref.current.value.split('.')
+    //   if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
+    //     validationErrors.ending2 = 'Image URL must end in .png, .jpg, or .jpeg'
+    //   }
+    // }
+    // if (img3Ref.current.value.length) {
+    //   const ending = img3Ref.current.value.split('.')
+    //   if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
+    //     validationErrors.ending3 = 'Image URL must end in .png, .jpg, or .jpeg'
+    //   }
+    // }
+    // if (img4Ref.current.value.length) {
+    //   const ending = img4Ref.current.value.split('.')
+    //   if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
+    //     validationErrors.ending4 = 'Image URL must end in .png, .jpg, or .jpeg'
+    //   }
+    // }
+    // if (img5Ref.current.value.length) {
+    //   const ending = img5Ref.current.value.split('.')
+    //   if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
+    //     validationErrors.ending5 = 'Image URL must end in .png, .jpg, or .jpeg'
+    //   }
+    // }
 
     if (!Object.keys(validationErrors).length) {
       const newSpot = {
@@ -84,7 +84,7 @@ export default function NewSpotForm() {
 
       console.log(typeof priceRef.current.value)
       const data = await dispatch(createSpotThunk(newSpot))
-      
+
       if (data?.id) {
         history.push(`/spots/${data.id}`)
       } else {

@@ -1,3 +1,3 @@
 export default function Choices() {
-  return <h2>{''}</h2>
+  return <h3>{''}</h3>
 }
