@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 30px;
+  padding: 10px 30px 0px;
   /* border-bottom: 1px solid grey; */
 }
 
@@ -17,9 +17,16 @@
   font-weight: 600;
 }
 
-.line {
-  border-bottom: 1px solid grey;
+hr {
+  display:block;
+  width: 100%;
+  margin: 15px 0;
+  border: 0.5px solid rgb(226, 226, 226)
 }
+
+/* .line {
+  border-bottom: 1px solid grey;
+} */
 
 #icon {
   margin-right: 8px;
@@ -30,7 +37,7 @@
   height: 48px;
   width: 86px;
   background-color: white;
-  border: 1px solid rgb(97, 97, 97);
+  border: 1px solid rgb(178, 178, 178);
   border-radius: 30px;
   position: relative;
 }

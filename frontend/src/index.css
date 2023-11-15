@@ -6,3 +6,7 @@
 a, button, .modal {
   cursor: pointer;
 }
+
+h3 {
+  font-weight: 500;
+}

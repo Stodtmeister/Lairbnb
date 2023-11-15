@@ -74,7 +74,7 @@ export const createSpotThunk = (data) => async (dispatch) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
   })
-
+  
   if (res.ok) {
     const newSpot = await res.json()
     dispatch(createSpot(newSpot))
@@ -99,7 +99,7 @@ export const editSpotThunk = (spotId, spot) => async (dispatch) => {
 }
 
 export const deleteSpotThunk = (spotId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/spots${spotId}`, { method: 'DELETE'})
+  const res = await csrfFetch(`/api/spots/${spotId}`, { method: 'DELETE'})
 
   if (res.ok) {
     const deletedSpot = await res.json();

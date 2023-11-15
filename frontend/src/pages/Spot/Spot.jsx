@@ -18,7 +18,7 @@ export default function Spot() {
   }, [dispatch, spotId])
 
   const spot = useSpots()
-  
+
   if (!spot[0]) return <div></div>
 
   const { Owner, name, city, state, country, price, avgStarRating, numReviews, description } = spot[0]
@@ -44,18 +44,22 @@ export default function Spot() {
         </div>
         <div className='reserve-spot'>
           <div className='rating'>
-            <span><strong>${price}</strong> night</span>
-            <i className="fa-sharp fa-solid fa-star"></i>
-            <span className={numReviews > 0 ? 'hide' : 'show'}>
-              New
-            </span>
-            <span className={numReviews > 0 ? 'show' : 'hide'}>
-              <span>{avgStarRating?.toPrecision(2)}</span>
-              <i class="fa-regular fa-asterisk fa-2xs"></i>
-              <span>{numReviews} {rev}</span>
-            </span>
+            <div>
+              <p><strong>${price}</strong> night</p>
+            </div>
+            <div>
+              <span>&#9733;</span>
+              <span className={numReviews > 0 ? 'hide' : 'show'}>
+                New
+              </span>
+              <span className={numReviews > 0 ? 'show' : 'hide'}>
+                <span className='bold'>{avgStarRating?.toPrecision(2)}</span>
+                <span className='dot'>&#183;</span>
+                <span className='bold'>{numReviews} {rev}</span>
+              </span>
+            </div>
           </div>
-            <button className='reserve' onClick={handleClick}>Reserve</button>
+          <button className='reserve' onClick={handleClick}>Reserve</button>
         </div>
       </section>
       <SpotReviews spotId={spotId} rating={avgStarRating} owner={Owner}/>

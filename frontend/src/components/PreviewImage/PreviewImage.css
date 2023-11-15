@@ -1,13 +1,19 @@
 .spot-grid {
   display: grid;
-  /* grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); */
   grid-template-columns: repeat(auto-fit, minmax(274px, 1fr));
-  gap: 1rem;
+  max-width: 1260px;
+  /* grid-template-columns: repeat(auto-fit, minmax(274px, 1fr)); */
+  gap: 2rem;
+  margin: 0 auto;
+  padding: 10px 30px;
+}
+
+.preview {
+  border-radius: 10px;
 }
 
 .spot {
-  border: 1px solid black;
-  height: 270px;
+  height: 100%;
 }
 
 .spot:hover {
@@ -34,12 +40,24 @@ img {
   /* object-fit: cover; */
 }
 
-.bold {
-  font-weight: 600;
+.destination {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
+.bold {
+  font-weight: 500;
+  height: 8px;
+}
+
+
 .not-bold {
-  font-weight: 400;
+  font-weight: 300;
+}
+
+.bold, .non-bold {
+  font-size: 14px;
 }
 
 .tooltip {
