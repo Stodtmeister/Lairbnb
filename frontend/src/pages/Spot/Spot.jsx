@@ -32,10 +32,10 @@ export default function Spot() {
       </div>
       <div className="grid-container">
         <img className='wide tall' src="https://source.unsplash.com/cssvEZacHvQ" alt='hi' />
-        <img src="https://source.unsplash.com/oR0uERTVyD0" alt='hi' />
-        <img src="https://source.unsplash.com/01_igFr7hd4" alt='hi' />
-        <img src="https://source.unsplash.com/O-8Fmpx7HqQ" alt='hi' />
-        <img src="https://source.unsplash.com/cfQEO_1S0Rs" alt='hi' />
+        <img className='square' src="https://source.unsplash.com/oR0uERTVyD0" alt='hi' />
+        <img className='square' src="https://source.unsplash.com/01_igFr7hd4" alt='hi' />
+        <img className='square' src="https://source.unsplash.com/O-8Fmpx7HqQ" alt='hi' />
+        <img className='square' src="https://source.unsplash.com/cfQEO_1S0Rs" alt='hi' />
       </div>
       <section className='spot-info'>
         <div className='spot-description' >
