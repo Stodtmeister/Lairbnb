@@ -18,7 +18,7 @@ export default function Spot() {
   }, [dispatch, spotId])
 
   const spot = useSpots()
-  console.log(spot)
+  
   if (!spot[0]) return <div></div>
 
   const { Owner, name, city, state, country, price, avgStarRating, numReviews, description } = spot[0]

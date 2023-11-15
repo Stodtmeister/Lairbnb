@@ -10,10 +10,9 @@
   display: none;
 }
 
-.already-reviewed:not(.prev) {
+.already-reviewed {
   display: none;
 }
-
 
 .post-review {
   width: 150px;

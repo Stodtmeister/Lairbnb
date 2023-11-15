@@ -41,8 +41,7 @@ export const signup = (user) => async (dispatch) => {
     method: "POST",
     body: JSON.stringify({ username, firstName, lastName, email, password })
   });
-
-  console.log('RES', response)
+  
   const data = await response.json();
   dispatch(setUser(data.user));
   return response;

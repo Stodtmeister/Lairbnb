@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { getUserSpotsThunk, useSpots } from '../../store/spots'
 import { DeleteModal, PreviewImage } from '../../components'
@@ -11,6 +11,7 @@ export default function ManageSpots() {
   const history = useHistory()
   const userSpots = useSpots()
 
+  console.log('userspots', userSpots)
   useEffect(() => {
     dispatch(getUserSpotsThunk())
   }, [dispatch])

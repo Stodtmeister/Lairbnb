@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getReviewsBySpotIdThunk, useReviews } from '../../store/reviews'
+import { getReviewsBySpotIdThunk, getUserReviewsThunk, useReviews } from '../../store/reviews'
 import ReviewModal from '../ReviewModal/ReviewModal'
 import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import './SpotReviews.css'
+import DeleteModal from '../DeleteModal/DeleteModal'
 
 export default function SpotReviews({ spotId, rating, owner }) {
   const dispatch = useDispatch()
@@ -14,10 +15,17 @@ export default function SpotReviews({ spotId, rating, owner }) {
   let reviewedPreviously = 'no-reviews'
   let loggedIn = user?.id ? 'logged-in' : 'logged-out'
   const rev = reviews.length === 1 ? 'review' : 'reviews'
+  const addDelete = reviewedPreviously === 'already-reviewed' ? true : false
 
   useEffect(() => {
     dispatch(getReviewsBySpotIdThunk(spotId))
   }, [dispatch, spotId])
+
+  // useEffect(() => {
+  //   dispatch(getUserReviewsThunk())
+  // }, [dispatch, owner])
+
+  console.log('reviews', reviews)
 
   if (user?.id === owner?.id) {
     browsing = 'owner'
@@ -30,6 +38,7 @@ export default function SpotReviews({ spotId, rating, owner }) {
     })
   }
 
+  console.log(user.id)
   return (
     <div className='spot-review'>
       <div>
@@ -43,11 +52,12 @@ export default function SpotReviews({ spotId, rating, owner }) {
           <span>{reviews.length} {rev}</span>
         </span>
       </div>
-      <div className={`${reviewedPreviously} ${browsing}`}>
+      <div className={`${reviewedPreviously} ${browsing} ${loggedIn}`}>
         <OpenModalButton
           buttonText='Post Your Review'
           modalComponent={<ReviewModal spotId={spotId} />}
         />
+        <button>'hi</button>
       </div>
       {reviews?.map(rev => (
         <div key={rev.id}>
@@ -57,7 +67,15 @@ export default function SpotReviews({ spotId, rating, owner }) {
             </div>
             <p>{new Date(Date.parse(rev.createdAt)).toDateString().slice(3)}</p>
           </div>
+          {console.log(rev)}
           <p>{rev.review}</p>
+          {console.log('test', rev.id)}
+          {user.id === rev.userId &&
+            <OpenModalButton
+              buttonText='Delete'
+              modalComponent={<DeleteModal reviewId={rev.id} />}
+            />
+          }
         </div>
       ))}
     </div>
