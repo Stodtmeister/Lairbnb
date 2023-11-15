@@ -3,7 +3,7 @@
   font-family: 'Montserrat Alternates', sans-serif;
 }
 
-a, button, .modal {
+a, button, .modal, .demo-user {
   cursor: pointer;
 }
 
@@ -14,4 +14,8 @@ h3 {
 
 .star-icon {
   margin-right: 4px;
+}
+
+::placeholder {
+  color: rgb(176, 176, 176);
 }
