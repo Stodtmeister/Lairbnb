@@ -41,15 +41,6 @@ export default function ReviewModal({ spotId }) {
 
   function handleSubmit() {
     dispatch(addReviewThunk(spotId, { review, stars: rating }))
-    
-    // .then(closeModal)
-    // .catch(async (res) => {
-    //   const data = await res.json();
-    //   if (data && data.errors) {
-    //     console.log(data.errors)
-    //     setErrors(data.errors);
-    //   }
-    // });
   }
 
   const renderStars = () => {
@@ -83,13 +74,12 @@ export default function ReviewModal({ spotId }) {
           value={review}
           onChange={e => setReview(e.target.value)}
         />
-      <div className="star-rating" onMouseLeave={handleMouseLeave}>
-        {renderStars()}
-        <p>Stars</p>
-      </div>
-      <button disabled={disabled} type="submit">Submit Your Review</button>
-    </form>
-
+        <div className="star-rating" onMouseLeave={handleMouseLeave}>
+          {renderStars()}
+          <p>Stars</p>
+        </div>
+        <button disabled={disabled} type="submit">Submit Your Review</button>
+      </form>
     </>
   );
 }

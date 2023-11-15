@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { getUserSpotsThunk, useSpots } from '../../store/spots'
-import { PreviewImage } from '../../components'
+import { DeleteSpotModal, PreviewImage } from '../../components'
 import { useHistory } from 'react-router-dom'
+import OpenModalButton from '../../components/OpenModalButton/OpenModalButton'
 import './ManageSpots.css'
 
 export default function ManageSpots() {
@@ -14,13 +15,22 @@ export default function ManageSpots() {
     dispatch(getUserSpotsThunk())
   }, [dispatch])
 
-  function handleDelete() {
-
-  }
-
   function handleUpdate(spotId) {
     console.log(spotId)
     history.push(`/spots/${spotId}/edit`)
+  }
+
+  function handleDelete(spotId) {
+    return (
+
+    <>
+      {console.log(spotId)}
+      {/* <OpenModalButton
+        buttonText='Delete'
+        modalComponent={<DeleteSpotModal spotId={"4"} />}
+      /> */}
+    </>
+    )
   }
 
   return (
@@ -35,7 +45,11 @@ export default function ManageSpots() {
             <PreviewImage key={spot.id} {...spot} />
             <div className='button-container'>
               <button onClick={e => handleUpdate(spot.id)}>Update</button>
-              <button onClick={handleDelete}>Delete</button>
+              <button onClick={e => handleDelete(spot.id)}>Delete</button>
+              {/* <OpenModalButton
+                buttonText='Delete'
+                modalComponent={<DeleteSpotModal spotId={"4"} />}
+              /> */}
             </div>
           </div>
         ))}
