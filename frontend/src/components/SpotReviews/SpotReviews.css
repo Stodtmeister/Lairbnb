@@ -22,6 +22,22 @@
   font-weight: 500;
 }
 
+.review-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 10px 0px ;
+  height: 70px;
+}
+
+.review-info p {
+  margin: 0px;
+}
+
+.review-info .first-name {
+  margin-bottom: 3px;
+}
+
 .show {
   font-weight: bold;
 }

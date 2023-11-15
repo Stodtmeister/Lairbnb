@@ -53,7 +53,6 @@ function ProfileButton({ user }) {
         {user ? (
           <>
             <li>Hello, {user.username}</li>
-            {/* <li>{user.firstName} {user.lastName}</li> */}
             <li>{user.email}</li>
             <div className="manage-spots">
               <NavLink to='/spots/current'>Manage Spots</NavLink>

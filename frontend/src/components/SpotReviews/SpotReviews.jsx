@@ -46,7 +46,7 @@ export default function SpotReviews({ spotId, rating, owner }) {
   return (
     <div className='spot-review'>
       <div>
-        <span>&#9733;</span>
+        <span className='star-icon'>&#9733;</span>
         <span className={reviews?.length > 0 ? 'hide' : 'show'}>New</span>
         <div className={`${firstToReview} ${browsing}`}>
           <p>Be the first to post a review!</p>
@@ -64,13 +64,13 @@ export default function SpotReviews({ spotId, rating, owner }) {
       </div>
       {reviews?.map(rev => (
         <div key={rev.id}>
-          <div>
+          <div className='review-info'>
             <div>
               <p className='first-name'>{rev.User.firstName}</p>
+              <p>{formatDate(rev.createdAt)}</p>
             </div>
-            <p>{formatDate(rev.createdAt)}</p>
+            <p>{rev.review}</p>
           </div>
-          <p>{rev.review}</p>
           {user.id === rev.userId &&
             <OpenModalButton
               buttonText='Delete'

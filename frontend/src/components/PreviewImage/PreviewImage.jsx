@@ -16,7 +16,7 @@ export default function PreviewImage({ id, name, avgRating, city, state, preview
       <div className="spot-footer">
         <div className='destination'>
           <p className='bold'>{city}, {state}</p>
-          <p className='bold'><span>&#9733;</span> {avgRating?.toPrecision(2)} {avgRating ? '' : 'New'} </p>
+          <p className='bold'><span className='star-icon'>&#9733;</span> {avgRating?.toPrecision(2)} {avgRating ? '' : 'New'} </p>
         </div>
         <span className='bold'>${price}<span className='not-bold'>night</span></span>
       </div>

@@ -48,7 +48,7 @@ export default function Spot() {
               <p><strong>${price}</strong> night</p>
             </div>
             <div>
-              <span>&#9733;</span>
+              <span className='star-icon'>&#9733;</span>
               <span className={numReviews > 0 ? 'hide' : 'show'}>
                 New
               </span>
