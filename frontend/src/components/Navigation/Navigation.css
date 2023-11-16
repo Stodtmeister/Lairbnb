@@ -7,7 +7,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 30px 0px;
-  /* border-bottom: 1px solid grey; */
 }
 
 .nav a {
@@ -17,16 +16,18 @@
   font-weight: 600;
 }
 
+.nav .new-spot {
+  color: rgb(97, 97, 97);
+  font-size: 16px;
+  margin-right: 10px;
+}
+
 hr {
   display:block;
   width: 100%;
   margin: 15px 0;
   border: 0.5px solid rgb(226, 226, 226)
 }
-
-/* .line {
-  border-bottom: 1px solid grey;
-} */
 
 #icon {
   margin-right: 8px;
@@ -50,7 +51,6 @@ hr {
   color: rgb(97, 97, 97);
   width: 62px;
   height: 30px;
-  /* padding: 8px 8px 8px 14px; */
   display: inline-flex;
   justify-content: space-around;
   align-items: center;
@@ -77,9 +77,6 @@ hr {
 }
 
 .profile-dropdown {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-around; */
   border-radius: 15px;
   box-shadow: 0px 0px 10px  rgb(209, 209, 209);
   position: absolute;
@@ -92,29 +89,38 @@ hr {
   width: 250px;
   height: 150px;
   list-style-type: none;
+  padding-top: 6px;
 }
 
-h2 {
+
+/* h2 {
   border: 1px solid black;
   text-align: center;
   padding: 10px;
-}
+} */
 
 .manage-spots {
-  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
-  margin: 10px 0;
-  padding: 3px;
+  border-top: 1px solid rgb(194, 194, 194);
+  border-bottom: 1px solid rgb(194, 194, 194);
+  margin: 10px auto;
+  padding: 5px;
+}
+
+.manage-spots a {
+  font-size: 17px;
+  color: black;
+  font-weight: 400;
 }
 
 .logout-btn {
   width: 50%;
   height: 3em;
-  margin: 4px;
+  margin: auto;
+  border: none;
   background-color: #ff385c;
   color: white;
   font-weight: 600;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 .logged-out {

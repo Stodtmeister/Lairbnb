@@ -14,7 +14,7 @@ function Navigation({ isLoaded }){
         <NavLink exact to="/"><i id='icon' class="fa-brands fa-airbnb fa-2xl"></i>airbnb</NavLink>
         <div>
           <span className={sessionUser?.id ? 'logged-in' : 'logged-out'}>
-            <NavLink to='/spots/new'>Create a new spot</NavLink>
+            <NavLink className='new-spot' to='/spots/new'>Create a New Spot</NavLink>
           </span>
           {isLoaded && (<ProfileButton user={sessionUser} />)}
         </div>

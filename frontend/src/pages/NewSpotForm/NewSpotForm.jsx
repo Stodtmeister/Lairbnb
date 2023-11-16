@@ -97,9 +97,13 @@ export default function NewSpotForm() {
 
   return (
     <form id='spot-form' onSubmit={handleSubmit}>
-      <h3>Create a new Spot</h3>
-      <h4>Where is your place located?</h4>
-      <p>Guests will only get your exact address once they booked a reservation.</p>
+      <div className='newSpot-header'>
+        <h3>Create a new Spot</h3>
+        <div className='description'>
+          <h4>Where is your place located?</h4>
+          <p>Guests will only get your exact address once they booked a reservation.</p>
+        </div>
+      </div>
       <hr />
       <div className="address-container">
         <div className={`form-group country ${errors?.country ? "error" : ""}`}>

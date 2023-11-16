@@ -5,11 +5,43 @@
   margin: 0 auto;
 }
 
-.spot-images {
+#spot-form h3 {
+  color: black;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+#spot-form h4 {
+  font-size: 17px;
+  font-weight: 500;
+  margin: 0px;
+}
+
+#spot-form p {
+  font-size: 15px;
+  margin-top: 6px;
+}
+
+.newSpot-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 150px;
+  /* margin: 15px */
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+}
+
+
+/* .spot-images {
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
+} */
 
 .address-container {
   display: grid;
@@ -62,4 +94,3 @@
 .lng {
   grid-area: lng;
 }
-
