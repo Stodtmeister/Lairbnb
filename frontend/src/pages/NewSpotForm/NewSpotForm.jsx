@@ -106,7 +106,7 @@ export default function NewSpotForm() {
       </div>
       <hr />
       <div className="address-container">
-        <div className={`form-group country ${errors?.country ? "error" : ""}`}>
+        <div className={`form-group2 country ${errors?.country ? "error" : ""}`}>
           <label className='label' htmlFor='country'>
             Country *
             <input
@@ -121,7 +121,7 @@ export default function NewSpotForm() {
             )}
           </label>
         </div>
-        <div className={`form-group street ${errors?.address ? "error" : ""}`}>
+        <div className={`form-group2 street ${errors?.address ? "error" : ""}`}>
           <label className='label' htmlFor='street'>
             Street Address *
             <input
@@ -136,7 +136,7 @@ export default function NewSpotForm() {
             )}
           </label>
         </div>
-        <div className={`form-group city ${errors?.city ? "error" : ""}`}>
+        <div className={`form-group2 city ${errors?.city ? "error" : ""}`}>
           <label className='label' htmlFor='city'>
             City *
             <input
@@ -151,7 +151,7 @@ export default function NewSpotForm() {
             )}
           </label>
         </div>
-        <div className={`form-group state ${errors?.state ? "error" : ""}`}>
+        <div className={`form-group2 state ${errors?.state ? "error" : ""}`}>
           <label className='label' htmlFor='state'>
             State *
             <input
@@ -166,7 +166,7 @@ export default function NewSpotForm() {
             )}
           </label>
         </div>
-        <div className={`form-group lat ${errors?.lat ? "error" : ""}`}>
+        <div className={`form-group2 lat ${errors?.lat ? "error" : ""}`}>
           <label className='label' htmlFor='latitude'>
             Latitude *
             <input
@@ -181,7 +181,7 @@ export default function NewSpotForm() {
             )}
           </label>
         </div>
-        <div className={`form-group lng ${errors?.lng ? "error" : ""}`}>
+        <div className={`form-group2 lng ${errors?.lng ? "error" : ""}`}>
           <label className='label' htmlFor="longitude">
             Longitude *
             <input
@@ -200,7 +200,7 @@ export default function NewSpotForm() {
       <hr />
         <h4>Describe your place to guests *</h4>
         <p>Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</p>
-        <div className={`form-group ${errors?.description ? "error" : ""}`}>
+        <div className={`form-group2 ${errors?.description ? "error" : ""}`}>
           <textarea
             name='description'
             cols="60"
@@ -215,7 +215,7 @@ export default function NewSpotForm() {
       <hr />
         <h4>Create a title for your spot *</h4>
         <p>Catch guests' attention with a spot title that highlights what makes your place special.</p>
-        <div className={`form-group ${errors?.name ? "error" : ""}`}>
+        <div className={`form-group2 ${errors?.name ? "error" : ""}`}>
           <input
             className='input'
             type="text"
@@ -230,9 +230,8 @@ export default function NewSpotForm() {
       <hr />
         <h4>Set a base price for your spot *</h4>
         <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
-        <div className={`form-group ${errors?.price ? "error" : ""}`}>
-          <label htmlFor="price">
-            $
+        <div className={`form-group2 price ${errors?.price ? "error" : ""}`}>
+          <label className='price' htmlFor="price">$</label>
             <input
               className='input'
               type="text"
@@ -240,7 +239,6 @@ export default function NewSpotForm() {
               placeholder='Price per night (USD)'
               ref={priceRef}
             />
-          </label>
           {errors?.price && (
             <div className="msg">{errors?.price}</div>
           )}
@@ -249,9 +247,9 @@ export default function NewSpotForm() {
         <h4>Liven up your spot with photos *</h4>
         <p>Submit a link to at least one photo to publish your spot.</p>
         <div className="spot-images">
-          <div className={`form-group ${errors?.preview ? "error" : ""} ${errors?.previewEnd ? 'error' : ""}`}>
+          <div className={`form-group2 ${errors?.preview ? "error" : ""} ${errors?.previewEnd ? 'error' : ""}`}>
             <input
-              className='input'
+              className='input img'
               type="text"
               placeholder='Preview Image URL'
               ref={previewImgRef}
@@ -263,9 +261,9 @@ export default function NewSpotForm() {
               <div className="msg">{errors?.previewEnd}</div>
             )}
           </div>
-          <div className={`form-group ${errors?.ending2 ? "error" : ""}`}>
+          <div className={`form-group2 ${errors?.ending2 ? "error" : ""}`}>
             <input
-              className='input'
+              className='input img'
               type="text"
               placeholder='Image URL'
               ref={img2Ref}
@@ -274,9 +272,9 @@ export default function NewSpotForm() {
               <div className="msg">{errors?.ending2}</div>
             )}
           </div>
-          <div className={`form-group ${errors?.ending3 ? "error" : ""}`}>
+          <div className={`form-group2 ${errors?.ending3 ? "error" : ""}`}>
             <input
-              className='input'
+              className='input img'
               type="text"
               placeholder='Image URL'
               ref={img3Ref}
@@ -285,9 +283,9 @@ export default function NewSpotForm() {
               <div className="msg">{errors?.ending3}</div>
             )}
           </div>
-          <div className={`form-group ${errors?.ending4 ? "error" : ""}`}>
+          <div className={`form-group2 ${errors?.ending4 ? "error" : ""}`}>
             <input
-              className='input'
+              className='input img'
               type="text"
               placeholder='Image URL'
               ref={img4Ref}
@@ -296,9 +294,9 @@ export default function NewSpotForm() {
               <div className="msg">{errors?.ending4}</div>
             )}
           </div>
-          <div className={`form-group ${errors?.ending5 ? "error" : ""}`}>
+          <div className={`form-group2 ${errors?.ending5 ? "error" : ""}`}>
             <input
-              className='input'
+              className='input '
               type="text"
               placeholder='Image URL'
               ref={img5Ref}

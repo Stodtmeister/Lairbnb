@@ -50,7 +50,7 @@ function LoginFormModal() {
     <>
       <h1>Log In</h1>
       <form id="form" onSubmit={handleSubmit}>
-        <div className={`form-group ${ errors.credential || errors.password ? "error" : ""}`}>
+        <div className={`form-group1 ${ errors.credential || errors.password ? "error" : ""}`}>
           {errors.credential && (
             <div className="msg">{errors.credential}</div>
           )}

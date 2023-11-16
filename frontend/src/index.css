@@ -18,4 +18,14 @@ h3 {
 
 ::placeholder {
   color: rgb(176, 176, 176);
+  padding: 2px;
+  
+}
+
+input:focus {
+  outline-color: #ff5a5f;
+}
+
+textarea:focus {
+  outline-color: #ff5a5f;
 }
