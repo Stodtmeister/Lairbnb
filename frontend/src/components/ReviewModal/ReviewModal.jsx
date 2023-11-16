@@ -65,17 +65,19 @@ export default function ReviewModal({ spotId }) {
   return (
     <>
       <form id="review-form" onSubmit={handleSubmit}>
-        <h3>How was your stay?</h3>
+        <h4>How was your stay?</h4>
         <textarea
           id="review-text"
           cols="30"
-          rows="10"
+          rows="8"
           placeholder="Leave your review here..."
           value={review}
           onChange={e => setReview(e.target.value)}
         />
-        <div className="star-rating" onMouseLeave={handleMouseLeave}>
-          {renderStars()}
+        <div className="rating-container">
+          <div className="star-rating" onMouseLeave={handleMouseLeave}>
+            {renderStars()}
+          </div>
           <p>Stars</p>
         </div>
         <button disabled={disabled} type="submit">Submit Your Review</button>

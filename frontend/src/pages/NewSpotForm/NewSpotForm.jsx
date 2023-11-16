@@ -202,6 +202,7 @@ export default function NewSpotForm() {
         <p>Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</p>
         <div className={`form-group2 ${errors?.description ? "error" : ""}`}>
           <textarea
+            className='text'
             name='description'
             cols="60"
             rows="10"

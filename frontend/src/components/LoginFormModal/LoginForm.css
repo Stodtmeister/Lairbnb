@@ -55,7 +55,7 @@ h1 {
 }
 
 .form-group1 button:disabled {
-  opacity: 0.6;
+  opacity: 0.5a;
   background-color: rgb(195, 195, 195);
   color: rgb(94, 94, 94);
   cursor: not-allowed;

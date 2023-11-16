@@ -81,7 +81,7 @@
   color: #ff6666;
 }
 
-textarea {
+.text {
   width: 100%;
   border-radius: 0.25em;
   border-color: rgb(161, 161, 161);
