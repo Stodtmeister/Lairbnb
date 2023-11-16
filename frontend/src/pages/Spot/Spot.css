@@ -85,6 +85,10 @@
   margin: 0 auto;
 }
 
+.reserve-spot button:hover {
+  box-shadow: 0px 0px 19px rgb(209, 209, 209);
+}
+
 
 strong {
   font-weight: 500;

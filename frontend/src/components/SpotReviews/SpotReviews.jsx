@@ -31,6 +31,10 @@ export default function SpotReviews({ spotId, rating, owner }) {
     return originalDate.toLocaleDateString('en-US', options);
   }
 
+  function randomColor() {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
+  }
+
   if (user?.id === owner?.id) {
     browsing = 'owner'
   } else {
@@ -42,7 +46,6 @@ export default function SpotReviews({ spotId, rating, owner }) {
     })
   }
 
-  console.log(user.id)
   return (
     <div className='spot-review'>
       <div>
@@ -65,9 +68,14 @@ export default function SpotReviews({ spotId, rating, owner }) {
       {reviews?.map(rev => (
         <div key={rev.id}>
           <div className='review-info'>
-            <div>
-              <p className='first-name'>{rev.User.firstName}</p>
-              <p>{formatDate(rev.createdAt)}</p>
+            <div className='user-review'>
+              <div className='profile'>
+                <i style={ { color: randomColor() } } className="fas fa-user-circle fa-2xl" />
+              </div>
+              <div>
+                <p className='first-name'>{rev.User.firstName}</p>
+                <p>{formatDate(rev.createdAt)}</p>
+              </div>
             </div>
             <p>{rev.review}</p>
           </div>
