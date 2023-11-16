@@ -231,18 +231,20 @@ export default function NewSpotForm() {
         <h4>Set a base price for your spot *</h4>
         <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
         <div className={`form-group2 price ${errors?.price ? "error" : ""}`}>
-          <label className='price' htmlFor="price">$</label>
+          <label className='price' htmlFor="price">
+            $
             <input
               className='input'
               type="text"
               id='price'
               placeholder='Price per night (USD)'
               ref={priceRef}
-            />
-          {errors?.price && (
-            <div className="msg">{errors?.price}</div>
-          )}
+              />
+          </label>
         </div>
+        {errors?.price && (
+          <div className="msg form-group2 error">{errors?.price}</div>
+        )}
       <hr />
         <h4>Liven up your spot with photos *</h4>
         <p>Submit a link to at least one photo to publish your spot.</p>
