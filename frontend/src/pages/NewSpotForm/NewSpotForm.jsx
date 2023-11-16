@@ -121,13 +121,13 @@ export default function NewSpotForm() {
             )}
           </label>
         </div>
-        <div className={`form-group address ${errors?.address ? "error" : ""}`}>
-          <label className='label' htmlFor='address'>
+        <div className={`form-group street ${errors?.address ? "error" : ""}`}>
+          <label className='label' htmlFor='street'>
             Street Address *
             <input
               className='input'
               type="text"
-              id='address'
+              id='street'
               placeholder='Address'
               ref={addressRef}
             />

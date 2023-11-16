@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 80%;
+  max-width: 700px;
   margin: 0 auto;
 }
 
@@ -45,15 +46,14 @@
 
 .address-container {
   display: grid;
-  width: 100%;
-  /* grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  grid-template-rows: 1fr; */
+  /* width: 100%; */
   grid-template-areas:
     'country country'
-    'address address'
+    'street   street'
     'city      state'
     'lat         lng'
   ;
+
 
   gap: 15px;
   /* display: flex;
@@ -63,20 +63,30 @@
   /* align-content: space-around; */
 }
 
+/* .form-group {
+  margin: auto;
+  width: 300px;
+} */
+
+.form-group .label {
+  width: 100%;
+  font-weight: 400;
+}
+.form-group .input {
+  width: 100%;
+  margin-top: 3px;
+}
+
 .label, .input {
   display: block;
 }
-
-/* .input {
-  width: 400px;
-} */
 
 .country {
   grid-area: country;
 }
 
-.address {
-  grid-area: address;
+.street {
+  grid-area: street;
 }
 
 .city {
