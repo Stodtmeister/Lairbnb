@@ -17,10 +17,13 @@ export default function SpotReviews({ spotId, rating, owner }) {
   const rev = reviews.length === 1 ? 'review' : 'reviews'
   const addDelete = reviewedPreviously === 'already-reviewed' ? true : false
 
+
   useEffect(() => {
     dispatch(getReviewsBySpotIdThunk(spotId))
   }, [dispatch, spotId])
 
+  if (!reviews.length) return <></>
+  console.log('REV', reviews);
   // useEffect(() => {
   //   dispatch(getUserReviewsThunk())
   // }, [dispatch, owner])
@@ -38,7 +41,7 @@ export default function SpotReviews({ spotId, rating, owner }) {
   if (user?.id === owner?.id) {
     browsing = 'owner'
   } else {
-    if (!reviews?.length) {
+    if (!reviews.length) {
       firstToReview = 'first'
     }
     reviews.forEach(rev => {
@@ -50,18 +53,15 @@ export default function SpotReviews({ spotId, rating, owner }) {
     <div className='spot-review'>
       <div>
         <span className='star-icon'>&#9733;</span>
-        <span className={reviews?.length > 0 ? 'hide' : 'show'}>New</span>
+        <span className={reviews.length > 0 ? 'hide' : 'show'}>New</span>
         <div className={`${firstToReview} ${browsing}`}>
           <p>Be the first to post a review!</p>
         </div>
-        <span className={reviews?.length > 0 ? 'show' : 'hide'}>
+        <span className={reviews.length > 0 ? 'show' : 'hide'}>
           <span className='bold'>{rating?.toPrecision(2)} <span className='dot'>&#183;</span></span>
           <span className='bold'>{reviews.length} {rev}</span>
         </span>
       </div>
-      {console.log('prev', reviewedPreviously)}
-      {console.log('browse', browsing)}
-      {console.log(loggedIn)}
       <div className={`${reviewedPreviously} ${browsing} ${loggedIn}`}>
         <OpenModalButton
           buttonText='Post Your Review'
@@ -81,6 +81,7 @@ export default function SpotReviews({ spotId, rating, owner }) {
               </div>
             </div>
             <p>{rev.review}</p>
+            <div></div>
           </div>
           {user.id === rev.userId &&
             <OpenModalButton

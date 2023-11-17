@@ -7,7 +7,6 @@ import './Home.css'
 export default function Home() {
   const dispatch = useDispatch()
   const spots = useSpots()
-  console.log('spots', spots)
 
   const session = useSelector(state => state.session)
 
