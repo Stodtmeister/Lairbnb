@@ -93,8 +93,11 @@
   align-items: center;
 }
 
-.price label {
+/* .price label {
   margin-right: 3px;
+} */
+#price {
+  margin-left: 3px;
 }
 
 .spot-images {

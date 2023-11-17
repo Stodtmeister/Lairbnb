@@ -231,7 +231,7 @@ export default function NewSpotForm() {
       <hr />
         <h4>Set a base price for your spot *</h4>
         <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
-        <div className={`form-group2 price ${errors?.price ? "error" : ""}`}>
+        <div className={`form-group2 ${errors?.price ? "error" : ""}`}>
           <label className='price' htmlFor="price">
             $
             <input

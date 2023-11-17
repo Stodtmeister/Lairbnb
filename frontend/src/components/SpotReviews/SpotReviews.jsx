@@ -59,6 +59,9 @@ export default function SpotReviews({ spotId, rating, owner }) {
           <span className='bold'>{reviews.length} {rev}</span>
         </span>
       </div>
+      {console.log('prev', reviewedPreviously)}
+      {console.log('browse', browsing)}
+      {console.log(loggedIn)}
       <div className={`${reviewedPreviously} ${browsing} ${loggedIn}`}>
         <OpenModalButton
           buttonText='Post Your Review'

@@ -19,9 +19,9 @@ export default function DeleteModal({ spotId, reviewId }) {
     } else {
       setMessage('Are you sure you want to delete this review?')
     }
-  }, [])
+  }, [spotId, type])
 
-  function handleDelete() {
+  async function handleDelete() {
     if (type === 'Spot') {
       dispatch(deleteSpotThunk(spotId))
     } else {
@@ -32,10 +32,12 @@ export default function DeleteModal({ spotId, reviewId }) {
 
   return (
     <div className="delete-modal">
-      <h2>Confirm Delete</h2>
+      <h3>Confirm Delete</h3>
       <p>{message}</p>
-      <button onClick={handleDelete}>{`Yes (Delete ${type})`}</button>
-      <button onClick={closeModal}>{`No (Keep ${type})`}</button>
+      <div className="button-container">
+        <button className="yes" onClick={handleDelete}>{`Yes (Delete ${type})`}</button>
+        <button className="no" onClick={closeModal}>{`No (Keep ${type})`}</button>
+      </div>
     </div>
 
   )
