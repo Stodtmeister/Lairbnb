@@ -14,7 +14,32 @@ module.exports = {
       {
         imageableType: 'Spot',
         imageableId: 1,
-        url: 'https://google.com'
+        url: 'https://source.unsplash.com/2MA8dFvOMec',
+        preview: true,
+      },
+      {
+        imageableType: 'Spot',
+        imageableId: 1,
+        url: 'https://source.unsplash.com/ylyn5r4vxcA',
+        preview: false,
+      },
+      {
+        imageableType: 'Spot',
+        imageableId: 1,
+        url: 'https://source.unsplash.com/2gDwlIim3Uw',
+        preview: false,
+      },
+      {
+        imageableType: 'Spot',
+        imageableId: 1,
+        url: 'https://source.unsplash.com/UpAX8YLpRBM',
+        preview: false,
+      },
+      {
+        imageableType: 'Spot',
+        imageableId: 1,
+        url: 'https://source.unsplash.com/HQCW1gTMjek',
+        preview: false,
       },
       //! --------------- spot 2 -------------
       {
@@ -48,6 +73,38 @@ module.exports = {
         preview: false
       },
       //! --------------- spot 3 -------------
+      {
+        imageableType: 'Spot',
+        imageableId: 3,
+        url: 'https://source.unsplash.com/eWqOgJ-lfiI',
+        preview: true
+      },
+      {
+        imageableType: 'Spot',
+        imageableId: 3,
+        url: 'https://source.unsplash.com/z99iWocuDt0',
+        preview: false
+      },
+      {
+        imageableType: 'Spot',
+        imageableId: 3,
+        url: 'https://source.unsplash.com/XCWTQlmPO2I',
+        preview: false
+      },
+      {
+        imageableType: 'Spot',
+        imageableId: 3,
+        url: 'https://source.unsplash.com/EbivdbB83Y0',
+        preview: false
+      },
+      {
+        imageableType: 'Spot',
+        imageableId: 3,
+        url: 'https://source.unsplash.com/CMejBwGAdGk',
+        preview: false
+      },
+
+      //! --------------- review imgs -------------
       {
         imageableType: 'Review',
         imageableId: 1,
