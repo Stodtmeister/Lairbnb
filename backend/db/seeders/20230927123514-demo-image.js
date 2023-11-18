@@ -19,8 +19,14 @@ module.exports = {
       {
         imageableType: 'Spot',
         imageableId: 2,
-        url: 'https://unsplash.com/photos/a-man-walking-down-a-dirt-road-next-to-a-mountain-IPtSV340-j4',
+        url: 'https://source.unsplash.com/zeW9BQbWmJs',
         preview: true
+      },
+      {
+        imageableType: 'Spot',
+        imageableId: 2,
+        url: 'https://source.unsplash.com/NUEou7Bncjc',
+        preview: false
       },
       {
         imageableType: 'Review',
