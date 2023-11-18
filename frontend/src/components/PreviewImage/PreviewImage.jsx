@@ -7,6 +7,8 @@ export default function PreviewImage({ id, name, avgRating, city, state, preview
   function handleClick() {
     history.push(`/spots/${id}`)
   }
+
+  console.log('PI', previewImage);
   // previewImage = require('../../images/sajad-nori-s1puI2BWQzQ-unsplash.jpg')
   return (
     <div className="spot tooltip" onClick={handleClick}>

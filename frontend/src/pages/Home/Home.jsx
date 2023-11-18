@@ -14,6 +14,8 @@ export default function Home() {
     dispatch(getAllSpots())
   }, [dispatch])
 
+  console.log('SPOTS', spots);
+
   return (
     <>
       <Choices />
