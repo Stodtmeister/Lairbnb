@@ -32,7 +32,7 @@ export default function Spot() {
         <p>{city}, {state}, {country}</p>
       </div>
       <div className="grid-container">
-        {SpotImages.map((img, idx) => (
+        {SpotImages?.map((img, idx) => (
           <img className={`spot-img ${idx === 0 ? 'tall' : 'square'}`} src={img.url} alt='hi' />
         ))}
       </div>
