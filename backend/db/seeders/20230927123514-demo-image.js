@@ -10,12 +10,13 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = {
   async up (queryInterface, Sequelize) {
     await Image.bulkCreate([
+      //! --------------- spot 1 -------------
       {
-        imageableType: 'Review',
+        imageableType: 'Spot',
         imageableId: 1,
-        url: 'https://google.com',
-        preview: true
+        url: 'https://google.com'
       },
+      //! --------------- spot 2 -------------
       {
         imageableType: 'Spot',
         imageableId: 2,
@@ -25,8 +26,33 @@ module.exports = {
       {
         imageableType: 'Spot',
         imageableId: 2,
-        url: 'https://source.unsplash.com/NUEou7Bncjc',
+        url: 'https://source.unsplash.com/joHhAjbmRcw',
         preview: false
+      },
+      {
+        imageableType: 'Spot',
+        imageableId: 2,
+        url: 'https://source.unsplash.com/7VHb2vO2r18',
+        preview: false
+      },
+      {
+        imageableType: 'Spot',
+        imageableId: 2,
+        url: 'https://source.unsplash.com/iX4xYJ_RLHM',
+        preview: false
+      },
+      {
+        imageableType: 'Spot',
+        imageableId: 2,
+        url: 'https://source.unsplash.com/v0VBikgi-Ac',
+        preview: false
+      },
+      //! --------------- spot 3 -------------
+      {
+        imageableType: 'Review',
+        imageableId: 1,
+        url: 'https://google.com',
+        preview: true
       },
       {
         imageableType: 'Review',
@@ -35,17 +61,7 @@ module.exports = {
         preview: true
       },
       {
-        imageableType: 'Spot',
-        imageableId: 1,
-        url: 'https://google.com'
-      },
-      {
         imageableType: 'Review',
-        imageableId: 2,
-        url: 'https://google.com'
-      },
-      {
-        imageableType: 'Spot',
         imageableId: 2,
         url: 'https://google.com'
       },
