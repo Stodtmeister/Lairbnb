@@ -17,13 +17,12 @@ export default function SpotReviews({ spotId, rating, owner }) {
   const rev = reviews.length === 1 ? 'review' : 'reviews'
   const addDelete = reviewedPreviously === 'already-reviewed' ? true : false
 
-
   useEffect(() => {
     dispatch(getReviewsBySpotIdThunk(spotId))
   }, [dispatch, spotId])
 
   if (!reviews.length) return <></>
-  console.log('REV', reviews);
+  //! console.log('REV', reviews);
   // useEffect(() => {
   //   dispatch(getUserReviewsThunk())
   // }, [dispatch, owner])
@@ -83,7 +82,7 @@ export default function SpotReviews({ spotId, rating, owner }) {
             <p>{rev.review}</p>
             <div></div>
           </div>
-          {user.id === rev.userId &&
+          {user === rev.userId &&
             <OpenModalButton
               buttonText='Delete'
               modalComponent={<DeleteModal reviewId={rev.id} />}
