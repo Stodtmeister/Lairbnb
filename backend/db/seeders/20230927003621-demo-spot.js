@@ -20,7 +20,8 @@ module.exports = {
         lng: 7.3,
         name: 'Tree House',
         description: 'This is a house in a tree',
-        price: 999
+        price: 999,
+        previewImage: 'https://source.unsplash.com/2MA8dFvOMec'
       },
       {
         ownerId: 2,
@@ -32,7 +33,8 @@ module.exports = {
         lng: 32.1,
         name: 'Skyscraper',
         description: 'The Flatiron Building',
-        price: 1000000
+        price: 17000,
+        previewImage: 'https://source.unsplash.com/zeW9BQbWmJs'
       },
       {
         ownerId: 3,
@@ -44,7 +46,8 @@ module.exports = {
         lng: 10.7,
         name: 'Alcatraz prison',
         description: 'Literally Alcatraz prison.',
-        price: '7'
+        price: 93,
+        previewImage: 'https://source.unsplash.com/eWqOgJ-lfiI',
       },
     ], { validate: true })
   },
