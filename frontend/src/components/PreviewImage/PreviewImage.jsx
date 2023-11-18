@@ -1,6 +1,5 @@
 import { useHistory } from 'react-router-dom'
 import './PreviewImage.css'
-import { useSpots } from '../../store/spots'
 
 export default function PreviewImage({ id, name, avgRating, city, state, previewImage, price }) {
   const history = useHistory()
@@ -8,7 +7,7 @@ export default function PreviewImage({ id, name, avgRating, city, state, preview
   function handleClick() {
     history.push(`/spots/${id}`)
   }
-  previewImage = require('../../images/sajad-nori-s1puI2BWQzQ-unsplash.jpg')
+  // previewImage = require('../../images/sajad-nori-s1puI2BWQzQ-unsplash.jpg')
   return (
     <div className="spot tooltip" onClick={handleClick}>
       <span className='tooltiptext'>{name}</span>

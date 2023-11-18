@@ -21,6 +21,13 @@ export default function Spot() {
 
   if (!spot[0]) return <div></div>
 
+
+  let img = spot.map(spot => {
+    return spot.SpotImages
+  })
+
+  console.log('img', img);
+
   const { Owner, name, city, state, country, price, avgStarRating, numReviews, description } = spot[0]
   const rev = numReviews > 1 ? 'reviews' : 'review'
 
@@ -30,8 +37,15 @@ export default function Spot() {
         <h3>{name}</h3>
         <p>{city}, {state}, {country}</p>
       </div>
+      {img[0].map((i, idx) => (
+        <div key={idx}>
+          {console.log(i.url)}
+          <img src={i.url} alt='ls'></img>
+        </div>
+      ))}
       <div className="grid-container">
-        <img className='tall' src="https://source.unsplash.com/cssvEZacHvQ" alt='hi' />
+        {/* <img className='tall' src="https://source.unsplash.com/cssvEZacHvQ" alt='hi' /> */}
+        <img className='tall' src="https://source.unsplash.com/HegvNcZXWTE" alt='hi' />
         <img className='square' src="https://source.unsplash.com/oR0uERTVyD0" alt='hi' />
         <img className='square' src="https://source.unsplash.com/01_igFr7hd4" alt='hi' />
         <img className='square' src="https://source.unsplash.com/O-8Fmpx7HqQ" alt='hi' />
