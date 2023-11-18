@@ -10,6 +10,7 @@
 
 .preview {
   border-radius: 10px;
+  max-height: 240px;
 }
 
 .spot {
