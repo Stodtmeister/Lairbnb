@@ -103,6 +103,37 @@ module.exports = {
         url: 'https://source.unsplash.com/CMejBwGAdGk',
         preview: false
       },
+      //! --------------- spot 4 -------------
+      {
+        imageableType: 'Spot',
+        imageableId: 3,
+        url: 'https://source.unsplash.com/uOYak90r4L0',
+        preview: true
+      },
+      {
+        imageableType: 'Spot',
+        imageableId: 3,
+        url: 'https://source.unsplash.com/Bi8yaj053S4',
+        preview: false
+      },
+      {
+        imageableType: 'Spot',
+        imageableId: 3,
+        url: 'https://source.unsplash.com/GM7cm1IC6Ss',
+        preview: false
+      },
+      {
+        imageableType: 'Spot',
+        imageableId: 3,
+        url: 'https://source.unsplash.com/2J6mcH1QxSg',
+        preview: false
+      },
+      {
+        imageableType: 'Spot',
+        imageableId: 3,
+        url: 'https://source.unsplash.com/23fOdH9Zrwc',
+        preview: false
+      },
 
       //! --------------- review imgs -------------
       {
