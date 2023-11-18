@@ -36,6 +36,12 @@
   max-height: 215px;
 }
 
+.spot-img {
+  width: 100%;
+  height: auto;
+  background-size: cover;
+}
+
 .tall {
   grid-row: span 2;
 }
