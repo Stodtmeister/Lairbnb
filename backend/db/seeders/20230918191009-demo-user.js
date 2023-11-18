@@ -31,7 +31,14 @@ module.exports = {
         firstName: 'Balrog',
         lastName: 'of Morgoth',
         hashedPassword: bcrypt.hashSync('password3')
-      }
+      },
+      {
+        email: 'testing@user.io',
+        username: 'Wizard',
+        firstName: 'Gandalf',
+        lastName: 'the Grey',
+        hashedPassword: bcrypt.hashSync('password4')
+      },
     ], { validate: true });
   },
 
