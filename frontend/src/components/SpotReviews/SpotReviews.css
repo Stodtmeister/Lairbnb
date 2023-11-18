@@ -1,0 +1,76 @@
+.spot-review {
+  margin: 20px;
+}
+
+.owner {
+  display: none;
+}
+
+.notFirst {
+  display: none;
+}
+
+.already-reviewed {
+  display: none;
+}
+
+.post-review {
+  width: 150px;
+}
+
+.first-name {
+  font-weight: 500;
+}
+
+.review-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 10px 0px ;
+  height: 70px;
+}
+
+.review-info p {
+  margin: 0px;
+}
+
+.review-info .first-name {
+  margin-bottom: 3px;
+}
+
+.show {
+  font-weight: bold;
+}
+
+.spot-review button {
+  background-color: grey;
+  font-weight: 500;
+  color: white;
+  width: 160px;
+  height: 35px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 8px 0px;
+}
+
+.spot-review button:hover {
+  box-shadow: 0px 0px 19px rgb(209, 209, 209);
+}
+
+.user-review {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.user-review .profile {
+  margin-right: 8px;
+}
+
+.user-review p {
+  font-size: 13px;
+}
+
+.dot {
+  margin-right: 8px;
+}

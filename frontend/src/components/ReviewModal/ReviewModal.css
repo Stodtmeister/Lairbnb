@@ -1,0 +1,77 @@
+/*
+.container span {
+  color: black;
+}
+
+.container span:hover,
+.container span:hover ~ span {
+  color: black;
+}
+
+.container:hover span {
+  color: #ff385c
+}
+
+.container p {
+  display: inline-block;
+} */
+
+#review-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#review-form h4 {
+  font-size: 1.5em;
+  font-weight: 500;
+  margin: 15px auto;
+}
+
+#review-text {
+  width: 85%;
+}
+
+.rating-container {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  width: 150px;
+}
+
+.star-rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 13px;
+}
+
+.star {
+  color: #ddd;
+  transition: color 0.2s;
+}
+
+#review-form button {
+  background-color: #ff385c;
+  color: white;
+  font-weight: 500;
+  width: 85%;
+  height: 50px;
+  margin: 0px auto 15px;
+  border: 1px solid white;
+  border-radius: 6px;
+}
+
+#review-form button:disabled {
+  opacity: 0.5;
+  background-color: rgb(195, 195, 195);
+  color: rgb(94, 94, 94);
+  cursor: not-allowed;
+}
+
+.star:hover,
+.star.filled {
+  color: #ff385c;
+}

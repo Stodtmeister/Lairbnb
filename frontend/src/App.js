@@ -4,11 +4,15 @@ import { Switch } from "react-router-dom";
 import { Navigation } from './components'
 =======
 import { Route, Switch } from "react-router-dom";
+<<<<<<< HEAD
 import { Choices, Navigation } from './components'
+>>>>>>> dev
+=======
+import { Navigation } from './components'
 >>>>>>> dev
 import { useDispatch } from 'react-redux'
 import * as sessionActions from "./store/session";
-import { Reviews, Home } from "./pages";
+import { Home, NewSpotForm, ManageSpots, UpdateSpot } from "./pages";
 import Spot from "./pages/Spot/Spot";
 
 function App() {
@@ -21,12 +25,13 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      <Choices />
       {isLoaded &&
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route path='/reviews' component={Reviews} />
-          <Route path='/spot/:spotId' component={Spot} />
+          <Route path='/spots/new' component={NewSpotForm} />
+          <Route path='/spots/current' component={ManageSpots} />
+          <Route path='/spots/:spotId/edit' component={UpdateSpot} />
+          <Route path='/spots/:spotId' component={Spot} />
         </Switch>
       }
     </>

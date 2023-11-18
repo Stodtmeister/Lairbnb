@@ -1,3 +1,100 @@
+.spot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(274px, 1fr));
+  max-width: 1260px;
+  /* grid-template-columns: repeat(auto-fit, minmax(274px, 1fr)); */
+  gap: 2rem;
+  margin: 0 auto;
+  padding: 10px 30px;
+}
+
+.preview {
+  border-radius: 10px;
+  max-height: 240px;
+}
+
 .spot {
-  border: 1px solid black;
+  height: 100%;
+}
+
+.spot:hover {
+  cursor: pointer;
+}
+
+.spot-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 65px;
+  object-fit: cover;
+}
+
+.spot-footer span {
+  margin: 5px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  /* object-position: 50%, 50%; */
+  /* object-fit: cover; */
+}
+
+.destination {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.bold {
+  font-weight: 500;
+  height: 8px;
+}
+
+
+.not-bold {
+  font-weight: 300;
+}
+
+.bold, .non-bold {
+  font-size: 14px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  /* border-bottom: 1px dotted black; */
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
 }

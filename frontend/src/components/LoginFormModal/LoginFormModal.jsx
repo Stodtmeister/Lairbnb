@@ -27,8 +27,12 @@ function LoginFormModal() {
     setErrors(validationErrors)
   }, [credential, password])
 
+  function handleClick() {
+    dispatch(sessionActions.login({ credential: 'demo@user.io', password: 'password' }))
+    closeModal()
+  }
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
     setErrors({});
 
@@ -46,7 +50,7 @@ function LoginFormModal() {
     <>
       <h1>Log In</h1>
       <form id="form" onSubmit={handleSubmit}>
-        <div className={`form-group ${ errors.credential || errors.password ? "error" : ""}`}>
+        <div className={`form-group1 ${ errors.credential || errors.password ? "error" : ""}`}>
           {errors.credential && (
             <div className="msg">{errors.credential}</div>
           )}
@@ -55,7 +59,6 @@ function LoginFormModal() {
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
-            required
             placeholder="Username or Email"
           />
           {errors.password && (
@@ -66,12 +69,12 @@ function LoginFormModal() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
             placeholder="Password"
           />
           <button disabled={disabled} type="submit">Log In</button>
         </div>
       </form>
+      <div class='demo-user' onClick={handleClick}>Demo User</div>
     </>
   );
 }

@@ -1,0 +1,128 @@
+.spot-page {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.address {
+  margin: 0 20px;
+}
+.address h3 {
+  font-size: 27px;
+  margin-bottom: 0px;
+}
+.address p {
+  margin-top: 3px;
+  margin-bottom: 30px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  max-width: 1000px;
+  gap: 5px;
+  align-items: stretch;
+  grid-template-rows: 1fr 1fr;
+  margin: 20px;
+  max-height: 432px;
+  border: 1px solid white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.grid-container .square {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-height: 215px;
+}
+
+.tall {
+  grid-row: span 2;
+}
+
+.spot-info {
+  display: flex;
+  flex-direction: row;
+  margin: 0 20px;
+  border-bottom: 1px solid rgb(181, 181, 181);
+  justify-content: space-between;
+}
+
+.spot-description {
+  color: red;
+}
+
+.reserve-spot {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(211, 211, 211);
+  box-shadow: 0px 0px 19px 2px rgb(209, 209, 209);
+  border-radius: 10px;
+  width: 40%;
+  max-width: 360px;
+  min-width: 264px;
+  height: 120px;
+  margin-bottom: 15px;
+  /* justify-content: space-evenly; */
+  /* justify-content: center; */
+  /* align-content: center; */
+}
+
+.rating {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 25px;
+  font-size: 17px;
+  height: 50px;
+}
+
+.reserve-spot button {
+  background-color: #ff385c;
+  color: white;
+  font-weight: 500;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+  width: 86%;
+  margin: 0 auto;
+}
+
+.reserve-spot button:hover {
+  box-shadow: 0px 0px 19px rgb(209, 209, 209);
+}
+
+
+strong {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.show span.bold {
+  font-size: 16px;
+}
+
+.normal {
+  color: rgb(158, 158, 158);
+}
+.dot {
+  margin: 0 5px;
+}
+
+.reserve {
+  margin: 5px auto;
+  height: 40%
+}
+
+.host {
+  margin: 0px 5px 5px 0px;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: auto;
+}

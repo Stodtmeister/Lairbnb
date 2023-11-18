@@ -1,0 +1,142 @@
+#spot-form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+#spot-form h3 {
+  color: black;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+#spot-form h4 {
+  font-size: 17px;
+  font-weight: 500;
+  margin: 0px;
+}
+
+#spot-form p {
+  font-size: 15px;
+  margin-top: 6px;
+}
+
+.newSpot-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 150px;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+}
+
+.address-container {
+  display: grid;
+  grid-template-areas:
+  'country country'
+  'street   street'
+  'city      state'
+  'lat         lng';
+  gap: 15px;
+}
+
+.label, .input {
+  display: block;
+}
+
+.form-group2 .label {
+  width: 100%;
+  font-weight: 400;
+}
+
+.form-group2 .input {
+  width: 100%;
+  font-size: 1em;
+  border: 1px solid rgb(161, 161, 161);
+  border-radius: 0.25em;
+  margin-top: 3px;
+  padding: 0.25em 0.5em;
+}
+
+.form-group2.error .input:focus {
+  color: #ff6666;
+  background: #ffe5e5;
+}
+
+.form-group2.error .msg {
+  height: 0px;
+  font-size: 0.8em;
+  color: #ff6666;
+}
+
+.msg.form-group2.error {
+  height: 0px;
+  font-size: 0.8em;
+  color: #ff6666;
+}
+
+.text {
+  width: 100%;
+  border-radius: 0.25em;
+  border-color: rgb(161, 161, 161);
+}
+
+.price {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* .price label {
+  margin-right: 3px;
+} */
+#price {
+  margin-left: 3px;
+}
+
+.spot-images {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.btn {
+  background-color: #ff385c;
+  color: white;
+  font-weight: 500;
+  height: 60px;
+  width: 30%;
+  border: 1px solid white;
+  border-radius: 6px;
+  margin: auto;
+}
+
+.country {
+  grid-area: country;
+}
+
+.street {
+  grid-area: street;
+}
+
+.city {
+  grid-area: city;
+}
+
+.state {
+  grid-area: state;
+}
+
+.lat {
+  grid-area: lat;
+}
+
+.lng {
+  grid-area: lng;
+}

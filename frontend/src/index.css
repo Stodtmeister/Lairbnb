@@ -3,6 +3,29 @@
   font-family: 'Montserrat Alternates', sans-serif;
 }
 
-a, button, .modal {
+a, button, .modal, .demo-user {
   cursor: pointer;
+}
+
+h3 {
+  color: darkslategray;
+  font-weight: 500;
+}
+
+.star-icon {
+  margin-right: 4px;
+}
+
+::placeholder {
+  color: rgb(176, 176, 176);
+  padding: 2px;
+  
+}
+
+input:focus {
+  outline-color: #ff5a5f;
+}
+
+textarea:focus {
+  outline-color: #ff5a5f;
 }
