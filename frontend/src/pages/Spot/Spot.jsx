@@ -33,11 +33,6 @@ export default function Spot() {
         {SpotImages?.map((img, idx) => (
           <img className={`${idx === 0 ? 'tall' : 'square'}`} src={img.url} alt='hi' />
         ))}
-        {/* <img className='tall' src="https://source.unsplash.com/cssvEZacHvQ" alt='hi' /> */}
-        <img className='square' src="https://source.unsplash.com/oR0uERTVyD0" alt='hi' />
-        <img className='square' src="https://source.unsplash.com/01_igFr7hd4" alt='hi' />
-        {/* <img className='square' src="https://source.unsplash.com/O-8Fmpx7HqQ" alt='hi' /> */}
-        {/* <img className='square' src="https://source.unsplash.com/cfQEO_1S0Rs" alt='hi' /> */}
       </div>
       <section className='spot-info'>
         <div className='spot-description' >
