@@ -39,8 +39,9 @@ export default function ReviewModal({ spotId }) {
     setHoveredRating(0);
   }
 
-  function handleSubmit() {
-    dispatch(addReviewThunk(spotId, { review, stars: rating }))
+  async function handleSubmit() {
+    await dispatch(addReviewThunk(spotId, { review, stars: rating }))
+    closeModal()
   }
 
   const renderStars = () => {

@@ -21,8 +21,9 @@ export default function SpotReviews({ spotId, rating, owner }) {
     dispatch(getReviewsBySpotIdThunk(spotId))
   }, [dispatch, spotId])
 
+  // if (!reviews) return <></>
   console.log('REV', reviews);
-  // if (!reviews.length) return <></>
+
   // useEffect(() => {
   //   dispatch(getUserReviewsThunk())
   // }, [dispatch, owner])
@@ -87,7 +88,7 @@ export default function SpotReviews({ spotId, rating, owner }) {
             <OpenModalButton
               id='delete-review'
               buttonText='Delete'
-              modalComponent={<DeleteModal reviewId={rev.id} />}
+              modalComponent={<DeleteModal reviewId={rev.id} id={spotId}/>}
             />
           }
         </div>

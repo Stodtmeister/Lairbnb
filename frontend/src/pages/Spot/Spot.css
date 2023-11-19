@@ -54,9 +54,6 @@
   justify-content: space-between;
 }
 
-.spot-description {
-  color: red;
-}
 
 .reserve-spot {
   display: flex;
@@ -69,9 +66,6 @@
   min-width: 264px;
   height: 120px;
   margin-bottom: 15px;
-  /* justify-content: space-evenly; */
-  /* justify-content: center; */
-  /* align-content: center; */
 }
 
 .rating {

@@ -4,17 +4,25 @@ import { deleteSpotThunk } from "../../store/spots";
 import { useEffect, useState } from "react";
 import './DeleteModal.css'
 import { deleteReviewThunk } from "../../store/reviews";
+import { useHistory } from "react-router-dom";
 
-export default function DeleteModal({ spotId, reviewId }) {
+export default function DeleteModal({ spotId, reviewId, id }) {
   const { closeModal } = useModal()
   const dispatch = useDispatch()
   const [type, setType] = useState('')
   const [message, setMessage] = useState('')
+  const [refresh, setRefresh] = useState(false)
 
   useEffect(() => {
-    spotId ? setType('Spot') : setType('Review')
+    if (refresh) {
+      window.location.reload();
+    }
+  }, [refresh])
 
-    if (type === 'spot') {
+  useEffect(() => {
+    setType(spotId ? 'Spot' : 'Review')
+
+    if (type === 'Spot') {
       setMessage('Are you sure you want to remove this spot from the listings?')
     } else {
       setMessage('Are you sure you want to delete this review?')
@@ -23,10 +31,12 @@ export default function DeleteModal({ spotId, reviewId }) {
 
   async function handleDelete() {
     if (type === 'Spot') {
-      dispatch(deleteSpotThunk(spotId))
+      await dispatch(deleteSpotThunk(spotId))
     } else {
-      dispatch(deleteReviewThunk(reviewId))
+      await dispatch(deleteReviewThunk(reviewId))
     }
+
+    setRefresh(!refresh)
     closeModal()
   }
 
@@ -39,6 +49,5 @@ export default function DeleteModal({ spotId, reviewId }) {
         <button className="no" onClick={closeModal}>{`No (Keep ${type})`}</button>
       </div>
     </div>
-
   )
 }

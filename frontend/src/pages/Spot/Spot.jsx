@@ -19,8 +19,7 @@ export default function Spot() {
 
   const spot = useSpots()
   if (!spot[0]) return <div></div>
-
-  console.log('spot', spot);
+  
   const { Owner, SpotImages, name, city, state, country, price, avgStarRating, numReviews, description } = spot[0]
   const rev = numReviews > 1 ? 'reviews' : 'review'
 
