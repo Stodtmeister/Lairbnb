@@ -20,10 +20,9 @@ export default function Spot() {
   const spot = useSpots()
   if (!spot[0]) return <div></div>
 
+  console.log('spot', spot);
   const { Owner, SpotImages, name, city, state, country, price, avgStarRating, numReviews, description } = spot[0]
   const rev = numReviews > 1 ? 'reviews' : 'review'
-
-  console.log('SI', SpotImages);
 
   return (
     <div className='spot-page'>
@@ -33,7 +32,7 @@ export default function Spot() {
       </div>
       <div className="grid-container">
         {SpotImages?.map((img, idx) => (
-          <img className={`spot-img ${idx === 0 ? 'tall' : 'square'}`} src={img.url} alt='hi' />
+          <img key={idx} className={`spot-img ${img.preview ? 'tall' : 'square'}`} src={img.url} alt='hi' />
         ))}
       </div>
       <section className='spot-info'>

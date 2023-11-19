@@ -74,7 +74,8 @@ export const createSpotThunk = (data) => async (dispatch) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
   })
-  
+
+  console.log('hi2');
   if (res.ok) {
     const newSpot = await res.json()
     dispatch(createSpot(newSpot))

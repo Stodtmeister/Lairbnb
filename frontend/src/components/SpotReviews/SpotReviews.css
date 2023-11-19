@@ -28,6 +28,7 @@
   justify-content: space-between;
   margin: 10px 0px ;
   height: 70px;
+  margin-bottom: 0px;
 }
 
 .review-info p {
@@ -39,7 +40,7 @@
 }
 
 .show {
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .spot-review button {
@@ -73,4 +74,10 @@
 
 .dot {
   margin-right: 8px;
+}
+
+.review-container button {
+  margin-top: 0px;
+  width: 90px;
+  border-color: rgb(174, 174, 174);
 }

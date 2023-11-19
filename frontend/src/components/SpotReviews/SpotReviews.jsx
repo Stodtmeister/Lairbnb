@@ -21,11 +21,12 @@ export default function SpotReviews({ spotId, rating, owner }) {
     dispatch(getReviewsBySpotIdThunk(spotId))
   }, [dispatch, spotId])
 
-  if (!reviews.length) return <></>
-  //! console.log('REV', reviews);
+  console.log('REV', reviews);
+  // if (!reviews.length) return <></>
   // useEffect(() => {
   //   dispatch(getUserReviewsThunk())
   // }, [dispatch, owner])
+
 
   function formatDate(date) {
     const originalDate = new Date(date);
@@ -67,8 +68,8 @@ export default function SpotReviews({ spotId, rating, owner }) {
           modalComponent={<ReviewModal spotId={spotId} />}
         />
       </div>
-      {reviews?.map(rev => (
-        <div key={rev.id}>
+      {reviews?.reverse().map(rev => (
+        <div key={rev.id} className='review-container'>
           <div className='review-info'>
             <div className='user-review'>
               <div className='profile'>
@@ -82,8 +83,9 @@ export default function SpotReviews({ spotId, rating, owner }) {
             <p>{rev.review}</p>
             <div></div>
           </div>
-          {user === rev.userId &&
+          {user.id === rev.userId &&
             <OpenModalButton
+              id='delete-review'
               buttonText='Delete'
               modalComponent={<DeleteModal reviewId={rev.id} />}
             />
