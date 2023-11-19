@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useModal } from '../../context/Modal'
 import * as sessionActions from '../../store/session'
@@ -6,23 +6,24 @@ import './SignupForm.css'
 
 function SignupFormModal() {
   const dispatch = useDispatch()
-  const emailRef = useRef('')
-  const firstNameRef = useRef('')
-  const lastNameRef = useRef('')
-  const confirmPasswordRef = useRef('')
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [errors, setErrors] = useState({})
   const { closeModal } = useModal()
   let disabled = false
 
   if (
     Object.keys(errors).length ||
-    !emailRef.current.value    ||
+    !firstName.length ||
+    !lastName.length ||
+    !email.length ||
     !username.length ||
-    !firstNameRef.current.value||
-    !lastNameRef.current.value ||
-    !password.length
+    !password.length ||
+    !confirmPassword.length
   ) {
     disabled = true
   }
@@ -36,65 +37,83 @@ function SignupFormModal() {
       validationErrors.password = 'Password must be at least 6 characters'
     }
     setErrors(validationErrors)
-  }, [username, password])
+  }, [username, password, email])
 
   async function handleSubmit(e) {
     e.preventDefault()
 
-    if (password === confirmPasswordRef.current.value) {
-      setErrors({});
-      const response = await dispatch(sessionActions.signup({
-        email: emailRef.current.value,
-        username: username,
-        firstName: firstNameRef.current.value,
-        lastName: lastNameRef.current.value,
-        password: password
-      }))
+    if (password === confirmPassword) {
+      setErrors({})
+      let res = await dispatch(sessionActions.signup({ email, username, firstName, lastName, password }))
         .then(closeModal)
         .catch(async (res) => {
-          const data = await res.json();
+          const data = await res.json()
           if (data && data.errors) {
-            setErrors(data.errors);
+            setErrors(data.errors)
           }
-        });
+        })
     } else {
-      return setErrors({
-        confirmPassword: "Passwords don't match"
-      });
+      return setErrors({ confirmPassword: "Passwords don't match" })
     }
   }
 
   return (
-    <>
+    <form id="form" className="signup" onSubmit={handleSubmit}>
       <h1>Sign Up</h1>
-      <form id='form' className="signup" onSubmit={handleSubmit}>
-        <div className={`form-group ${errors.username || errors.password || errors.confirmPassword ? 'error' : ''}`}>
-          <input type="text" placeholder="Email" ref={emailRef} />
-          {errors.username && (
-            <div className='msg'>{errors.username}</div>
-          )}
-          <input className='input' type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
-          <input type="text" placeholder="First Name" ref={firstNameRef} />
-          <input type="text" placeholder="Last Name" ref={lastNameRef} />
-          {errors.password && (
-            <div className='msg'>{errors.password}</div>
-          )}
-          <input className='input' type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
-          {errors.confirmPassword && (
-            <div className='msg'>{errors.confirmPassword}</div>
-          )}
-          <input
-            className='input'
-            type="password"
-            placeholder="Confirm Password"
-            ref={confirmPasswordRef}
-          />
-          <button disabled={disabled} type="submit">
-            Sign Up
-          </button>
-        </div>
-      </form>
-    </>
+      <div className={`form-group1 ${Object.keys(errors).length ? 'error' : ''}`} >
+        <input
+          className="input"
+          type="text"
+          placeholder="First Name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+        <input
+          className="input"
+          type="text"
+          placeholder="Last Name"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
+        {errors.email && <div className="msg">{errors.email}</div>}
+        <input
+          className="input"
+          type="text"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        {errors.username && <div className="msg">{errors.username}</div>}
+        <input
+          className="input"
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        {errors.password && <div className="msg">{errors.password}</div>}
+        <input
+          className="input"
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        {errors.confirmPassword && (
+          <div className="msg">{errors.confirmPassword}</div>
+        )}
+        <input
+          className="input"
+          type="password"
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
+        <button className="sign-up" disabled={disabled} type="submit">
+          Sign Up
+        </button>
+      </div>
+    </form>
   )
 }
 

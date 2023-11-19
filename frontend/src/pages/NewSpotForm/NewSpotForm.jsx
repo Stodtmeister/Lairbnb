@@ -47,25 +47,21 @@ export default function NewSpotForm() {
       }
     }
     if (img2Ref.current.value.length) {
-      const ending = img2Ref.current.value.split('.')
       if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
         validationErrors.ending2 = 'Image URL must end in .png, .jpg, or .jpeg'
       }
     }
     if (img3Ref.current.value.length) {
-      const ending = img3Ref.current.value.split('.')
       if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
         validationErrors.ending3 = 'Image URL must end in .png, .jpg, or .jpeg'
       }
     }
     if (img4Ref.current.value.length) {
-      const ending = img4Ref.current.value.split('.')
       if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
         validationErrors.ending4 = 'Image URL must end in .png, .jpg, or .jpeg'
       }
     }
     if (img5Ref.current.value.length) {
-      const ending = img5Ref.current.value.split('.')
       if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
         validationErrors.ending5 = 'Image URL must end in .png, .jpg, or .jpeg'
       }

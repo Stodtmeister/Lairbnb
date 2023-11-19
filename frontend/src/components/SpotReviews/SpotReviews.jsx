@@ -9,25 +9,22 @@ import DeleteModal from '../DeleteModal/DeleteModal'
 export default function SpotReviews({ spotId, rating, owner }) {
   const dispatch = useDispatch()
   const user = useSelector(state => state.session.user)
-  const reviews = useReviews()
   let browsing = 'browsing'
   let firstToReview = 'notFirst'
   let reviewedPreviously = 'no-reviews'
   let loggedIn = user?.id ? 'logged-in' : 'logged-out'
+  const [reviews, setReviews] = useState([])
   const rev = reviews.length === 1 ? 'review' : 'reviews'
-  const addDelete = reviewedPreviously === 'already-reviewed' ? true : false
+  // const addDelete = reviewedPreviously === 'already-reviewed' ? true : false
 
   useEffect(() => {
-    dispatch(getReviewsBySpotIdThunk(spotId))
+    const fetchData = async () => {
+      const spotReviews = await dispatch(getReviewsBySpotIdThunk(spotId))
+      setReviews(spotReviews)
+    }
+
+    fetchData()
   }, [dispatch, spotId])
-
-  // if (!reviews) return <></>
-  console.log('REV', reviews);
-
-  // useEffect(() => {
-  //   dispatch(getUserReviewsThunk())
-  // }, [dispatch, owner])
-
 
   function formatDate(date) {
     const originalDate = new Date(date);
@@ -84,7 +81,7 @@ export default function SpotReviews({ spotId, rating, owner }) {
             <p>{rev.review}</p>
             <div></div>
           </div>
-          {user.id === rev.userId &&
+          {user?.id === rev.userId &&
             <OpenModalButton
               id='delete-review'
               buttonText='Delete'
