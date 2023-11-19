@@ -5,20 +5,14 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import NewSpotForm from '../NewSpotForm/NewSpotForm'
 
 export default function UpdateSpot() {
   const dispatch = useDispatch()
   const { spotId } = useParams()
   let spotInfo = useSpots()
-  // console.log('spot', spotInfo)
-  // console.log('info', spotInfo[spotId])
   if (spotInfo) {
     spotInfo = spotInfo[0]
   }
-  // spotInfo = spotInfo[0]
-  // console.log('id', spotId)
-  console.log('si', spotInfo);
   const history = useHistory()
   const [errors, setErrors] = useState({})
 
@@ -34,12 +28,6 @@ export default function UpdateSpot() {
     name: spotInfo?.name
   });
 
-  console.log('fd', formData);
-
-  useEffect(() => {
-    dispatch(getSpotById(spotId))
-  }, [dispatch, spotId])
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -47,6 +35,11 @@ export default function UpdateSpot() {
       [name]: value,
     }));
   };
+
+  useEffect(() => {
+    dispatch(getSpotById(spotId))
+  }, [dispatch, spotId])
+
 
 
   useEffect(() => {
@@ -103,7 +96,7 @@ export default function UpdateSpot() {
             <input
               className='input'
               type="text"
-              id='country'
+              name='country'
               value={formData.country}
               onChange={handleInputChange}
             />
