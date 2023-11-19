@@ -11,13 +11,11 @@ export default function ManageSpots() {
   const history = useHistory()
   const userSpots = useSpots()
 
-  console.log('userspots', userSpots)
   useEffect(() => {
     dispatch(getUserSpotsThunk())
   }, [dispatch])
 
   function handleUpdate(spotId) {
-    console.log(spotId)
     history.push(`/spots/${spotId}/edit`)
   }
 
@@ -29,9 +27,9 @@ export default function ManageSpots() {
       </div>
       <div className='spot-grid'>
         {userSpots.map((spot, idx) => (
-          <div className='user-container' key={idx}>
-            <PreviewImage key={spot.id} {...spot} />
-            <div className='button-container'>
+          <div className='manage-container' key={idx}>
+            <div className='manage-spot'>
+              <PreviewImage key={spot.id} {...spot} />
               <button onClick={e => handleUpdate(spot.id)}>Update</button>
               <OpenModalButton
                 buttonText='Delete'

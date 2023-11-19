@@ -4,9 +4,8 @@ import { editSpotThunk, getSpotById, useSpots } from '../../store/spots'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useState } from 'react'
-import { createSpotThunk } from '../../store/spots'
 import { useHistory } from 'react-router-dom'
-import { PreviewImage } from '../../components'
+import NewSpotForm from '../NewSpotForm/NewSpotForm'
 
 export default function UpdateSpot() {
   const dispatch = useDispatch()
@@ -86,20 +85,19 @@ export default function UpdateSpot() {
   }
 
   return (
-    <>
     <form id='spot-form' onSubmit={handleSubmit}>
       <h3>Update your Spot</h3>
       <h4>Where is your place located?</h4>
       <p>Guests will only get your exact address once they booked a reservation.</p>
       <hr />
       <div className="address-container">
-        <div className={`form-group country ${errors?.country ? "error" : ""}`}>
+        <div className={`form-group2 country ${errors?.country ? "error" : ""}`}>
           <label className='label' htmlFor='country'>
             Country *
             <input
               className='input'
               type="text"
-              name='country'
+              id='country'
               value={formData.country}
               onChange={handleInputChange}
             />
@@ -108,8 +106,8 @@ export default function UpdateSpot() {
             )}
           </label>
         </div>
-        <div className={`form-group address ${errors?.address ? "error" : ""}`}>
-          <label className='label' htmlFor='address'>
+        <div className={`form-group2 street ${errors?.address ? "error" : ""}`}>
+          <label className='label' htmlFor='street'>
             Street Address *
             <input
               className='input'
@@ -123,7 +121,7 @@ export default function UpdateSpot() {
             )}
           </label>
         </div>
-        <div className={`form-group city ${errors?.city ? "error" : ""}`}>
+        <div className={`form-group2 city ${errors?.city ? "error" : ""}`}>
           <label className='label' htmlFor='city'>
             City *
             <input
@@ -138,7 +136,7 @@ export default function UpdateSpot() {
             )}
           </label>
         </div>
-        <div className={`form-group state ${errors?.state ? "error" : ""}`}>
+        <div className={`form-group2 state ${errors?.state ? "error" : ""}`}>
           <label className='label' htmlFor='state'>
             State *
             <input
@@ -153,7 +151,7 @@ export default function UpdateSpot() {
             )}
           </label>
         </div>
-        <div className={`form-group lat ${errors?.lat ? "error" : ""}`}>
+        <div className={`form-group2 lat ${errors?.lat ? "error" : ""}`}>
           <label className='label' htmlFor='latitude'>
             Latitude *
             <input
@@ -168,7 +166,7 @@ export default function UpdateSpot() {
             )}
           </label>
         </div>
-        <div className={`form-group lng ${errors?.lng ? "error" : ""}`}>
+        <div className={`form-group2 lng ${errors?.lng ? "error" : ""}`}>
           <label className='label' htmlFor="longitude">
             Longitude *
             <input
@@ -187,8 +185,9 @@ export default function UpdateSpot() {
       <hr />
         <h4>Describe your place to guests *</h4>
         <p>Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</p>
-        <div className={`form-group ${errors?.description ? "error" : ""}`}>
+        <div className={`form-group2 ${errors?.description ? "error" : ""}`}>
           <textarea
+            className='text'
             name='description'
             cols="60"
             rows="10"
@@ -202,7 +201,7 @@ export default function UpdateSpot() {
       <hr />
         <h4>Create a title for your spot *</h4>
         <p>Catch guests' attention with a spot title that highlights what makes your place special.</p>
-        <div className={`form-group ${errors?.name ? "error" : ""}`}>
+        <div className={`form-group2 ${errors?.name ? "error" : ""}`}>
           <input
             className='input'
             type="text"
@@ -217,7 +216,7 @@ export default function UpdateSpot() {
       <hr />
         <h4>Set a base price for your spot *</h4>
         <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
-        <div className={`form-group ${errors?.price ? "error" : ""}`}>
+        <div className={`form-group2 ${errors?.price ? "error" : ""}`}>
           <label htmlFor="price">
             $
             <input
@@ -235,6 +234,5 @@ export default function UpdateSpot() {
       <hr />
         <button className='btn' type="submit">Update Spot</button>
     </form>
-    </>
   )
 }
