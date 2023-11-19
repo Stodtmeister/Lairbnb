@@ -11,10 +11,14 @@ export default function UpdateSpot() {
   const dispatch = useDispatch()
   const { spotId } = useParams()
   let spotInfo = useSpots()
-  console.log('spot', spotInfo)
-  console.log('info', spotInfo[spotId])
+  // console.log('spot', spotInfo)
+  // console.log('info', spotInfo[spotId])
+  if (spotInfo) {
+    spotInfo = spotInfo[0]
+  }
   // spotInfo = spotInfo[0]
   // console.log('id', spotId)
+  console.log('si', spotInfo);
   const history = useHistory()
   const [errors, setErrors] = useState({})
 
@@ -29,6 +33,8 @@ export default function UpdateSpot() {
     price: spotInfo?.price,
     name: spotInfo?.name
   });
+
+  console.log('fd', formData);
 
   useEffect(() => {
     dispatch(getSpotById(spotId))
