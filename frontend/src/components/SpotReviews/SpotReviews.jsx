@@ -15,12 +15,11 @@ export default function SpotReviews({ spotId, rating, owner }) {
   let loggedIn = user?.id ? 'logged-in' : 'logged-out'
   const [reviews, setReviews] = useState([])
   const rev = reviews.length === 1 ? 'review' : 'reviews'
-  // const addDelete = reviewedPreviously === 'already-reviewed' ? true : false
 
   useEffect(() => {
     const fetchData = async () => {
       const spotReviews = await dispatch(getReviewsBySpotIdThunk(spotId))
-      setReviews(spotReviews)
+      setReviews(spotReviews.reverse())
     }
 
     fetchData()
@@ -56,7 +55,8 @@ export default function SpotReviews({ spotId, rating, owner }) {
           <p>Be the first to post a review!</p>
         </div>
         <span className={reviews.length > 0 ? 'show' : 'hide'}>
-          <span className='bold'>{rating?.toPrecision(2)} <span className='dot'>&#183;</span></span>
+          <span className='bold'>{rating?.toPrecision(2)} </span>
+          <span className='review-dot'>&#183;</span>
           <span className='bold'>{reviews.length} {rev}</span>
         </span>
       </div>
@@ -66,7 +66,9 @@ export default function SpotReviews({ spotId, rating, owner }) {
           modalComponent={<ReviewModal spotId={spotId} />}
         />
       </div>
-      {reviews?.reverse().map(rev => (
+      {console.log('REV1', reviews)}
+      {console.log('REV2', reviews.reverse())}
+      {reviews.map(rev => (
         <div key={rev.id} className='review-container'>
           <div className='review-info'>
             <div className='user-review'>

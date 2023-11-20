@@ -49,7 +49,7 @@
   color: white;
   width: 160px;
   height: 35px;
-  border: 1px solid black;
+  border: 1px solid rgb(103, 103, 103);
   border-radius: 10px;
   margin: 8px 0px;
 }
@@ -72,12 +72,14 @@
   font-size: 13px;
 }
 
-.dot {
+.review-dot {
+  margin-left: 5px;
   margin-right: 8px;
 }
 
 .review-container button {
   margin-top: 0px;
   width: 90px;
-  border-color: rgb(174, 174, 174);
+  border-color: red;
+  border-color: rgb(203, 203, 203);
 }
