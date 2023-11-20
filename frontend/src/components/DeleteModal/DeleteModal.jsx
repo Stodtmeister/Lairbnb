@@ -42,8 +42,10 @@ export default function DeleteModal({ spotId, reviewId, id }) {
 
   return (
     <div className="delete-modal">
-      <h3>Confirm Delete</h3>
-      <p>{message}</p>
+      <div>
+        <h3>Confirm Delete</h3>
+        <p>{message}</p>
+      </div>
       <div className="button-container">
         <button className="yes" onClick={handleDelete}>{`Yes (Delete ${type})`}</button>
         <button className="no" onClick={closeModal}>{`No (Keep ${type})`}</button>

@@ -19,7 +19,7 @@ export default function Spot() {
 
   const spot = useSpots()
   if (!spot[0]) return <div></div>
-  
+
   const { Owner, SpotImages, name, city, state, country, price, avgStarRating, numReviews, description } = spot[0]
   const rev = numReviews > 1 ? 'reviews' : 'review'
 
@@ -41,9 +41,8 @@ export default function Spot() {
         </div>
         <div className='reserve-spot'>
           <div className='rating'>
-            <div>
               <p><strong>${price}</strong> night</p>
-            </div>
+
             <div>
               <span className='star-icon'>&#9733;</span>
               <span className={numReviews > 0 ? 'hide' : 'show'}>
@@ -51,8 +50,7 @@ export default function Spot() {
               </span>
               <span className={numReviews > 0 ? 'show' : 'hide'}>
                 <span className='bold'>{avgStarRating?.toPrecision(2)}</span>
-                <span className='dot bold'>&#183;</span>
-                <span className='bold normal'>{numReviews} {rev}</span>
+                <span id='num-review' className='dot bold normal'>&#183; {numReviews} {rev}</span>
               </span>
             </div>
           </div>

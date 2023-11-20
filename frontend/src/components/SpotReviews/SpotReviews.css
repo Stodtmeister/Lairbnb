@@ -79,7 +79,6 @@
 
 .review-container button {
   margin-top: 0px;
-  width: 90px;
-  border-color: red;
-  border-color: rgb(203, 203, 203);
+  width: 80px;
+  height: 30px;
 }

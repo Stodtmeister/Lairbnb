@@ -4,27 +4,33 @@
 
 .userSpot-header h3 {
   font-size: 25px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
-.userSpot-header button {
+a.create-spot {
   margin-bottom: 10px;
   background-color: #ff385c;
-  border: none;
   color: white;
   font-weight: 500;
-  padding: 5px;
+  padding: 6px;
   border-radius: 10px;
+  text-decoration: none;
 }
 
-.manage-spot button:hover,
+a.create-spot:hover,
 .userSpot-header button:hover {
   box-shadow: 0px 0px 19px rgb(209, 209, 209);
 }
 
+
 .manage-spot button {
   margin-right: 10px;
+  border-radius: 10px;
   padding: 4px;
   width: 80px;
   border: 1px solid rgb(173, 173, 173);
+}
+
+.manage-spot button:hover {
+  box-shadow: 0px 0px 8px rgb(209, 209, 209);
 }

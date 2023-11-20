@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getUserSpotsThunk, useSpots } from '../../store/spots'
 import { DeleteModal, PreviewImage } from '../../components'
-import { useHistory } from 'react-router-dom'
+import { useHistory, NavLink } from 'react-router-dom'
 import OpenModalButton from '../../components/OpenModalButton/OpenModalButton'
 import './ManageSpots.css'
 
@@ -10,6 +10,8 @@ export default function ManageSpots() {
   const dispatch = useDispatch()
   const history = useHistory()
   const userSpots = useSpots()
+  const user = useSelector(state => state.session)
+  // console.log('user', user);
 
   useEffect(() => {
     dispatch(getUserSpotsThunk())
@@ -22,8 +24,8 @@ export default function ManageSpots() {
   return (
     <>
       <div className='userSpot-header'>
-        <h3>Manage Your Spots</h3>
-        <button>Create a New Spot</button>
+        <h3>Manage Spots</h3>
+        <NavLink className='create-spot' to='/spots/new'>Create a New Spot</NavLink>
       </div>
       <div className='spot-grid'>
         {userSpots.map((spot, idx) => (
