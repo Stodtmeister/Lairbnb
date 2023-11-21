@@ -22,6 +22,10 @@
   font-weight: 500;
 }
 
+/* div.review-container {
+
+} */
+
 .review-info {
   display: flex;
   flex-direction: column;

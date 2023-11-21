@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getReviewsBySpotIdThunk, getUserReviewsThunk, useReviews } from '../../store/reviews'
+import { getReviewsBySpotIdThunk, useReviews } from '../../store/reviews'
 import ReviewModal from '../ReviewModal/ReviewModal'
 import OpenModalButton from '../OpenModalButton/OpenModalButton'
+import ReviewContainer from '../ReviewContainer/ReviewContainer'
 import './SpotReviews.css'
-import DeleteModal from '../DeleteModal/DeleteModal'
 
 export default function SpotReviews({ spotId, rating, owner }) {
   const dispatch = useDispatch()
@@ -24,16 +24,6 @@ export default function SpotReviews({ spotId, rating, owner }) {
 
     fetchData()
   }, [dispatch, spotId])
-
-  function formatDate(date) {
-    const originalDate = new Date(date);
-    const options = { year: 'numeric', month: 'short' };
-    return originalDate.toLocaleDateString('en-US', options);
-  }
-
-  function randomColor() {
-    return '#' + Math.floor(Math.random() * 16777215).toString(16);
-  }
 
   if (user?.id === owner?.id) {
     browsing = 'owner'
@@ -66,31 +56,8 @@ export default function SpotReviews({ spotId, rating, owner }) {
           modalComponent={<ReviewModal spotId={spotId} />}
         />
       </div>
-      {console.log('REV1', reviews)}
-      {console.log('REV2', reviews.reverse())}
       {reviews.map(rev => (
-        <div key={rev.id} className='review-container'>
-          <div className='review-info'>
-            <div className='user-review'>
-              <div className='profile'>
-                <i style={ { color: randomColor() } } className="fas fa-user-circle fa-2xl" />
-              </div>
-              <div>
-                <p className='first-name'>{rev.User.firstName}</p>
-                <p>{formatDate(rev.createdAt)}</p>
-              </div>
-            </div>
-            <p>{rev.review}</p>
-            <div></div>
-          </div>
-          {user?.id === rev.userId &&
-            <OpenModalButton
-              id='delete-review'
-              buttonText='Delete'
-              modalComponent={<DeleteModal reviewId={rev.id} id={spotId}/>}
-            />
-          }
-        </div>
+        <ReviewContainer key={rev.id} rev={rev} spotId={spotId}  />
       ))}
     </div>
   )

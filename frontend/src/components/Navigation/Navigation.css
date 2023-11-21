@@ -17,7 +17,7 @@
 }
 
 .nav .new-spot {
-  color: rgb(97, 97, 97);
+  color: rgb(71, 71, 71);
   font-size: 16px;
   margin-right: 10px;
 }
@@ -87,35 +87,40 @@ hr {
   z-index: 1;
   background-color: white;
   width: 250px;
-  height: 150px;
   list-style-type: none;
   padding-top: 6px;
 }
 
-
-/* h2 {
-  border: 1px solid black;
-  text-align: center;
-  padding: 10px;
-} */
+.profile-dropdown li {
+  margin: 3px;
+}
 
 .manage-spots {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   border-top: 1px solid rgb(194, 194, 194);
   border-bottom: 1px solid rgb(194, 194, 194);
-  margin: 10px auto;
-  padding: 5px;
+  margin: 10px auto 0px auto;
+  padding: 5px 0px;
 }
 
 .manage-spots a {
-  font-size: 17px;
+  font-size: 16px;
   color: black;
   font-weight: 400;
+  margin: 2px auto;
+  width: 100%;
+}
+
+.manage-spots a:hover {
+  background-color: #f2f2f2;
 }
 
 .logout-btn {
   width: 50%;
   height: 3em;
-  margin: auto;
+  margin: 10px auto;
   border: none;
   background-color: #ff385c;
   color: white;

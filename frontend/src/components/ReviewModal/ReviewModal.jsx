@@ -40,12 +40,12 @@ export default function ReviewModal({ spotId }) {
   }
 
   function handleSubmit() {
-    const res = dispatch(addReviewThunk(spotId, { review, stars: rating }))
-      .then(res => {
-        if (res.ok) return res.json()
-        return Promise.reject(res)
-      })
-      .catch(e => setErrors(e))
+    dispatch(addReviewThunk(spotId, { review, stars: rating }))
+      // .then(res => {
+      //   if (res.ok) return res.json()
+      //   return Promise.reject(res)
+      // })
+      // .catch(e => setErrors(e))
   }
 
   const renderStars = () => {

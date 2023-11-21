@@ -7,7 +7,6 @@ import SignupFormModal from '../SignupFormModal/SignupFormModal';
 import { NavLink, useHistory } from "react-router-dom";
 import "./Navigation.css"
 
-
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const history = useHistory()
@@ -59,6 +58,7 @@ function ProfileButton({ user }) {
             <li>{user.email}</li>
             <div className="manage-spots">
               <NavLink to='/spots/current' onClick={closeMenu}>Manage Spots</NavLink>
+              <NavLink to='/reviews/current' onClick={closeMenu}>Manage Reviews</NavLink>
             </div>
             <div>
               <button className="logout-btn" onClick={logout}>Log Out</button>

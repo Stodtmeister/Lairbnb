@@ -4,7 +4,6 @@ import { csrfFetch } from "./csrf"
 const GET_REVIEWS = 'GET_REVIEWS'
 const ADD_REVIEW = 'ADD_REVIEW'
 const DELETE_REVIEW = 'DELETE_REVIEW'
-// const GET_USER_REVIEWS = 'GET_USER_REVIEWS'
 
 const getReviews = (reviews) => ({
   type: GET_REVIEWS,
@@ -20,11 +19,6 @@ const deleteReview = (reviewId) => ({
   type: DELETE_REVIEW,
   reviewId
 })
-
-// const getUserReviews = (reviews) => ({
-//   type: GET_USER_REVIEWS,
-//   reviews
-// })
 
 export const useReviews = () => {
   return useSelector(state => Object.values(state.reviews))
@@ -64,6 +58,9 @@ export const getUserReviewsThunk = () => async (dispatch) => {
     let userReviews = await res.json()
     userReviews = await dispatch(getReviews(userReviews.Reviews))
     return userReviews
+  } else {
+    let errors = await res.json()
+    return errors
   }
 }
 
