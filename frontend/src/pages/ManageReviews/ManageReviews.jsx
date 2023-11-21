@@ -8,16 +8,7 @@ export default function ManageReviews() {
   const userReviews = useReviews()
   const user = useSelector(state => state.session.user)
   const dispatch = useDispatch()
-  const [refresh, setRefresh] = useState(false)
-  const [data, setData] = useState([])
-
-  // if (!refresh) setRefresh(!refresh)
-
-  useEffect(() => {
-    if (refresh) {
-      window.location.reload();
-    }
-  }, [refresh])
+  const [data, setData] = useState()
 
   useEffect(() => {
     const fetchData = async () => {
