@@ -8,7 +8,7 @@ export default function ManageReviews() {
   const userReviews = useReviews()
   const user = useSelector(state => state.session.user)
   const dispatch = useDispatch()
-  const [data, setData] = useState()
+  const [data, setData] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,7 +17,6 @@ export default function ManageReviews() {
     }
     fetchData()
   }, [dispatch])
-
 
   if (!data.length) return <></>
 

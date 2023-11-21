@@ -2,7 +2,7 @@ import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import DeleteModal from '../DeleteModal/DeleteModal'
 import ReviewModal from '../ReviewModal/ReviewModal';
 
-export default function ReviewContainer({ user, rev, spotId }) {
+export default function ReviewContainer({ user, rev, spotId, name }) {
   function formatDate(date) {
     const originalDate = new Date(date);
     const options = { year: 'numeric', month: 'short' };
@@ -13,6 +13,7 @@ export default function ReviewContainer({ user, rev, spotId }) {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
   }
 
+  console.log(name);
   return (
     <div className="review-container">
       <div className="review-info">
@@ -31,8 +32,9 @@ export default function ReviewContainer({ user, rev, spotId }) {
       {user?.id === rev.userId && (
         <>
           <OpenModalButton
+            id='update-review'
             buttonText='Update'
-            modalComponent={<ReviewModal spotId={spotId} />}
+            modalComponent={<ReviewModal spotId={spotId} updating={true} name1={name} name2={rev.Spot?.name} reviewId={rev.id} />}
           />
           <OpenModalButton
             id="delete-review"

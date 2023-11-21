@@ -56,7 +56,7 @@ export default function Spot() {
           <button className='reserve' onClick={handleClick}>Reserve</button>
         </div>
       </section>
-      <SpotReviews spotId={spotId} rating={avgStarRating} owner={Owner}/>
+      <SpotReviews spotId={spotId} rating={avgStarRating} owner={Owner} name={name} />
     </div>
   )
 }

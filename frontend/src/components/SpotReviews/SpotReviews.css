@@ -48,14 +48,14 @@
 }
 
 .spot-review button {
-  background-color: grey;
+  background-color: rgb(156, 156, 156);
   font-weight: 500;
   color: white;
   width: 160px;
   height: 35px;
-  border: 1px solid rgb(103, 103, 103);
+  border: 1px solid rgb(141, 141, 141);
   border-radius: 10px;
-  margin: 8px 0px;
+  margin: 8px 7px 8px 0;
 }
 
 .spot-review button:hover {

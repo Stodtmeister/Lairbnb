@@ -6,7 +6,7 @@ import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import ReviewContainer from '../ReviewContainer/ReviewContainer'
 import './SpotReviews.css'
 
-export default function SpotReviews({ spotId, rating, owner }) {
+export default function SpotReviews({ spotId, rating, owner, name }) {
   const dispatch = useDispatch()
   const user = useSelector(state => state.session.user)
   let browsing = 'browsing'
@@ -36,6 +36,8 @@ export default function SpotReviews({ spotId, rating, owner }) {
     })
   }
 
+  console.log('reviews', reviews);
+
   return (
     <div className='spot-review'>
       <div>
@@ -57,7 +59,7 @@ export default function SpotReviews({ spotId, rating, owner }) {
         />
       </div>
       {reviews.map(rev => (
-        <ReviewContainer key={rev.id} rev={rev} spotId={spotId}  />
+        <ReviewContainer key={rev.id} user={user} rev={rev} spotId={spotId} name={name} />
       ))}
     </div>
   )
