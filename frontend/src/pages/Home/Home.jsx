@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
 import { getAllSpots, useSpots } from '../../store/spots'
 import { Choices, PreviewImage } from '../../components'
 import './Home.css'
@@ -11,8 +11,6 @@ export default function Home() {
   useEffect(() => {
     dispatch(getAllSpots())
   }, [dispatch])
-
-  console.log('SPOTS', spots);
 
   return (
     <>

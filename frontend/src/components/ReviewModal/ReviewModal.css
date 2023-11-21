@@ -1,21 +1,3 @@
-/*
-.container span {
-  color: black;
-}
-
-.container span:hover,
-.container span:hover ~ span {
-  color: black;
-}
-
-.container:hover span {
-  color: #ff385c
-}
-
-.container p {
-  display: inline-block;
-} */
-
 #review-form {
   display: flex;
   flex-direction: column;

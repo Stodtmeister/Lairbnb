@@ -36,6 +36,12 @@
   max-height: 215px;
 }
 
+.spot-img {
+  width: 100%;
+  height: auto;
+  background-size: cover;
+}
+
 .tall {
   grid-row: span 2;
 }
@@ -48,9 +54,6 @@
   justify-content: space-between;
 }
 
-.spot-description {
-  color: red;
-}
 
 .reserve-spot {
   display: flex;
@@ -63,9 +66,6 @@
   min-width: 264px;
   height: 120px;
   margin-bottom: 15px;
-  /* justify-content: space-evenly; */
-  /* justify-content: center; */
-  /* align-content: center; */
 }
 
 .rating {
@@ -73,7 +73,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 0px 25px;
+  margin: 4px 25px;
   font-size: 17px;
   height: 50px;
 }
@@ -97,6 +97,10 @@
 strong {
   font-weight: 500;
   font-size: 20px;
+}
+
+#num-review {
+  font-size: 14px;
 }
 
 .show span.bold {

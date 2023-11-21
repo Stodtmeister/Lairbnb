@@ -35,8 +35,8 @@ export const getReviewsBySpotIdThunk = (spotId) => async (dispatch) => {
 
   if (res.ok) {
     let reviews = await res.json()
-    reviews = await dispatch(getReviews(reviews.Reviews))
-    return reviews
+    dispatch(getReviews(reviews.Reviews))
+    return reviews.Reviews
   }
 }
 

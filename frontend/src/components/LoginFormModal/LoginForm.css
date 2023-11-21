@@ -47,11 +47,16 @@ h1 {
 .form-group1 button {
   background-color: #ff385c;
   color: white;
+  font-size: 15px;
   font-weight: 500;
   height: 60px;
   width: 85%;
   border: 1px solid white;
   border-radius: 6px;
+}
+
+.sign-up {
+  margin-bottom: 20px;
 }
 
 .form-group1 button:disabled {

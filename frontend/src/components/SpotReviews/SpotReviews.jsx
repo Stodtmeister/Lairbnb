@@ -9,23 +9,21 @@ import DeleteModal from '../DeleteModal/DeleteModal'
 export default function SpotReviews({ spotId, rating, owner }) {
   const dispatch = useDispatch()
   const user = useSelector(state => state.session.user)
-  const reviews = useReviews()
   let browsing = 'browsing'
   let firstToReview = 'notFirst'
   let reviewedPreviously = 'no-reviews'
   let loggedIn = user?.id ? 'logged-in' : 'logged-out'
+  const [reviews, setReviews] = useState([])
   const rev = reviews.length === 1 ? 'review' : 'reviews'
-  const addDelete = reviewedPreviously === 'already-reviewed' ? true : false
 
   useEffect(() => {
-    dispatch(getReviewsBySpotIdThunk(spotId))
-  }, [dispatch, spotId])
+    const fetchData = async () => {
+      const spotReviews = await dispatch(getReviewsBySpotIdThunk(spotId))
+      setReviews(spotReviews.reverse())
+    }
 
-  if (!reviews.length) return <></>
-  //! console.log('REV', reviews);
-  // useEffect(() => {
-  //   dispatch(getUserReviewsThunk())
-  // }, [dispatch, owner])
+    fetchData()
+  }, [dispatch, spotId])
 
   function formatDate(date) {
     const originalDate = new Date(date);
@@ -57,7 +55,8 @@ export default function SpotReviews({ spotId, rating, owner }) {
           <p>Be the first to post a review!</p>
         </div>
         <span className={reviews.length > 0 ? 'show' : 'hide'}>
-          <span className='bold'>{rating?.toPrecision(2)} <span className='dot'>&#183;</span></span>
+          <span className='bold'>{rating?.toPrecision(2)} </span>
+          <span className='review-dot'>&#183;</span>
           <span className='bold'>{reviews.length} {rev}</span>
         </span>
       </div>
@@ -67,8 +66,10 @@ export default function SpotReviews({ spotId, rating, owner }) {
           modalComponent={<ReviewModal spotId={spotId} />}
         />
       </div>
-      {reviews?.map(rev => (
-        <div key={rev.id}>
+      {console.log('REV1', reviews)}
+      {console.log('REV2', reviews.reverse())}
+      {reviews.map(rev => (
+        <div key={rev.id} className='review-container'>
           <div className='review-info'>
             <div className='user-review'>
               <div className='profile'>
@@ -82,10 +83,11 @@ export default function SpotReviews({ spotId, rating, owner }) {
             <p>{rev.review}</p>
             <div></div>
           </div>
-          {user === rev.userId &&
+          {user?.id === rev.userId &&
             <OpenModalButton
+              id='delete-review'
               buttonText='Delete'
-              modalComponent={<DeleteModal reviewId={rev.id} />}
+              modalComponent={<DeleteModal reviewId={rev.id} id={spotId}/>}
             />
           }
         </div>

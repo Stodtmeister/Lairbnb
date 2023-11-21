@@ -2,8 +2,8 @@
 import { useEffect, useState } from 'react'
 import { useModal } from '../../context/Modal'
 import { useDispatch } from 'react-redux'
-import './ReviewModal.css'
 import { addReviewThunk } from '../../store/reviews'
+import './ReviewModal.css'
 
 export default function ReviewModal({ spotId }) {
   const { closeModal } = useModal()
@@ -40,7 +40,12 @@ export default function ReviewModal({ spotId }) {
   }
 
   function handleSubmit() {
-    dispatch(addReviewThunk(spotId, { review, stars: rating }))
+    const res = dispatch(addReviewThunk(spotId, { review, stars: rating }))
+      .then(res => {
+        if (res.ok) return res.json()
+        return Promise.reject(res)
+      })
+      .catch(e => setErrors(e))
   }
 
   const renderStars = () => {
@@ -66,6 +71,7 @@ export default function ReviewModal({ spotId }) {
     <>
       <form id="review-form" onSubmit={handleSubmit}>
         <h4>How was your stay?</h4>
+        {errors.error && <div className="msg">{errors}</div>}
         <textarea
           id="review-text"
           cols="30"
