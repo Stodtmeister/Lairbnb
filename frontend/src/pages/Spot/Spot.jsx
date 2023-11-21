@@ -31,7 +31,7 @@ export default function Spot() {
       </div>
       <div className="grid-container">
         {SpotImages?.map((img, idx) => (
-          <img key={idx} className={`spot-img ${img.preview ? 'tall' : 'square'}`} src={img.url} alt='hi' />
+          <img key={idx} className={`spot-img ${idx === 0 ? 'tall' : 'square'}`} src={img.url} alt='house' />
         ))}
       </div>
       <section className='spot-info'>
@@ -41,8 +41,7 @@ export default function Spot() {
         </div>
         <div className='reserve-spot'>
           <div className='rating'>
-              <p><strong>${price}</strong> night</p>
-
+            <p><strong>${price}</strong> night</p>
             <div>
               <span className='star-icon'>&#9733;</span>
               <span className={numReviews > 0 ? 'hide' : 'show'}>

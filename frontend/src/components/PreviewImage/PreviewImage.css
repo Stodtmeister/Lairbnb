@@ -5,12 +5,13 @@
   max-width: 1380px;
   max-height: 9999px;
   gap: 2rem;
-  /* gap: 40px; */
   margin: 10px auto;
   padding: 10px 30px;
+  justify-items: center;
 }
 
-
+div.manage-spot,
+div.spot.tooltip,
 .preview {
   border-radius: 10px;
   width: 100%;
@@ -37,10 +38,6 @@
   width: 100%;
   max-width: 347px;
 }
-
-/* .spot-footer span {
-  margin: 5px;
-} */
 
 .spot-footer.money {
   margin-right: 50px;

@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux'
 import { useRef, useState } from 'react'
 import { createSpotThunk } from '../../store/spots'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
-import './NewSpotForm.css'
+import { useHistory } from 'react-router-dom'
 import { addSpotImgThunk } from '../../store/images'
+import './NewSpotForm.css'
 
 export default function NewSpotForm() {
   const history = useHistory()
@@ -23,7 +23,7 @@ export default function NewSpotForm() {
   const img4Ref = useRef()
   const img5Ref = useRef()
   const [errors, setErrors] = useState({})
-  const [image, setImage] = useState()
+  const images = []
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -42,27 +42,32 @@ export default function NewSpotForm() {
 
     const ending = /\.(png|jpg|jpeg)$/i
     if (previewImgRef.current.value.length) {
+      images.push({ url: previewImgRef.current.value, preview: true })
       if (!ending.test(previewImgRef.current.value)) {
         validationErrors.previewEnd = 'Image URL must end in .png, .jpg, or .jpeg'
       }
     }
     if (img2Ref.current.value.length) {
-      if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
+      images.push({ url: img2Ref.current.value, preview: false })
+      if (!ending.test(img2Ref.current.value)) {
         validationErrors.ending2 = 'Image URL must end in .png, .jpg, or .jpeg'
       }
     }
     if (img3Ref.current.value.length) {
-      if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
+      images.push({ url: img3Ref.current.value, preview: false })
+      if (!ending.test(img3Ref.current.value)) {
         validationErrors.ending3 = 'Image URL must end in .png, .jpg, or .jpeg'
       }
     }
     if (img4Ref.current.value.length) {
-      if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
+      images.push({ url: img4Ref.current.value, preview: false })
+      if (!ending.test(img4Ref.current.value)) {
         validationErrors.ending4 = 'Image URL must end in .png, .jpg, or .jpeg'
       }
     }
     if (img5Ref.current.value.length) {
-      if (!['png', 'jpg', 'jpeg'].includes(ending[1])) {
+      images.push({ url: img5Ref.current.value, preview: false })
+      if (!ending.test(img5Ref.current.value)) {
         validationErrors.ending5 = 'Image URL must end in .png, .jpg, or .jpeg'
       }
     }
@@ -83,7 +88,10 @@ export default function NewSpotForm() {
       const data = await dispatch(createSpotThunk(newSpot))
 
       if (data?.id) {
-        let img = await dispatch(addSpotImgThunk(data.id, { url: previewImgRef.current.value, preview: true }))
+        await images.forEach(img => {
+          dispatch(addSpotImgThunk((data.id), img))
+        })
+        // await dispatch(addSpotImgThunk(data.id, { url: previewImgRef.current.value, preview: true }))
         // setImage(img)
         // console.log('NEW', img);
         // console.log("IMAGE", image);

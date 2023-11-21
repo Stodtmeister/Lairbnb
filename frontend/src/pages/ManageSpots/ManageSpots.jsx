@@ -29,15 +29,13 @@ export default function ManageSpots() {
       </div>
       <div className='spot-grid'>
         {userSpots.map((spot, idx) => (
-          <div className='manage-container' key={idx}>
-            <div className='manage-spot'>
-              <PreviewImage key={spot.id} {...spot} />
-              <button onClick={e => handleUpdate(spot.id)}>Update</button>
-              <OpenModalButton
-                buttonText='Delete'
-                modalComponent={<DeleteModal spotId={spot.id} />}
-              />
-            </div>
+          <div className='manage-spot'>
+            <PreviewImage key={spot.id} {...spot} />
+            <button onClick={e => handleUpdate(spot.id)}>Update</button>
+            <OpenModalButton
+              buttonText='Delete'
+              modalComponent={<DeleteModal spotId={spot.id} />}
+            />
           </div>
         ))}
       </div>
