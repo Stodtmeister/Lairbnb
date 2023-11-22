@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getReviewsBySpotIdThunk, useReviews } from '../../store/reviews'
 import ReviewModal from '../ReviewModal/ReviewModal'
@@ -8,12 +8,12 @@ import './SpotReviews.css'
 
 export default function SpotReviews({ spotId, rating, owner, name }) {
   const dispatch = useDispatch()
+  const reviews = useReviews()
   const user = useSelector(state => state.session.user)
   let browsing = 'browsing'
   let firstToReview = 'notFirst'
   let reviewedPreviously = 'no-reviews'
   let loggedIn = user?.id ? 'logged-in' : 'logged-out'
-  const reviews = useReviews()
   const rev = reviews.length === 1 ? 'review' : 'reviews'
 
   useEffect(() => {

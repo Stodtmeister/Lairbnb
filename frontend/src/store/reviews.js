@@ -5,10 +5,16 @@ const GET_REVIEWS = 'GET_REVIEWS'
 const ADD_REVIEW = 'ADD_REVIEW'
 const DELETE_REVIEW = 'DELETE_REVIEW'
 const EDIT_REVIEW = 'EDIT_REVIEW'
+const GET_SPOT_REV = 'GET_SPOT_REV'
 
 const getReviews = (reviews) => ({
   type: GET_REVIEWS,
   reviews
+})
+
+const getSpotReviews = (spotReviews) => ({
+  type: GET_SPOT_REV,
+  spotReviews
 })
 
 const addReview = (review) => ({
@@ -35,7 +41,7 @@ export const getReviewsBySpotIdThunk = (spotId) => async (dispatch) => {
 
   if (res.ok) {
     let reviews = await res.json()
-    dispatch(getReviews(reviews.Reviews))
+    dispatch(getSpotReviews(reviews.Reviews))
     return reviews.Reviews
   }
 }
@@ -103,14 +109,17 @@ const reviewReducer = (state = {}, payload) => {
         newReviewState[review.id] = review
       })
       return newReviewState
+    case GET_SPOT_REV:
+      const spotState = {}
+      payload.spotReviews.forEach(review => {
+        spotState[review.id] = review
+      })
+      return spotState
     case ADD_REVIEW:
       return { ...state, [payload.review.id]: payload.review }
     case DELETE_REVIEW:
-      console.log('Payload', payload);
-      console.log('Pre-State:', state);
       const deleteState = { ...state }
       delete deleteState[payload.reviewId]
-      console.log('After-State:', deleteState);
       return deleteState
     case EDIT_REVIEW:
       newReviewState[payload.review.id] = payload.review.review
