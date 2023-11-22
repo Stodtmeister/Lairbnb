@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { deleteReviewThunk } from "../../store/reviews";
 import './DeleteModal.css'
 
-export default function DeleteModal({ spotId, reviewId, id }) {
+export default function DeleteModal({ spotId, reviewId }) {
   const dispatch = useDispatch()
   const { closeModal } = useModal()
   const [type, setType] = useState('')
@@ -20,7 +20,7 @@ export default function DeleteModal({ spotId, reviewId, id }) {
       setMessage('Are you sure you want to delete this review?')
     }
   }, [spotId, type])
-
+  
   async function handleDelete() {
     if (type === 'Spot') {
       await dispatch(deleteSpotThunk(spotId))

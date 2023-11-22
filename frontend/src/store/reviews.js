@@ -1,36 +1,21 @@
 import { useSelector } from "react-redux"
 import { csrfFetch } from "./csrf"
 
-const GET_REVIEWS = 'GET_REVIEWS'
 const ADD_REVIEW = 'ADD_REVIEW'
 const DELETE_REVIEW = 'DELETE_REVIEW'
 const EDIT_REVIEW = 'EDIT_REVIEW'
 const GET_SPOT_REV = 'GET_SPOT_REV'
+const GET_USER_REV = 'GET_USER_REV'
 
-const getReviews = (reviews) => ({
-  type: GET_REVIEWS,
-  reviews
-})
+const getSpotReviews = (spotReviews) => ({ type: GET_SPOT_REV, spotReviews })
 
-const getSpotReviews = (spotReviews) => ({
-  type: GET_SPOT_REV,
-  spotReviews
-})
+const getUserReviews = (userReviews) => ({ type: GET_USER_REV, userReviews })
 
-const addReview = (review) => ({
-  type: ADD_REVIEW,
-  review
-})
+const addReview = (review) => ({ type: ADD_REVIEW, review })
 
-const deleteReview = (reviewId) => ({
-  type: DELETE_REVIEW,
-  reviewId
-})
+const deleteReview = (reviewId) => ({ type: DELETE_REVIEW, reviewId })
 
-const editReview = (review) => ({
-  type: EDIT_REVIEW,
-  review
-})
+const editReview = (review) => ({ type: EDIT_REVIEW, review })
 
 export const useReviews = () => {
   return useSelector(state => Object.values(state.reviews))
@@ -72,6 +57,7 @@ export const editReviewThunk = (reviewId, body) => async (dispatch) => {
   if (res.ok) {
     const editedReview = await res.json()
     dispatch(editReview(editedReview))
+    return editedReview
   } else {
     const errors = await res.json()
     return errors
@@ -83,7 +69,7 @@ export const getUserReviewsThunk = () => async (dispatch) => {
 
   if (res.ok) {
     let userReviews = await res.json()
-    userReviews = await dispatch(getReviews(userReviews.Reviews))
+    userReviews = await dispatch(getUserReviews(userReviews.Reviews))
     return userReviews
   } else {
     let errors = await res.json()
@@ -104,17 +90,18 @@ export const deleteReviewThunk = (reviewId) => async (dispatch) => {
 const reviewReducer = (state = {}, payload) => {
   let newReviewState = { ...state }
   switch (payload.type) {
-    case GET_REVIEWS:
-      payload.reviews.forEach(review => {
-        newReviewState[review.id] = review
-      })
-      return newReviewState
     case GET_SPOT_REV:
       const spotState = {}
       payload.spotReviews.forEach(review => {
         spotState[review.id] = review
       })
       return spotState
+    case GET_USER_REV:
+      const userRevState = {}
+      payload.userReviews.forEach(review => {
+        userRevState[review.id] = review
+      })
+      return userRevState
     case ADD_REVIEW:
       return { ...state, [payload.review.id]: payload.review }
     case DELETE_REVIEW:
@@ -122,7 +109,7 @@ const reviewReducer = (state = {}, payload) => {
       delete deleteState[payload.reviewId]
       return deleteState
     case EDIT_REVIEW:
-      newReviewState[payload.review.id] = payload.review.review
+      newReviewState[payload.review.id] = payload.review
       return newReviewState
     default:
       return state

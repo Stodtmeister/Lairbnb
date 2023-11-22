@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import { useModal } from '../../context/Modal'
 import { useDispatch } from 'react-redux'
-import { addReviewThunk, editReviewThunk } from '../../store/reviews'
+import { addReviewThunk, editReviewThunk, useReviews } from '../../store/reviews'
 import './ReviewModal.css'
 
 export default function ReviewModal({ spotId, reviewId, updating, name1, name2 }) {
@@ -28,12 +28,6 @@ export default function ReviewModal({ spotId, reviewId, updating, name1, name2 }
     setErrors(validation)
   }, [review, rating])
 
-  // useEffect(() => {
-  //   if (refresh) {
-  //     window.location.reload();
-  //   }
-  // }, [refresh])
-
   function handleStarClick(clickedRating) {
     setRating(clickedRating);
   }
@@ -46,7 +40,6 @@ export default function ReviewModal({ spotId, reviewId, updating, name1, name2 }
     setHoveredRating(0);
   }
 
-
   async function handleSubmit() {
     if (updating) {
       await dispatch(editReviewThunk(reviewId, { review, stars: rating } ))
@@ -54,13 +47,7 @@ export default function ReviewModal({ spotId, reviewId, updating, name1, name2 }
       await dispatch(addReviewThunk(spotId, { review, stars: rating }))
     }
 
-    // setRefresh(!refresh)
     closeModal()
-      // .then(res => {
-      //   if (res.ok) return res.json()
-      //   return Promise.reject(res)
-      // })
-      // .catch(e => setErrors(e))
   }
 
   const renderStars = () => {

@@ -3,8 +3,8 @@ import { getSpotById, useSpots } from '../../store/spots'
 import { useDispatch  } from 'react-redux'
 import { useEffect } from 'react'
 import { SpotReviews } from '../../components'
-import './Spot.css'
 import { useReviews } from '../../store/reviews'
+import './Spot.css'
 
 export default function Spot() {
   const dispatch = useDispatch()
