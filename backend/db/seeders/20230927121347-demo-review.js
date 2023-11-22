@@ -17,9 +17,9 @@ module.exports = {
         stars: 1,
       },
       {
-        userId: 1,
+        userId: 4,
         spotId: 2,
-        review: '17 days was far too short a time to live among such excellent and admirable Hobbits!',
+        review: 'They provided excellent food. The salted pork was particularly nice.',
         stars: 5,
       },
       {
@@ -29,9 +29,9 @@ module.exports = {
         stars: 5,
       },
       {
-        userId: 4,
+        userId: 1,
         spotId: 2,
-        review: 'They provided excellent food. The salted pork was particularly nice.',
+        review: '17 days was far too short a time to live among such excellent and admirable Hobbits!',
         stars: 5,
       },
       {

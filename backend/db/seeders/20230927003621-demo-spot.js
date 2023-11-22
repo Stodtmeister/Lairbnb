@@ -39,7 +39,7 @@ module.exports = {
       {
         ownerId: 3,
         address: '99 Alcatraz blvd',
-        city: 'SanFrancisco',
+        city: 'San Francisco',
         state: 'California',
         country: 'United States',
         lat: 63.1,
@@ -52,7 +52,7 @@ module.exports = {
       {
         ownerId: 4,
         address: 'Somewhere secret',
-        city: 'Minas Tirith',
+        city: '45 Numenor Blvd',
         state: 'Gondor',
         country: 'Middle-earth',
         lat: 66,
@@ -65,8 +65,8 @@ module.exports = {
       {
         ownerId: 1,
         address: '45 S 5000 W',
-        city: 'San Francisco',
-        state: 'California',
+        city: 'Seattle',
+        state: 'Washington',
         country: 'United States',
         lat: 66,
         lng: 18.7,
