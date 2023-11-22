@@ -3,7 +3,11 @@
   font-family: 'Montserrat Alternates', sans-serif;
 }
 
-a, button, .modal, .demo-user {
+a,
+button,
+.modal,
+.demo-user,
+.choice-container {
   cursor: pointer;
 }
 
@@ -19,7 +23,7 @@ h3 {
 ::placeholder {
   color: rgb(176, 176, 176);
   padding: 2px;
-  
+
 }
 
 input:focus {
