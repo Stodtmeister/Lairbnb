@@ -14,13 +14,25 @@ module.exports = {
         userId: 1,
         spotId: 1,
         review: 'This place was pretty great!',
+        stars: 1,
+      },
+      {
+        userId: 1,
+        spotId: 2,
+        review: '17 days was far too short a time to live among such excellent and admirable Hobbits!',
         stars: 5,
       },
       {
-        userId: 2,
+        userId: 3,
         spotId: 2,
-        review: 'The house was only OK and it smelled weird...',
-        stars: 3,
+        review: 'The fireworks were great. The Longbottom Leaf was better!',
+        stars: 5,
+      },
+      {
+        userId: 4,
+        spotId: 2,
+        review: 'They provided excellent food. The salted pork was particularly nice.',
+        stars: 5,
       },
       {
         userId: 3,

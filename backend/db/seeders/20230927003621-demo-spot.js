@@ -19,7 +19,7 @@ module.exports = {
         lat: 12.4,
         lng: 7.3,
         name: 'Tree House',
-        description: 'This is a house in a tree',
+        description: 'Tree house in downtown Chicago',
         price: 999,
         previewImage: 'https://source.unsplash.com/2MA8dFvOMec'
       },
@@ -32,7 +32,7 @@ module.exports = {
         lat: 29.56,
         lng: 32.1,
         name: 'Bag End',
-        description: 'In a hole in the ground there lived a hobbit',
+        description: 'In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down on or to eat: it was a hobbit-hole, and that means comfort.',
         price: 7000,
         previewImage: 'https://source.unsplash.com/zeW9BQbWmJs'
       },
@@ -45,7 +45,7 @@ module.exports = {
         lat: 63.1,
         lng: 10.7,
         name: 'Alcatraz prison',
-        description: 'Literally Alcatraz prison.',
+        description: 'Cell #62 in Alcatraz prison.',
         price: 93,
         previewImage: 'https://source.unsplash.com/eWqOgJ-lfiI',
       },
