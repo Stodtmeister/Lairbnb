@@ -12,8 +12,7 @@ export default function ReviewContainer({ user, rev, spotId, name }) {
   function randomColor() {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
   }
-
-  console.log(name);
+  
   return (
     <div className="review-container">
       <div className="review-info">

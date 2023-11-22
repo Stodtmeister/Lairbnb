@@ -13,16 +13,12 @@ export default function SpotReviews({ spotId, rating, owner, name }) {
   let firstToReview = 'notFirst'
   let reviewedPreviously = 'no-reviews'
   let loggedIn = user?.id ? 'logged-in' : 'logged-out'
-  const [reviews, setReviews] = useState([])
+  const reviews = useReviews()
   const rev = reviews.length === 1 ? 'review' : 'reviews'
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const spotReviews = await dispatch(getReviewsBySpotIdThunk(spotId))
-      setReviews(spotReviews.reverse())
-    }
 
-    fetchData()
+  useEffect(() => {
+    dispatch(getReviewsBySpotIdThunk(spotId))
   }, [dispatch, spotId])
 
   if (user?.id === owner?.id) {
@@ -35,8 +31,6 @@ export default function SpotReviews({ spotId, rating, owner, name }) {
       if (rev.userId === user?.id) reviewedPreviously = 'already-reviewed'
     })
   }
-
-  console.log('reviews', reviews);
 
   return (
     <div className='spot-review'>
@@ -58,7 +52,7 @@ export default function SpotReviews({ spotId, rating, owner, name }) {
           modalComponent={<ReviewModal spotId={spotId} />}
         />
       </div>
-      {reviews.map(rev => (
+      {reviews.reverse().map(rev => (
         <ReviewContainer key={rev.id} user={user} rev={rev} spotId={spotId} name={name} />
       ))}
     </div>

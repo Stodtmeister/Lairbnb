@@ -11,13 +11,13 @@ export default function DeleteModal({ spotId, reviewId, id }) {
   const dispatch = useDispatch()
   const [type, setType] = useState('')
   const [message, setMessage] = useState('')
-  const [refresh, setRefresh] = useState(false)
+  // const [refresh, setRefresh] = useState(false)
 
-  useEffect(() => {
-    if (refresh) {
-      window.location.reload();
-    }
-  }, [refresh])
+  // useEffect(() => {
+  //   if (refresh) {
+  //     window.location.reload();
+  //   }
+  // }, [refresh])
 
   useEffect(() => {
     setType(spotId ? 'Spot' : 'Review')
@@ -36,7 +36,7 @@ export default function DeleteModal({ spotId, reviewId, id }) {
       await dispatch(deleteReviewThunk(reviewId))
     }
 
-    setRefresh(!refresh)
+    // setRefresh(!refresh)
     closeModal()
   }
 

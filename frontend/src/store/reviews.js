@@ -90,7 +90,7 @@ export const deleteReviewThunk = (reviewId) => async (dispatch) => {
 
   if (res.ok) {
     const reviewToDelete = await res.json()
-    dispatch(deleteReview(reviewToDelete))
+    await dispatch(deleteReview(reviewId))
     return reviewToDelete
   }
 }
@@ -106,11 +106,13 @@ const reviewReducer = (state = {}, payload) => {
     case ADD_REVIEW:
       return { ...state, [payload.review.id]: payload.review }
     case DELETE_REVIEW:
+      console.log('Payload', payload);
+      console.log('Pre-State:', state);
       const deleteState = { ...state }
       delete deleteState[payload.reviewId]
+      console.log('After-State:', deleteState);
       return deleteState
     case EDIT_REVIEW:
-      console.log('payload', payload);
       newReviewState[payload.review.id] = payload.review.review
       return newReviewState
     default:
