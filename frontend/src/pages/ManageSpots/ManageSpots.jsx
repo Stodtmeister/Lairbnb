@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { useHistory, NavLink } from 'react-router-dom'
 import { getUserSpotsThunk, useSpots } from '../../store/spots'
 import { DeleteModal, PreviewImage } from '../../components'
-import { useHistory, NavLink } from 'react-router-dom'
 import OpenModalButton from '../../components/OpenModalButton/OpenModalButton'
 import './ManageSpots.css'
 
@@ -10,8 +10,6 @@ export default function ManageSpots() {
   const dispatch = useDispatch()
   const history = useHistory()
   const userSpots = useSpots()
-  // const user = useSelector(state => state.session)
-
 
   useEffect(() => {
     dispatch(getUserSpotsThunk())
