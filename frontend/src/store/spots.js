@@ -6,37 +6,17 @@ const GET_SPOT_BY_ID = 'GET_SPOT_BY_ID'
 const CREATE_SPOT = 'CREATE_SPOT'
 const DELETE_SPOT = 'DELETE_SPOT'
 
-const loadSpots = (spots) => ({
-  type: LOAD_SPOTS,
-  spots
-})
+const loadSpots = (spots) => ({ type: LOAD_SPOTS, spots })
 
-const getSpotInfo = (spotInfo) => ({
-  type: GET_SPOT_BY_ID,
-  spotInfo
-})
+const getSpotInfo = (spotInfo) => ({ type: GET_SPOT_BY_ID, spotInfo })
 
-const createSpot = (spot) => ({
-  type: CREATE_SPOT,
-  spot
-})
+const createSpot = (spot) => ({ type: CREATE_SPOT, spot })
 
-const deleteSpot = (spotId) => ({
-  type: DELETE_SPOT,
-  spotId
-})
-
-
-
-
-//* ========================== getter ====================================
+const deleteSpot = (spotId) => ({ type: DELETE_SPOT, spotId })
 
 export const useSpots = () => {
   return useSelector(state => Object.values(state.spots))
 }
-
-
-//* ========================== thunks ====================================
 
 export const getAllSpots = () => async (dispatch) => {
   const res = await csrfFetch('/api/spots')
@@ -75,7 +55,6 @@ export const createSpotThunk = (data) => async (dispatch) => {
     body: JSON.stringify(data)
   })
 
-  console.log('hi2');
   if (res.ok) {
     const newSpot = await res.json()
     dispatch(createSpot(newSpot))
@@ -104,15 +83,13 @@ export const deleteSpotThunk = (spotId) => async (dispatch) => {
 
   if (res.ok) {
     const deletedSpot = await res.json();
-    dispatch(deleteSpot(deletedSpot));
-    return deleteSpot;
+    dispatch(deleteSpot(spotId));
+    return deletedSpot;
   } else {
     const error = await res.json();
     return error;
   }
 }
-
-//* ========================== reducer ====================================
 
 const spotReducer = (state = {}, payload) => {
   switch (payload.type) {

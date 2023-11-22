@@ -2,22 +2,14 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { deleteSpotThunk } from "../../store/spots";
 import { useEffect, useState } from "react";
-import './DeleteModal.css'
 import { deleteReviewThunk } from "../../store/reviews";
-import { useHistory } from "react-router-dom";
+import './DeleteModal.css'
 
 export default function DeleteModal({ spotId, reviewId, id }) {
-  const { closeModal } = useModal()
   const dispatch = useDispatch()
+  const { closeModal } = useModal()
   const [type, setType] = useState('')
   const [message, setMessage] = useState('')
-  // const [refresh, setRefresh] = useState(false)
-
-  // useEffect(() => {
-  //   if (refresh) {
-  //     window.location.reload();
-  //   }
-  // }, [refresh])
 
   useEffect(() => {
     setType(spotId ? 'Spot' : 'Review')
@@ -36,7 +28,6 @@ export default function DeleteModal({ spotId, reviewId, id }) {
       await dispatch(deleteReviewThunk(reviewId))
     }
 
-    // setRefresh(!refresh)
     closeModal()
   }
 

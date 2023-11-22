@@ -16,7 +16,6 @@ export default function SpotReviews({ spotId, rating, owner, name }) {
   const reviews = useReviews()
   const rev = reviews.length === 1 ? 'review' : 'reviews'
 
-
   useEffect(() => {
     dispatch(getReviewsBySpotIdThunk(spotId))
   }, [dispatch, spotId])

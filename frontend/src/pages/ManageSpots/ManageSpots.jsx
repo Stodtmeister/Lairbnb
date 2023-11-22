@@ -10,8 +10,8 @@ export default function ManageSpots() {
   const dispatch = useDispatch()
   const history = useHistory()
   const userSpots = useSpots()
-  const user = useSelector(state => state.session)
-  // console.log('user', user);
+  // const user = useSelector(state => state.session)
+
 
   useEffect(() => {
     dispatch(getUserSpotsThunk())
@@ -28,9 +28,9 @@ export default function ManageSpots() {
         <NavLink className='create-spot' to='/spots/new'>Create a New Spot</NavLink>
       </div>
       <div className='spot-grid'>
-        {userSpots.map((spot, idx) => (
-          <div className='manage-spot'>
-            <PreviewImage key={spot.id} {...spot} />
+        {userSpots.map(spot => (
+          <div key={spot.id} className='manage-spot'>
+            <PreviewImage {...spot} />
             <button onClick={e => handleUpdate(spot.id)}>Update</button>
             <OpenModalButton
               buttonText='Delete'
