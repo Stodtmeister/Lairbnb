@@ -4,10 +4,12 @@ import { useDispatch  } from 'react-redux'
 import { useEffect } from 'react'
 import { SpotReviews } from '../../components'
 import './Spot.css'
+import { useReviews } from '../../store/reviews'
 
 export default function Spot() {
   const dispatch = useDispatch()
   const { spotId } = useParams()
+  const reviews = useReviews()
 
   function handleClick() {
     alert('Feature Coming Soon...')
@@ -15,7 +17,7 @@ export default function Spot() {
 
   useEffect(() => {
     dispatch(getSpotById(spotId))
-  }, [dispatch, spotId])
+  }, [dispatch, spotId, reviews.length])
 
   const spot = useSpots()
   if (!spot[0]) return <div></div>

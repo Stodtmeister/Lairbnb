@@ -12,7 +12,7 @@ export default function ReviewModal({ spotId, reviewId, updating, name1, name2 }
   const [hoveredRating, setHoveredRating] = useState(0);
   const [review, setReview] = useState('')
   const [errors, setErrors] = useState({})
-  const [refresh, setRefresh] = useState(false)
+  // const [refresh, setRefresh] = useState(false)
   let disabled = true
 
   if (review && !Object.keys(errors).length) disabled = false;
@@ -28,11 +28,11 @@ export default function ReviewModal({ spotId, reviewId, updating, name1, name2 }
     setErrors(validation)
   }, [review, rating])
 
-  useEffect(() => {
-    if (refresh) {
-      window.location.reload();
-    }
-  }, [refresh])
+  // useEffect(() => {
+  //   if (refresh) {
+  //     window.location.reload();
+  //   }
+  // }, [refresh])
 
   function handleStarClick(clickedRating) {
     setRating(clickedRating);
@@ -54,7 +54,7 @@ export default function ReviewModal({ spotId, reviewId, updating, name1, name2 }
       await dispatch(addReviewThunk(spotId, { review, stars: rating }))
     }
 
-    setRefresh(!refresh)
+    // setRefresh(!refresh)
     closeModal()
       // .then(res => {
       //   if (res.ok) return res.json()
