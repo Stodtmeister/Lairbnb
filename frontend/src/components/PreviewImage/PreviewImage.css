@@ -13,6 +13,7 @@
 div.manage-spot,
 div.spot.tooltip,
 .preview {
+  position: relative;
   border-radius: 10px;
   width: 100%;
   height: 90%;
@@ -20,6 +21,20 @@ div.spot.tooltip,
   min-height: 228px;
   min-width: 240px;
   max-width: 347px;
+}
+
+.favorite {
+  color: #575757;
+  text-align: center;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  margin: 10px 5px;
+  z-index: 1;
+}
+
+.favorite:hover {
+  color: red;
 }
 
 .spot {
@@ -81,7 +96,7 @@ span.not-bold {
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 120px;
-  background-color: black;
+  background-color: #575757;
   color: #fff;
   text-align: center;
   padding: 5px 0;
@@ -99,7 +114,7 @@ span.not-bold {
   opacity: 1;
 }
 
-.tooltip .tooltiptext::after {
+/* .tooltip .tooltiptext::after {
   content: " ";
   position: absolute;
   top: 100%;
@@ -108,4 +123,5 @@ span.not-bold {
   border-width: 5px;
   border-style: solid;
   border-color: black transparent transparent transparent;
-}
+
+} */
