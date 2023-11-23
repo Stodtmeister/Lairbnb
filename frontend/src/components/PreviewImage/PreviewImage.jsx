@@ -9,7 +9,6 @@ export default function PreviewImage({ id, name, avgRating, city, state, preview
   }
 
   return (
-    <>
     <div className="spot tooltip" onClick={handleClick}>
       <i class="fa-solid fa-heart fa-lg favorite"></i>
       <span className='tooltiptext'>{name}</span>
@@ -24,6 +23,5 @@ export default function PreviewImage({ id, name, avgRating, city, state, preview
         </div>
       </div>
     </div>
-    </>
   )
 }
