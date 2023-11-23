@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react'
 import spaceshipIcon from '../../images/icon1.jpeg'
 import houseIcon from '../../images/houseIcon.jpeg'
 import beachIcon from '../../images/beachIcon.jpeg'
@@ -23,15 +24,40 @@ export default function ScrollContainer() {
     { icon: historicalIcon, title: 'Historical homes' },
     { icon: countryIcon, title: 'Countryside' },
   ]
+  let [scrolled, setScrolled] = useState(0)
 
+  // useEffect(() => {
+  //   console.log('scroll', scrolled);
+  // }, [scrolled])
+
+  const scrollLeft = () => {
+    setScrolled(scrolled--)
+    document.getElementById('scroll').scrollRight -= 250
+  }
+
+  const scrollRight = () => {
+    setScrolled(scrolled++)
+    document.getElementById('scroll').scrollLeft += 250
+  };
+
+  console.log('2', scrolled);
   return (
-    <div class="scroll-container">
-      <div class="content">
+    <div className="scroll-container" id='scroll'>
+      <div className="scroll-bar2" id="scroll-bar">
+        <button className="scroll-button" onClick={scrollLeft}>
+        <i class="fa-solid fa-less-than fa-sm"></i>
+        </button>
+      </div>
+      <div className="content">
         {iconArray.map((icon, idx) => (
           <Choice key={idx} icon={icon} />
         ))}
       </div>
-      <div class="scroll-bar" id="scroll-bar"></div>
+      <div className="scroll-bar" id="scroll-bar">
+        <button className="scroll-button" onClick={scrollRight}>
+        <i class="fa-solid fa-greater-than fa-sm"></i>
+        </button>
+      </div>
     </div>
   )
 }
