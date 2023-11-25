@@ -51,7 +51,7 @@ export default function ScrollContainer() {
   };
 
   return (
-    <div className={`scroll-container`} id='scroll'>
+    <div className='scroll-container' id='scroll'>
       {scroll > 0 &&
         <div className="scroll-bar2" id="scroll-bar">
           <div className='shadow'>

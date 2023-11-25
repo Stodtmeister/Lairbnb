@@ -91,10 +91,6 @@ export default function NewSpotForm() {
         await images.forEach(img => {
           dispatch(addSpotImgThunk((data.id), img))
         })
-        // await dispatch(addSpotImgThunk(data.id, { url: previewImgRef.current.value, preview: true }))
-        // setImage(img)
-        // console.log('NEW', img);
-        // console.log("IMAGE", image);
         history.push(`/spots/${data.id}`)
       } else {
         setErrors(data)

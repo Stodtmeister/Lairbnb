@@ -78,7 +78,6 @@ span.not-bold {
   height: 8px;
 }
 
-
 .not-bold {
   font-weight: 300;
 }
@@ -90,7 +89,6 @@ span.not-bold {
 .tooltip {
   position: relative;
   display: inline-block;
-  /* border-bottom: 1px dotted black; */
 }
 
 .tooltip .tooltiptext {
