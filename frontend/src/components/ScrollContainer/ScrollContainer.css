@@ -1,5 +1,4 @@
 .scroll-container {
-  /* border: 1px solid black; */
   border-radius: 30px;
   height: 78px;
   display: flex;
@@ -26,20 +25,23 @@
   flex-direction: column;
   justify-content: center;
   height: 80%;
+  margin: 0 22px;
   border-bottom: 2px solid white;
-  margin-right: 22px;
 }
 
 .choice-container:hover {
   border-color: black;
   color: black;
+  border-bottom: 2px solid black;
+
 }
 
 .choice {
   display: flex;
   flex-direction: column;
   height: 48px;
-  margin-right: 25px;
+  border-bottom: 2px solid white;
+
 }
 
 .choice:hover {
@@ -61,14 +63,10 @@
 .scroll-bar {
   position: sticky;
   right: 0;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100%;
-  /* width: 120px; */
-  /* background-color: red; */
-  /* background-color: rgba(255, 255, 255, 0.727); */
   box-shadow: 0px 0px 20px white;
   z-index: 2;
   justify-content: center;
@@ -91,6 +89,7 @@
 .scroll-bar2 {
   position: sticky;
   left: 0;
+  height: 100%;
 }
 
 .shadow {
@@ -99,10 +98,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid black; */
   border-radius: 50px;
-  /* background-color: red; */
-  background-color: rgba(255, 255, 255, 0.865);
+  background-color: rgba(255, 255, 255, 0.889);
   box-shadow: 0px 0px 20px white;
   width: 60px;
 }

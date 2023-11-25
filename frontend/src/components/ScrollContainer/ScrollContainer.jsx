@@ -37,22 +37,22 @@ export default function ScrollContainer() {
     { icon: boatsIcon, title: 'Boats' },
   ]
 
-  const [test, setTest] = useState(0)
+  const [scroll, setScroll] = useState(0)
   const ele = document.getElementById('scroll')
 
   const scrollLeft = () => {
-    ele.scrollLeft -= 50
-    setTest(ele.scrollLeft)
+    ele.scrollLeft -= 300
+    setScroll(ele.scrollLeft)
   }
 
   const scrollRight = () => {
-    ele.scrollLeft += 50
-    setTest(ele.scrollLeft)
+    ele.scrollLeft += 300
+    setScroll(ele.scrollLeft)
   };
-  
+
   return (
     <div className={`scroll-container`} id='scroll'>
-      {test > 0 &&
+      {scroll > 0 &&
         <div className="scroll-bar2" id="scroll-bar">
           <div className='shadow'>
             <button className="scroll-button" onClick={scrollLeft}>
