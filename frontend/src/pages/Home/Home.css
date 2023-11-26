@@ -4,13 +4,13 @@
   align-items: center;
   margin-right: 30px;
   padding-left: 0px;
-  /* width: 90%; */
 }
 
 .filter-img {
   width: 13px;
   height: 13px;
   font-weight: 500;
+  margin: 0 5px;
 }
 
 .filters {
@@ -37,13 +37,18 @@
   border-radius: 12px;
   height: 48px;
   width: 222px;
-  padding: 7px;
+  min-width: 213px;
+  padding: 6px;
   display: flex;
   flex-direction: row;
   align-items: center;
   font-size: 11px;
   font-weight: 500;
   justify-content: space-around;
+}
+
+.taxes p {
+  margin: 0 3px;
 }
 
 .switch-toggle {
@@ -56,6 +61,10 @@
   border-radius: 15px;
   cursor: pointer;
   transition: background-color 0.3s;
+}
+
+.switch-toggle:hover {
+  background-color: #747474;
 }
 
 .switch-slider {
