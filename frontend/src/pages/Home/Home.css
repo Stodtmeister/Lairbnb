@@ -4,6 +4,7 @@
   align-items: center;
   margin-right: 30px;
   padding-left: 0px;
+  justify-content: space-between;
 }
 
 .filter-img {

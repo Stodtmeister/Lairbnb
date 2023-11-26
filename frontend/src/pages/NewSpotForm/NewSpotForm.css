@@ -89,16 +89,13 @@
   border-color: rgb(161, 161, 161);
 }
 
-.price {
+.money {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-/* .price label {
-  margin-right: 3px;
-} */
-#price {
+#money {
   margin-left: 3px;
 }
 

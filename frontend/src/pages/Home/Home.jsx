@@ -1,23 +1,18 @@
 import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { getAllSpots, useSpots } from '../../store/spots'
-import {
-  FilterModal,
-  OpenModalButton,
-  PreviewImage,
-  ScrollContainer,
-} from '../../components'
+import { FilterModal, OpenModalButton, PreviewImage, ScrollContainer } from '../../components'
 import filters from '../../images/filter.png'
 import './Home.css'
 
 export default function Home() {
   const [isChecked, setIsChecked] = useState(false)
+  const dispatch = useDispatch()
+  const spots = useSpots()
 
   const handleToggle = () => {
     setIsChecked(!isChecked)
   }
-  const dispatch = useDispatch()
-  const spots = useSpots()
 
   useEffect(() => {
     dispatch(getAllSpots())

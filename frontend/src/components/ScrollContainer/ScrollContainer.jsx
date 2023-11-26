@@ -27,14 +27,14 @@ export default function ScrollContainer() {
     { icon: mansionIcon, title: 'Mansion' },
     { icon: treehouseIcon, title: 'Treehouses' },
     { icon: beachIcon, title: 'Beachfront' },
-    { icon: offGridIcon, title: 'Off-the-grid' },
-    { icon: historicalIcon, title: 'Historical homes' },
-    { icon: countryIcon, title: 'Countryside' },
+    { icon: boatsIcon, title: 'Boats' },
     { icon: skiingIcon, title: 'Skiing' },
     { icon: lakeIcon, title: 'Lake' },
     { icon: castlesIcon, title: 'Castles' },
+    { icon: offGridIcon, title: 'Off-the-grid' },
+    { icon: historicalIcon, title: 'Historical homes' },
+    { icon: countryIcon, title: 'Countryside' },
     { icon: tropicalIcon, title: 'Tropical' },
-    { icon: boatsIcon, title: 'Boats' },
   ]
 
   const [scroll, setScroll] = useState(0)
