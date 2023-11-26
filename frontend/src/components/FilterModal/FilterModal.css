@@ -1,0 +1,176 @@
+.filter-header {
+  color: rgb(44, 44, 44);
+  font-weight: 600;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 12px 20px 6px;
+  height: 30px;
+}
+
+.filter-header div {
+  font-size: 16px;
+  font-weight: 500;
+  margin-right: 45%;
+}
+
+.filter-header div:hover {
+  cursor: pointer;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.filter-type h3 {
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  margin: 5px 20px 2px;
+}
+
+.filter-type p {
+  margin: 0 20px;
+  font-size: 13px;
+}
+
+.filter-buttons {
+  margin: 20px 40px;
+  border-radius: 15px;
+  height: 64px;
+}
+
+.filter-buttons button {
+  border: 1px solid rgb(205, 205, 205);
+  width: 218px;
+  font-weight: 600;
+  color: black;
+  background-color: white;
+}
+
+button.clicked {
+  border: black;
+  background-color: rgb(48, 48, 48);
+  color: white;
+}
+
+.filter-buttons button:hover {
+  border: 1px solid black;
+}
+
+.btn-1 {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.btn-3 {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.line {
+  width: 30px;
+  height: 7px;
+}
+
+input#price {
+  width: 80%;
+  margin: 30px auto 10px;
+}
+
+.filter-price div {
+  text-align: center;
+}
+
+
+.filter-price p {
+  margin: 0 20px;
+  font-size: 13px;
+}
+
+.filter-price h4 {
+  color: rgb(0, 0, 0);
+  font-size: 18px;
+  font-weight: 600;
+  margin: 5px 20px 2px;
+}
+
+datalist {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  writing-mode: vertical-lr;
+  width: 440px;
+  margin: 0px auto 30px;
+}
+
+option {
+  padding: 0;
+}
+
+input[type="range"] {
+  width: 200px;
+  margin: 0;
+}
+
+.priceRange-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* width: 80%; */
+}
+
+.min-container,
+.max-container {
+  position: relative;
+}
+
+.priceRange-btn label {
+  color: grey;
+  position: absolute;
+  margin: 18px 23px;
+  font-size: 11px;
+}
+
+.priceRange-btn input {
+  border: 1px solid rgb(205, 205, 205);
+  border-radius: 10px;
+  width: 200px;
+  height: 50px;
+  margin: 10px;
+  padding-left: 15px;
+  padding-top: 18px;
+}
+
+.rb {
+  color: rgb(0, 0, 0);
+  font-size: 18px;
+  font-weight: 600;
+  margin: 5px 20px 2px;
+}
+
+.filter-footer {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+  justify-content: space-between;
+}
+
+.filter-footer .clear {
+  border: none;
+  height: 48px;
+  background-color: white;
+  font-size: 15px;
+  text-decoration: underline;
+}
+
+.filter-footer .find {
+  border: 1px solid black;
+  background-color: rgb(48, 48, 48);
+  color: white;
+  font-weight: 600;
+  height: 48px;
+  width: 173px;
+  border-radius: 10px;
+}

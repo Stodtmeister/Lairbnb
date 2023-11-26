@@ -16,17 +16,65 @@
   font-weight: 600;
 }
 
+.nav-btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid rgb(205, 205, 205);
+  box-shadow: 0px 1px 3px rgb(216, 216, 216);
+  border-radius: 30px;
+  overflow: hidden;
+  height: 48px;
+  width: 350px;
+}
+
+.nav-btn-container div {
+  border: 1px solid rgb(223, 223, 223);
+  height: 65%;
+}
+
+.nav-btn-container button {
+  height: 100%;
+  border: none;
+  background-color: white;
+}
+
+.btn1,
+.btn2 {
+  font-weight: 500;
+}
+
+.btn3 {
+  color: grey;
+}
+
+.fa-magnifying-glass {
+  color: white;
+  border: 1px;
+  background-color: #ff385c;
+  padding: 7px;
+  border-radius: 50px;
+}
+
 .nav .new-spot {
-  color: rgb(97, 97, 97);
-  font-size: 16px;
+  border: 1px;
+  border-radius: 30px;
+  padding: 8px;
+  color: rgb(71, 71, 71);
+  font-size: 14px;
   margin-right: 10px;
+}
+
+.nav .new-spot:hover {
+  background-color: rgb(243, 243, 243);
 }
 
 hr {
   display:block;
   width: 100%;
   margin: 15px 0;
-  border: 0.5px solid rgb(226, 226, 226)
+  border: 0.5px solid rgb(239, 239, 239)
 }
 
 #icon {
@@ -38,13 +86,14 @@ hr {
   height: 48px;
   width: 86px;
   background-color: white;
-  border: 1px solid rgb(178, 178, 178);
+  border: 1px solid rgb(205, 205, 205);
   border-radius: 30px;
   position: relative;
 }
 
+.nav-btn-container:hover,
 .profileBtn:hover {
-  box-shadow: 0px 3px 6px rgb(191, 191, 191);
+  box-shadow: 0px 3px 6px rgb(216, 216, 216);
 }
 
 .innerBtn {
@@ -84,43 +133,53 @@ hr {
   top: 60px;
   padding: 0px;
   text-align: center;
-  z-index: 1;
+  z-index: 2;
   background-color: white;
   width: 250px;
-  height: 150px;
   list-style-type: none;
   padding-top: 6px;
 }
 
-
-/* h2 {
-  border: 1px solid black;
-  text-align: center;
-  padding: 10px;
-} */
+.profile-dropdown li {
+  margin: 3px;
+}
 
 .manage-spots {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   border-top: 1px solid rgb(194, 194, 194);
   border-bottom: 1px solid rgb(194, 194, 194);
-  margin: 10px auto;
-  padding: 5px;
+  margin: 10px auto 0px auto;
+  padding: 5px 0px;
 }
 
 .manage-spots a {
-  font-size: 17px;
+  font-size: 16px;
   color: black;
   font-weight: 400;
+  margin: 2px auto;
+  width: 100%;
+  padding: 3px;
+}
+
+.manage-spots a:hover {
+  background-color: #f2f2f2;
 }
 
 .logout-btn {
   width: 50%;
   height: 3em;
-  margin: auto;
+  margin: 10px auto;
   border: none;
   background-color: #ff385c;
   color: white;
   font-weight: 600;
   border-radius: 10px;
+}
+
+.logout-btn:hover {
+  box-shadow: 0px 0px 10px  rgb(209, 209, 209);
 }
 
 .logged-out {

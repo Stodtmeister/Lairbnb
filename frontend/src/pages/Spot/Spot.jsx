@@ -3,11 +3,13 @@ import { getSpotById, useSpots } from '../../store/spots'
 import { useDispatch  } from 'react-redux'
 import { useEffect } from 'react'
 import { SpotReviews } from '../../components'
+import { useReviews } from '../../store/reviews'
 import './Spot.css'
 
 export default function Spot() {
   const dispatch = useDispatch()
   const { spotId } = useParams()
+  const reviews = useReviews()
 
   function handleClick() {
     alert('Feature Coming Soon...')
@@ -15,7 +17,7 @@ export default function Spot() {
 
   useEffect(() => {
     dispatch(getSpotById(spotId))
-  }, [dispatch, spotId])
+  }, [dispatch, spotId, reviews.length])
 
   const spot = useSpots()
   if (!spot[0]) return <div></div>
@@ -56,7 +58,7 @@ export default function Spot() {
           <button className='reserve' onClick={handleClick}>Reserve</button>
         </div>
       </section>
-      <SpotReviews spotId={spotId} rating={avgStarRating} owner={Owner}/>
+      <SpotReviews spotId={spotId} rating={avgStarRating} owner={Owner} name={name} />
     </div>
   )
 }

@@ -1,3 +1,7 @@
+.spot-grid {
+  margin-top: 0px;
+}
+
 .spot-page {
   max-width: 1000px;
   margin: 0 auto;
@@ -54,6 +58,10 @@
   justify-content: space-between;
 }
 
+.spot-description {
+  margin-right: 10px;
+}
+
 
 .reserve-spot {
   display: flex;
@@ -63,7 +71,7 @@
   border-radius: 10px;
   width: 40%;
   max-width: 360px;
-  min-width: 264px;
+  min-width: 320px;
   height: 120px;
   margin-bottom: 15px;
 }
@@ -129,4 +137,9 @@ strong {
 
 .show {
   display: auto;
+}
+
+.owner-container {
+  display: flex;
+  flex-direction: row;
 }

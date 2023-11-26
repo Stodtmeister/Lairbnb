@@ -91,10 +91,6 @@ export default function NewSpotForm() {
         await images.forEach(img => {
           dispatch(addSpotImgThunk((data.id), img))
         })
-        // await dispatch(addSpotImgThunk(data.id, { url: previewImgRef.current.value, preview: true }))
-        // setImage(img)
-        // console.log('NEW', img);
-        // console.log("IMAGE", image);
         history.push(`/spots/${data.id}`)
       } else {
         setErrors(data)
@@ -241,12 +237,12 @@ export default function NewSpotForm() {
         <h4>Set a base price for your spot *</h4>
         <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
         <div className={`form-group2 ${errors?.price ? "error" : ""}`}>
-          <label className='price' htmlFor="price">
+          <label className='money' htmlFor="money">
             $
             <input
               className='input'
               type="text"
-              id='price'
+              id='money'
               placeholder='Price per night (USD)'
               ref={priceRef}
               />
