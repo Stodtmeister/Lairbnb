@@ -12,7 +12,7 @@ button,
 }
 
 h3 {
-  color: darkslategray;
+  color: rgb(36, 36, 36);
   font-weight: 500;
 }
 
@@ -33,3 +33,15 @@ input:focus {
 textarea:focus {
   outline-color: #ff5a5f;
 }
+
+/* @media (width >= 1440px) {
+  #root {
+    margin: 0 80px;
+  }
+}
+
+@media (width < 1440px) {
+  #root {
+    margin: 0 40px;
+  }
+} */

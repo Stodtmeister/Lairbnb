@@ -1,7 +1,5 @@
 import { csrfFetch } from "./csrf"
 
-const ADD_SPOT_IMG = 'ADD_SPOT_IMG'
-
 export const addSpotImgThunk = (spotId, img) => async (dispatch) => {
   console.log('img', img);
   const res = await csrfFetch(`/api/spots/${spotId}/images`, {

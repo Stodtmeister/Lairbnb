@@ -1,14 +1,29 @@
-.spot-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  grid-template-rows: repeat(auto-fit, minmax(228px, 1fr));
-  max-width: 1380px;
-  max-height: 9999px;
-  gap: 2rem;
-  margin: 10px auto;
-  padding: 0px 30px;
-  justify-items: center;
+@media (width >= 1440px) {
+  .spot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    max-width: 1496px;
+    max-height: 9999px;
+    gap: 1.35em;
+    margin: 15px auto;
+    justify-items: center;
+    padding: 0 80px;
+  }
 }
+
+@media (width < 1440px) {
+  .spot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    max-width: 1496px;
+    max-height: 9999px;
+    gap: 1.35em;
+    margin: 15px auto;
+    justify-items: center;
+    padding: 0 40px;
+  }
+}
+
 
 div.manage-spot,
 div.spot.tooltip,
@@ -17,10 +32,10 @@ div.spot.tooltip,
   border-radius: 10px;
   width: 100%;
   height: 90%;
-  max-height: 330px;
-  min-height: 228px;
+  max-height: 304px;
+  min-height: 251px;
   min-width: 240px;
-  max-width: 347px;
+  max-width: 320px;
 }
 
 .favorite {

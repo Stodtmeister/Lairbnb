@@ -1,5 +1,13 @@
-.userSpot-header {
-  margin: 0 30px;
+@media (width >= 1440px) {
+  .userSpot-header {
+    margin: 0 80px 40px;
+  }
+}
+
+@media (width < 1440px) {
+  .userSpot-header {
+    margin: 0 40px 40px;
+  }
 }
 
 .userSpot-header h3 {

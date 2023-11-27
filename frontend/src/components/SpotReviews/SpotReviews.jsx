@@ -36,9 +36,6 @@ export default function SpotReviews({ spotId, rating, owner, name }) {
       <div>
         <span className='star-icon'>&#9733;</span>
         <span className={reviews.length > 0 ? 'hide' : 'show'}>New</span>
-        <div className={`${firstToReview} ${browsing}`}>
-          <p>Be the first to post a review!</p>
-        </div>
         <span className={reviews.length > 0 ? 'show' : 'hide'}>
           <span className='bold'>{rating?.toPrecision(2)} </span>
           <span className='review-dot'>&#183;</span>
@@ -50,6 +47,9 @@ export default function SpotReviews({ spotId, rating, owner, name }) {
           buttonText='Post Your Review'
           modalComponent={<ReviewModal spotId={spotId} />}
         />
+      </div>
+      <div className={`${firstToReview} ${browsing}`}>
+        <p>Be the first to post a review!</p>
       </div>
       {reviews.reverse().map(rev => (
         <ReviewContainer key={rev.id} user={user} rev={rev} spotId={spotId} name={name} />

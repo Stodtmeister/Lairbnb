@@ -10,12 +10,13 @@ export default function UpdateSpot() {
   const dispatch = useDispatch()
   const { spotId } = useParams()
   let spotInfo = useSpots()
-  if (spotInfo) {
-    spotInfo = spotInfo[0]
-  }
   const history = useHistory()
   const [errors, setErrors] = useState({})
 
+  if (spotInfo) {
+    spotInfo = spotInfo[0]
+  }
+  
   const [formData, setFormData] = useState({
     country: spotInfo?.country,
     address: spotInfo?.address,
@@ -25,7 +26,7 @@ export default function UpdateSpot() {
     lng: spotInfo?.lng,
     description: spotInfo?.description,
     price: spotInfo?.price,
-    name: spotInfo?.name
+    name: spotInfo?.name,
   });
 
   const handleInputChange = (e) => {
@@ -216,12 +217,12 @@ export default function UpdateSpot() {
         <h4>Set a base price for your spot *</h4>
         <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
         <div className={`form-group2 ${errors?.price ? "error" : ""}`}>
-          <label htmlFor="price">
+          <label className='money' htmlFor="money">
             $
             <input
               className='input'
               type="text"
-              name='price'
+              id='money'
               value={formData.price}
               onChange={handleInputChange}
             />
@@ -231,7 +232,7 @@ export default function UpdateSpot() {
           )}
         </div>
       <hr />
-        <button className='btn' type="submit">Update Spot</button>
+      <button className='btn' type="submit">Update Spot</button>
     </form>
   )
 }

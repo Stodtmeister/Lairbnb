@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import { useModal } from '../../context/Modal'
 import { useDispatch } from 'react-redux'
-import { addReviewThunk, editReviewThunk, useReviews } from '../../store/reviews'
+import { addReviewThunk, editReviewThunk } from '../../store/reviews'
 import './ReviewModal.css'
 
 export default function ReviewModal({ spotId, reviewId, updating, name1, name2 }) {
@@ -12,7 +12,6 @@ export default function ReviewModal({ spotId, reviewId, updating, name1, name2 }
   const [hoveredRating, setHoveredRating] = useState(0);
   const [review, setReview] = useState('')
   const [errors, setErrors] = useState({})
-  // const [refresh, setRefresh] = useState(false)
   let disabled = true
 
   if (review && !Object.keys(errors).length) disabled = false;
@@ -94,13 +93,3 @@ export default function ReviewModal({ spotId, reviewId, updating, name1, name2 }
     </>
   );
 }
-
-    // function ReviewBody({review, e, setReview, handleMouseLeave, renderStars}) {
-    //   return (<><textarea id="review-text" cols="30" rows="8" placeholder="Leave your review here..." value={review} onChange={e => setReview(e.target.value)} />
-    //     <div className="rating-container">
-    //       <div className="star-rating" onMouseLeave={handleMouseLeave}>
-    //         {renderStars()}
-    //       </div>
-    //       <p>Stars</p>
-    //     </div></>);
-    // }
