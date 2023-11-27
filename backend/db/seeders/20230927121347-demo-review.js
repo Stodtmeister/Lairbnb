@@ -19,13 +19,13 @@ module.exports = {
       {
         userId: 4,
         spotId: 2,
-        review: 'They provided excellent food. The salted pork was particularly nice.',
+        review: "Who wouldn't like living in a hobbit hole?!",
         stars: 5,
       },
       {
         userId: 3,
         spotId: 2,
-        review: 'The fireworks were great. The Longbottom Leaf was better!',
+        review: 'The fireworks were great.',
         stars: 5,
       },
       {
