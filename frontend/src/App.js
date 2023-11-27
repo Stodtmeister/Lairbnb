@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-import React, { useEffect, useState } from "react";
-=======
+
 import React, { useEffect, useState } from 'react'
 import { Route, Switch } from 'react-router-dom'
->>>>>>> dev
 import { Navigation } from './components'
-import { Route, Switch } from "react-router-dom";
-import { Choices } from './components'
 import { useDispatch } from 'react-redux'
 import * as sessionActions from './store/session'
 import { Home, NewSpotForm, ManageSpots, UpdateSpot, ManageReviews } from './pages'
