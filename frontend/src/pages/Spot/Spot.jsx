@@ -28,8 +28,20 @@ export default function Spot() {
   return (
     <div className='spot-page'>
       <div className='address'>
-        <h3>{name}</h3>
-        <p>{city}, {state}, {country}</p>
+        <div>
+          <h3>{name}</h3>
+          <p>{city}, {state}, {country}</p>
+        </div>
+        <div className='share-save'>
+          <div className="share">
+            <i class="fa-solid fa-arrow-up-from-bracket"></i>
+            <span>Share</span>
+          </div>
+          <div className='save'>
+            <i class="fa-regular fa-heart"></i>
+            <span>Save</span>
+          </div>
+        </div>
       </div>
       <div className="grid-container">
         {SpotImages?.map((img, idx) => (

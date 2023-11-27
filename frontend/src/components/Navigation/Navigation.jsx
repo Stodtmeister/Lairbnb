@@ -14,7 +14,7 @@ function Navigation({ isLoaded }){
   return (
     <>
       <div className='nav'>
-        <NavLink exact to="/"><i id='icon' class="fa-brands fa-airbnb fa-2xl"></i>airbnb</NavLink>
+        <NavLink exact to="/"><i id='icon' class="fa-brands fa-airbnb fa-2xl"></i><span class="navbar-text">airbnb</span></NavLink>
         <div className="nav-btn-container">
           <button onClick={handleClick} className='btn1'>Anywhere</button>
           <div></div>
@@ -25,7 +25,7 @@ function Navigation({ isLoaded }){
         </div>
         <div>
           <span className={sessionUser?.id ? 'logged-in' : 'logged-out'}>
-            <NavLink className='new-spot' to='/spots/new'>Create a New Spot</NavLink>
+            <NavLink className='new-spot dynamic-content' to='/spots/new'></NavLink>
           </span>
           {isLoaded && (<ProfileButton user={sessionUser} />)}
         </div>

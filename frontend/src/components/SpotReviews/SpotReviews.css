@@ -1,5 +1,5 @@
 .spot-review {
-  margin: 20px;
+  margin: 20px 0;
 }
 
 .owner {
@@ -27,16 +27,15 @@
   flex-direction: column;
   justify-content: space-between;
   margin: 10px 0px ;
-  height: 70px;
   margin-bottom: 0px;
 }
 
 .review-info p {
-  margin: 0px;
+  margin: 3px 0 5px;
 }
 
 .review-info .first-name {
-  margin-bottom: 3px;
+  margin-bottom: 5px;
 }
 
 .show {

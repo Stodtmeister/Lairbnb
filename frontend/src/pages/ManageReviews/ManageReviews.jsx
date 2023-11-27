@@ -17,14 +17,16 @@ export default function ManageReviews() {
   return (
     <>
       <h2 className='MR'>Manage Reviews</h2>
-      <div className='spot-review'>
-        {userReviews.map(rev => (
-          <div key={rev.id}>
-            <h4>{rev.Spot?.name}</h4>
-            <ReviewContainer rev={rev} user={user} />
-            <hr />
-          </div>
-          ))}
+      <div className='manage-spot-review'>
+        <div className='spot-review'>
+          {userReviews.map(rev => (
+            <div key={rev.id}>
+              <h4>{rev.Spot?.name}</h4>
+              <ReviewContainer rev={rev} user={user} />
+              <hr />
+            </div>
+            ))}
+        </div>
       </div>
     </>
   )
