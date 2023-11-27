@@ -34,7 +34,7 @@ textarea:focus {
   outline-color: #ff5a5f;
 }
 
-@media (width >= 1440px) {
+/* @media (width >= 1440px) {
   #root {
     margin: 0 80px;
   }
@@ -44,4 +44,4 @@ textarea:focus {
   #root {
     margin: 0 40px;
   }
-}
+} */

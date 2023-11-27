@@ -1,19 +1,12 @@
 /* .spots-page {
-  margin: 0 200px;
+  padding: 0 200px;
 } */
-
-.spot-grid {
-  margin-top: 0px;
-}
 
 .spot-page {
   max-width: 1000px;
   margin: 0 auto;
 }
 
-/* .address {
-  margin: 0 20px;
-} */
 .address h3 {
   font-size: 27px;
   margin-bottom: 0px;
