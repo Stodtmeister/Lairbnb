@@ -1,3 +1,7 @@
+/* .spots-page {
+  margin: 0 200px;
+} */
+
 .spot-grid {
   margin-top: 0px;
 }
@@ -7,9 +11,9 @@
   margin: 0 auto;
 }
 
-.address {
+/* .address {
   margin: 0 20px;
-}
+} */
 .address h3 {
   font-size: 27px;
   margin-bottom: 0px;
@@ -26,7 +30,7 @@
   gap: 5px;
   align-items: stretch;
   grid-template-rows: 1fr 1fr;
-  margin: 20px;
+  margin: 20px 0;
   max-height: 432px;
   border: 1px solid white;
   border-radius: 10px;
@@ -53,7 +57,6 @@
 .spot-info {
   display: flex;
   flex-direction: row;
-  margin: 0 20px;
   border-bottom: 1px solid rgb(181, 181, 181);
   justify-content: space-between;
 }

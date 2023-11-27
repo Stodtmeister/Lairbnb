@@ -83,7 +83,7 @@ export default function FilterModal() {
       <div className="priceRange-btn">
         <div className='min-container'>
           <label htmlFor="min-price">Minimum</label>
-          <input type="text" name="" id="min-price" defaultValue="$0" />
+          <input type="text" id="min-price" defaultValue="$0" />
         </div>
         <div>
           <img className="line" src={line} alt="line" />
@@ -94,7 +94,7 @@ export default function FilterModal() {
             type="text"
             value={'$' + inputValue}
             id="max-price"
-            defaultValue={`$`}
+            // defaultValue={`$`}
           />
         </div>
       </div>
