@@ -94,7 +94,6 @@ export default function FilterModal() {
             type="text"
             value={'$' + inputValue}
             id="max-price"
-            // defaultValue={`$`}
           />
         </div>
       </div>

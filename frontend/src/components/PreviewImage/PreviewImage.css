@@ -12,15 +12,10 @@
 }
 
 @media (width < 1440px) {
-  /* .spot-grid {
-    margin: 15px auto;
-    padding: 0 40px;
-  } */
-
   .spot-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    max-width: 1335px;
+    max-width: 1496px;
     max-height: 9999px;
     gap: 1.35em;
     margin: 15px auto;
