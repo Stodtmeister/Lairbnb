@@ -80,7 +80,8 @@
 
 @media (width < 760px) {
   .dynamic-content::before {
-    content: "New";
+    content: '\02D6';
+    font-size: 30px;
   }
 }
 
@@ -90,7 +91,7 @@
   padding: 8px;
   color: rgb(71, 71, 71);
   font-size: 14px;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 .nav .new-spot:hover {

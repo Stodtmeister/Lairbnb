@@ -23,6 +23,7 @@ export default function NewSpotForm() {
   const img4Ref = useRef()
   const img5Ref = useRef()
   const [errors, setErrors] = useState({})
+  const imageArray = [previewImgRef, img2Ref, img3Ref, img4Ref, img5Ref]
   const images = []
 
   async function handleSubmit(e) {
@@ -40,37 +41,15 @@ export default function NewSpotForm() {
     if (priceRef.current.value < 1 || !priceRef.current.value.length) validationErrors.price = 'Price is required'
     if (!previewImgRef.current.value.length) validationErrors.preview = 'Preview image is required'
 
-    const ending = /\.(png|jpg|jpeg)$/i
-    if (previewImgRef.current.value.length) {
-      images.push({ url: previewImgRef.current.value, preview: true })
-      if (!ending.test(previewImgRef.current.value)) {
-        validationErrors.previewEnd = 'Image URL must end in .png, .jpg, or .jpeg'
+    imageArray.forEach((image, idx) => {
+      const ending = /\.(png|jpg|jpeg)$/i
+      if (image.current.value.length) {
+        images.push({ url: image.current.value, preview: true })
+        if (!ending.test(image.current.value)) {
+          validationErrors['ending' + idx] = 'Image URL must end in .png, .jpg, or .jpeg'
+        }
       }
-    }
-    if (img2Ref.current.value.length) {
-      images.push({ url: img2Ref.current.value, preview: false })
-      if (!ending.test(img2Ref.current.value)) {
-        validationErrors.ending2 = 'Image URL must end in .png, .jpg, or .jpeg'
-      }
-    }
-    if (img3Ref.current.value.length) {
-      images.push({ url: img3Ref.current.value, preview: false })
-      if (!ending.test(img3Ref.current.value)) {
-        validationErrors.ending3 = 'Image URL must end in .png, .jpg, or .jpeg'
-      }
-    }
-    if (img4Ref.current.value.length) {
-      images.push({ url: img4Ref.current.value, preview: false })
-      if (!ending.test(img4Ref.current.value)) {
-        validationErrors.ending4 = 'Image URL must end in .png, .jpg, or .jpeg'
-      }
-    }
-    if (img5Ref.current.value.length) {
-      images.push({ url: img5Ref.current.value, preview: false })
-      if (!ending.test(img5Ref.current.value)) {
-        validationErrors.ending5 = 'Image URL must end in .png, .jpg, or .jpeg'
-      }
-    }
+    })
 
     if (!Object.keys(validationErrors).length) {
       const newSpot = {
@@ -255,7 +234,7 @@ export default function NewSpotForm() {
         <h4>Liven up your spot with photos *</h4>
         <p>Submit a link to at least one photo to publish your spot.</p>
         <div className="spot-images">
-          <div className={`form-group2 ${errors?.preview ? "error" : ""} ${errors?.previewEnd ? 'error' : ""}`}>
+          <div className={`form-group2 ${errors?.preview ? "error" : ""} ${errors?.ending0 ? 'error' : ""}`}>
             <input
               className='input img'
               type="text"
@@ -265,8 +244,19 @@ export default function NewSpotForm() {
             {errors?.preview && (
               <div className="msg">{errors?.preview}</div>
             )}
-            {errors?.previewEnd && (
-              <div className="msg">{errors?.previewEnd}</div>
+            {errors?.ending0 && (
+              <div className="msg">{errors?.ending0}</div>
+            )}
+          </div>
+          <div className={`form-group2 ${errors?.ending1 ? "error" : ""}`}>
+            <input
+              className='input img'
+              type="text"
+              placeholder='Image URL'
+              ref={img2Ref}
+            />
+            {errors?.ending1 && (
+              <div className="msg">{errors?.ending1}</div>
             )}
           </div>
           <div className={`form-group2 ${errors?.ending2 ? "error" : ""}`}>
@@ -274,7 +264,7 @@ export default function NewSpotForm() {
               className='input img'
               type="text"
               placeholder='Image URL'
-              ref={img2Ref}
+              ref={img3Ref}
             />
             {errors?.ending2 && (
               <div className="msg">{errors?.ending2}</div>
@@ -285,7 +275,7 @@ export default function NewSpotForm() {
               className='input img'
               type="text"
               placeholder='Image URL'
-              ref={img3Ref}
+              ref={img4Ref}
             />
             {errors?.ending3 && (
               <div className="msg">{errors?.ending3}</div>
@@ -293,24 +283,13 @@ export default function NewSpotForm() {
           </div>
           <div className={`form-group2 ${errors?.ending4 ? "error" : ""}`}>
             <input
-              className='input img'
-              type="text"
-              placeholder='Image URL'
-              ref={img4Ref}
-            />
-            {errors?.ending4 && (
-              <div className="msg">{errors?.ending4}</div>
-            )}
-          </div>
-          <div className={`form-group2 ${errors?.ending5 ? "error" : ""}`}>
-            <input
               className='input '
               type="text"
               placeholder='Image URL'
               ref={img5Ref}
             />
-            {errors?.ending5 && (
-              <div className="msg">{errors?.ending5}</div>
+            {errors?.ending4 && (
+              <div className="msg">{errors?.ending4}</div>
             )}
           </div>
         </div>

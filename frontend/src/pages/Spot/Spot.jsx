@@ -1,6 +1,6 @@
 import { useParams } from 'react-router'
 import { getSpotById, useSpots } from '../../store/spots'
-import { useDispatch  } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { SpotReviews } from '../../components'
 import { useReviews } from '../../store/reviews'
@@ -26,18 +26,18 @@ export default function Spot() {
   const rev = numReviews > 1 ? 'reviews' : 'review'
 
   return (
-    <div className='spot-page'>
-      <div className='address'>
+    <div className="spot-page">
+      <div className="address">
         <div>
           <h3>{name}</h3>
           <p>{city}, {state}, {country}</p>
         </div>
-        <div className='share-save'>
+        <div className="share-save" onClick={handleClick}>
           <div className="share">
             <i class="fa-solid fa-arrow-up-from-bracket"></i>
             <span>Share</span>
           </div>
-          <div className='save'>
+          <div className="save" onClick={handleClick}>
             <i class="fa-regular fa-heart"></i>
             <span>Save</span>
           </div>
@@ -45,32 +45,48 @@ export default function Spot() {
       </div>
       <div className="grid-container">
         {SpotImages?.map((img, idx) => (
-          <img key={idx} className={`spot-img ${idx === 0 ? 'tall' : 'square'}`} src={img.url} alt='house' />
+          <img
+            key={idx}
+            className={`spot-img ${idx === 0 ? 'tall' : 'square'}`}
+            src={img.url}
+            alt="house"
+          />
         ))}
       </div>
-      <section className='spot-info'>
-        <div className='spot-description' >
-          <h3 className='host'>Hosted by {Owner?.firstName} {Owner?.lastName}</h3>
+      <section className="spot-info">
+        <div className="spot-description">
+          <h3 className="host">
+            Hosted by {Owner?.firstName} {Owner?.lastName}
+          </h3>
           <p>{description}</p>
         </div>
-        <div className='reserve-spot'>
-          <div className='rating'>
-            <p><strong>${price}</strong> night</p>
+        <div className="reserve-spot">
+          <div className="rating">
+            <p>
+              <strong>${price}</strong> night
+            </p>
             <div>
-              <span className='star-icon'>&#9733;</span>
-              <span className={numReviews > 0 ? 'hide' : 'show'}>
-                New
-              </span>
+              <span className="star-icon">&#9733;</span>
+              <span className={numReviews > 0 ? 'hide' : 'show'}>New</span>
               <span className={numReviews > 0 ? 'show' : 'hide'}>
-                <span className='bold'>{avgStarRating?.toPrecision(2)}</span>
-                <span id='num-review' className='dot bold normal'>&#183; {numReviews} {rev}</span>
+                <span className="bold">{avgStarRating?.toPrecision(2)}</span>
+                <span id="num-review" className="dot bold normal">
+                  &#183; {numReviews} {rev}
+                </span>
               </span>
             </div>
           </div>
-          <button className='reserve' onClick={handleClick}>Reserve</button>
+          <button className="reserve" onClick={handleClick}>
+            Reserve
+          </button>
         </div>
       </section>
-      <SpotReviews spotId={spotId} rating={avgStarRating} owner={Owner} name={name} />
+      <SpotReviews
+        spotId={spotId}
+        rating={avgStarRating}
+        owner={Owner}
+        name={name}
+      />
     </div>
   )
 }

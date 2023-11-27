@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useModal } from '../../context/Modal'
 import * as sessionActions from '../../store/session'
-import './SignupForm.css'
 
 function SignupFormModal() {
   const dispatch = useDispatch()
@@ -44,7 +43,7 @@ function SignupFormModal() {
 
     if (password === confirmPassword) {
       setErrors({})
-      let res = await dispatch(sessionActions.signup({ email, username, firstName, lastName, password }))
+      await dispatch(sessionActions.signup({ email, username, firstName, lastName, password }))
         .then(closeModal)
         .catch(async (res) => {
           const data = await res.json()
@@ -60,7 +59,7 @@ function SignupFormModal() {
   return (
     <form id="form" className="signup" onSubmit={handleSubmit}>
       <h1>Sign Up</h1>
-      <div className={`form-group1 ${Object.keys(errors).length ? 'error' : ''}`} >
+      <div className={`form-group1 ${Object.keys(errors).length ? 'error' : ''}`}>
         <input
           className="input"
           type="text"
@@ -109,9 +108,7 @@ function SignupFormModal() {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
-        <button className="sign-up" disabled={disabled} type="submit">
-          Sign Up
-        </button>
+        <button className="sign-up" disabled={disabled} type="submit">Sign Up</button>
       </div>
     </form>
   )
