@@ -51,8 +51,8 @@ module.exports = {
       },
       {
         ownerId: 4,
-        address: 'Somewhere secret',
-        city: '45 Numenor Blvd',
+        address: '45 Numenor Blvd',
+        city: 'Minas Tirith',
         state: 'Gondor',
         country: 'Middle-earth',
         lat: 66,
