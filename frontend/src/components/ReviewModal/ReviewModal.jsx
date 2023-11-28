@@ -93,3 +93,4 @@ export default function ReviewModal({ spotId, reviewId, updating, name1, name2 }
     </>
   );
 }
+
